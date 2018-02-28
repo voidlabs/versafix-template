@@ -3,11 +3,13 @@
 Mosaico is a JavaScript library (or maybe a single page application) supporting the editing of email templates.
 This repository contains the [HTMML](https://github.com/voidlabs/htmml) "sources" for the versafix-1 template. They are translated to HTML and directly used by mosaico.
 
+![Here is a thumbnail of the template:](https://github.com/voidlabs/versafix-template/blob/master/dist/template/edres/_full.png?raw=true)
+
 ### Build/Run
 
 You need NodeJS v6.0 or higher + ImageMagick
 
-```
+```javascript
   npm install
   npm run build
 ```
