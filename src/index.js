@@ -1,6 +1,6 @@
 "use strict";
 
-var mml2html = require('./mml2html');
+var mml2html = require('htmml');
 var makeThumbs = require('./makeThumbs');
 var checkTemplateDefs = require('./checkTemplateDefs');
 var fse = require('fs-extra');

@@ -11,6 +11,7 @@
     "async": "^2.0.1",
     "cheerio": "^0.22.0",
     "fs-extra": "^5.0.0",
+    "htmml": "^1.0.1",
     "mockery": "^2.0.0",
     "mosaico": "github:voidlabs/mosaico#93b7d39",
     "phantomjs-prebuilt": "^2.1.16"
