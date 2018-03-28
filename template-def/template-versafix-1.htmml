@@ -992,22 +992,22 @@
     <block name="bigSocialBlock" label="Big Social Block">
       <block-inner inner-padding="18" inner-class="vb-container links-color socialLinks mobile-textcenter">
         <custom-row false if="bigSocialIconType eq 'colors'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#517bbe,#64ccf1,#dc4e41,#5e5656,#0079ba,#bd091d,#ff0082,#05b5ec,#4a79a3,#ef2922" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
         <custom-row false if="bigSocialIconType eq 'bw'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#517bbe,#64ccf1,#dc4e41,#5e5656,#0079ba,#bd091d,#ff0082,#05b5ec,#4a79a3,#ef2922" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
         <custom-row if="bigSocialIconType eq 'rdcol'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#517bbe,#64ccf1,#dc4e41,#5e5656,#0079ba,#bd091d,#ff0082,#05b5ec,#4a79a3,#ef2922" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
         <custom-row false if="bigSocialIconType eq 'rdbl'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#517bbe,#64ccf1,#dc4e41,#5e5656,#0079ba,#bd091d,#ff0082,#05b5ec,#4a79a3,#ef2922" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdbl-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
@@ -1066,12 +1066,12 @@
           </column-content><!--
           --><column-content width="276" spacing="9">
             <custom-row if="socialIconType eq 'colors'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if" color="#517bbe,#64ccf1,#dc4e41,#5e5656,#0079ba,#bd091d,#ff0082,#05b5ec,#4a79a3,#ef2922" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
             <custom-row false if="socialIconType eq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if" color="#517bbe,#64ccf1,#dc4e41,#5e5656,#0079ba,#bd091d,#ff0082,#05b5ec,#4a79a3,#ef2922" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <repeater prefix="fb,tw,gg,web,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
