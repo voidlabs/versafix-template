@@ -111,7 +111,7 @@
       frameTheme:preview { -ko-background-color: @[backgroundColor] }
       template preheaderText { label: Preheader; }
 
-      template { label: Pagina; theme: frameTheme; properties: preheaderVisible=true; version: 1.1.16; }
+      template { label: Pagina; theme: frameTheme; properties: preheaderVisible=true; version: 1.1.17; }
 
       footerBlock { label: Blocco Disiscrizione; theme: frameTheme }
       
@@ -378,7 +378,7 @@
     <def attr="height-prop" selector="td" style="-ko-height: @[{{height-prop}}]px; -ko-attr-height: @[{{height-prop}}]"></def>
     <tmpl>
     <!-- {{name}} -->
-    <table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0">
+    <table role="presentation" class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0">
       <tr><td class="vb-outer" align="center" valign="top" style="padding-left: 9px; padding-right: 9px; font-size: 0">{{replacedcontent}}</td></tr>
     </table>
     <!-- /{{name}} -->
@@ -393,13 +393,13 @@
     <def attr="inner-bgcolor-prop" selector="div div table" style="-ko-background-color: @[{{inner-bgcolor-prop}}]; -ko-attr-bgcolor: @[{{inner-bgcolor-prop}}]"></def>
     <def attr="inner-padding" selector="div div table" cellspacing="{{inner-padding}}" style="mso-cellspacing: {{inner-padding}}px; border-spacing: {{inner-padding}}px"></def>
     <def attr="inner-width" selector="div div table, cc-table" width="{{inner-width}}"></def>
-    <!-- div[class] div serve per i vecchi webkit che non supportano max-width sulle table -->
-    <!-- su vecchi webkit max-width sulle table non funziona, alcuni ipad ad esempio. Messo su div invece funziona. Verificabile su Safari per Windows v4.0.5 531.2.7 -->
+    <!-- div[class] is required by old webkits not supporting max-width on tables -->
+    <!-- Check on Safari for Windows v4.0.5 531.2.7 -->
     <def attr="inner-width" selector="div div table, div div" style="max-width: {{inner-width}}px; -mru-width: 0px"></def>
-    <!-- TODO provare senza impostare le classi per la spaziatura: senza classi si vedono piccoli problemi di spaziature su hr e footer -->
     <def attr="inner-class" selector="div div table" class="{{inner-class}}"></def>
-    <tmpl>{{#if}}<div data-ko-wrap="false" style="width: 100%; display:inline-block">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top"><![endif]--><!--
-      --><div style="margin: 0 auto"><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; width: 100%">
+    <!-- was display:inline-block", see https://github.com/voidlabs/versafix-template/issues/3 -->
+    <tmpl>{{#if}}<div data-ko-wrap="false" style="width: 100%;">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top"><![endif]--><!--
+      --><div style="margin: 0 auto"><table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; width: 100%">
         {{replacedcontent}}
       </table></div><!--
     --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->{{#if}}</div>{{/if}}</tmpl>
@@ -408,11 +408,11 @@
   <template tag="columns">
     <def attr="autowidth"></def>
     <def attr="width" selector="cc-table" width="{{width}}"></def>
-    <!-- metto un div anche qui perchè le column si gestiscano bene le larghezze quando la spaziatura orizzontale del contenitore è diversa da quella verticale e quindi il contenuto non dovrebbe andare al 100% del contenitore ma lasciare spazio -->
+    <!-- use a div inside the TD so that columns widths are handled correctly when the horizontal spacing of the container is different from its vertical spacing and the content should not fill 100% of the space but leave some spacing -->
     <def attr="width" selector="div" style="max-width: {{width}}px; -mru-width: 0px"></def>
     <def attr="td-styles" selector="td" style="{{td-styles}}"></def>
     <tmpl><tr>
-      <td align="center" valign="top" style="font-size: 0"><div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
+      <td align="center" valign="top" style="font-size: 0"><div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
         -->{{replacedcontent}}<!--
       --><!--[if (gte mso 9)|(lte ie 8)]></tr></table><![endif]--></div></td>
     </tr></tmpl>
@@ -434,9 +434,10 @@
     <def attr="class" selector="div" class="{{class}}"></def>
     <def attr="td-styles" selector="td" style="{{td-styles}}"></def>
 
+    <!-- the div used to have a  display: inline-block style. Removed it trying to remove unwanted space on iOS 10 -->
     <tmpl><tr>
-      <td align="center" valign="top" style="font-size: 0"><div style="display:inline-block; vertical-align:top; width:100%"><!--
-        --><table class="vb-content" border="0" cellspacing="0" cellpadding="0" style="border-collapse: separate; width: 100%">
+      <td align="center" valign="top" style="font-size: 0"><div style="vertical-align:top; width:100%"><!--
+        --><table role="presentation" class="vb-content" border="0" cellspacing="0" cellpadding="0" style="border-collapse: separate; width: 100%">
           {{replacedcontent}}
         </table></div></td>
     </tr></tmpl>
@@ -457,19 +458,19 @@
     <!-- border-spacing forzato per orange -->
     <def attr="spacing" selector="table" cellspacing="{{spacing}}" style="mso-cellspacing: {{spacing}}px; border-spacing: {{spacing}}px"></def>
 
-    <def attr="align" selector="table" align="{{align}}"></def>
+    <!-- workaround for Yandex issue with calc: https://github.com/voidlabs/versafix-template/issues/1 -->
+    <def attr="align" selector="table" align="{{align}}" style="-yandex-p: calc(2px - 3%)"></def>
     <def attr="text-align" selector="table" style="text-align: {{text-align}}"></def>
 
     <def attr="class" selector="cc-td, div" class="{{class}}"></def>
 
-    <!-- TODO lavori in corso, aggiungere prefissi e aggiungere attributo nel metaml -->
-    <!-- TODO non essendo possibile mettere le versioni "alternative" di questa tecnica in modo che si faccia l'inline di tutti i fallback forse è meglio non usarla -->
+    <!-- Here is the complex "hybrid layout" adaptive solution -->
     <def attr="width-breakpoint" selector="div" style="min-width: calc({{width}} * 100% / {{width-breakpoint}}); -ko-min-width: @['calc(' + ({{#width-prop}}true ? {{width-prop}} : {{/width-prop}}{{width}}) * 100 / {{width-breakpoint}} + '%)']; max-width: calc(100%); -ko-max-width: @['calc(100%)']; width: calc({{width-breakpoint}} * {{width-breakpoint}}px - {{width-breakpoint}} * 100%); -ko-width: @['calc('+ {{width-breakpoint}} * {{width-breakpoint}} + 'px - ' + {{width-breakpoint}} * 100 +'%)']"></def>
 
-    <!-- border-collapse forzato per orange -->
+    <!-- border-collapse forced for Orange.fr compatibility -->
     <tmpl>{{#if}}<div data-ko-wrap="false" style="display:inline-block" class="mobile-full">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><td align="left" valign="top"><![endif]--><!--
       --><div style="display:inline-block; vertical-align:top" class="mobile-full"><!--
-        --><table class="vb-content" border="0" cellspacing="0" cellpadding="0" style="border-collapse: separate">
+        --><table role="presentation" class="vb-content" border="0" cellspacing="0" cellpadding="0" style="border-collapse: separate">
           {{replacedcontent}}
         </table><!--
       --></div><!--[if (gte mso 9)|(lte ie 8)]></td><![endif]-->{{#if}}</div>{{/if}}</tmpl>
@@ -513,9 +514,6 @@
     <tmpl><tr>
       <td width="100%" valign="top" style="font-weight: normal"><span style="font-weight: normal">{{replacedcontent}}</span></td>
     </tr></tmpl>
-    <!-- TODO nell'unsubscribe linkedText c'è anche uno span interno, non so se serve o meno. -->
-    <!-- TODO questo applicava un sacco di roba sia al td che allo span, provo a lasciarla solo nel TD -->
-    <!-- TODO unsubscribeText vs disiscrivitiText -->
   </template>
 
   <template tag="long-text">
@@ -578,7 +576,6 @@
     <def attr="alt" selector="img" alt="{{alt}}"></def>
     <!-- the DIV is for old IE (IE in compatible mode), like Notes 8 showing full size images -->
     <tmpl><tr><td width="100%" valign="top" align="center" class="links-color"><!--[if (lte ie 8)]><div style="display: inline-block"><![endif]--><a href=""><img alt="" border="0" hspace="0" align="center" vspace="0" style="vertical-align:top; height: auto; margin: 0 auto" /></a><!--[if (lte ie 8)]></div><![endif]--></td></tr></tmpl>
-    <!-- TODO lo sponsor non viene centrato -->
   </template>
 
   <template tag="btn">
@@ -603,16 +600,16 @@
     <def attr="face" selector="table td, a" style="font-family: {{face}}"></def>
     <def attr="radius" selector="table td" style="border-radius: {{radius}}px"></def>
     <def attr="style" selector="table td" style="-ko-border-radius: @[{{style}}.radius]px; -ko-attr-bgcolor: @{{style}}.buttonColor; -ko-background-color: @{{style}}.buttonColor"></def>
-    <!-- libero.it modifica il font-size degli a se non ce l'hanno inline -->
+    <!-- Libero.it webmail alters font-size for a tags not defining font sizes inline -->
     <def attr="style" selector="table td, a" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
     <def attr="style" selector="td[valign], table" style="{{#align}}-ko-attr-align: @{{style}}.align{{/align}}"></def>
 
     <def attr="editable" selector="span" data-ko-editable="{{editable}}.text"></def>
     <def attr="editable" selector="a" style="-ko-attr-href: @{{editable}}.url"></def>
 
-    <!-- border-spacing: 0; serve per sfr -->
+    <!-- border-spacing: 0; needed for sfr.fr -->
     <tmpl><tr>
-      <td valign="top"><table cellpadding="0" border="0" align="left" cellspacing="0" style="border-spacing: 0"><tr>
+      <td valign="top"><table role="presentation" cellpadding="0" border="0" align="left" cellspacing="0" style="border-spacing: 0"><tr>
         <td width="auto" valign="middle" align="center" style="text-align:center; font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><span data-ko-wrap="false">{{replacedcontent}}</span></a></td>
       </tr></table></td>
     </tr></tmpl>
@@ -635,7 +632,7 @@
     <def attr="face" selector="table td, a" style="font-family: {{face}}"></def>
     <def attr="radius" selector="table" style="border-radius: {{radius}}px"></def>
 
-    <!-- libero.it modifica il font-size degli a se non ce l'hanno inline -->
+    <!-- Libero.it webmail alters font-size for a tags not defining font sizes inline -->
     <def attr="custom-style" selector="table" style="-ko-attr-bgcolor: @{{custom-style}}.buttonColor; -ko-background-color: @{{custom-style}}.buttonColor"></def>
     <def attr="custom-style" selector="table td, a" style="-ko-color: @{{custom-style}}.color"></def>
 
@@ -659,9 +656,9 @@
     <def attr="icon-size" selector="img" width="{{icon-size}}" height="{{icon-size}}" ></def>
     <def attr="icon-size" selector="td.shareIcon" width="{{icon-size}}"></def>
     <def attr="icon-size" selector="td" style="line-height: {{icon-size}}px;"></def>
-    <!-- border-spacing: 0; serve per sfr -->
+    <!-- border-spacing: 0; needed for sfr.fr -->
     <tmpl><tr>
-      <td valign="top"><table cellpadding="0" border="0" align="center" cellspacing="0" style="border-spacing: 0"><tr>
+      <td valign="top"><table role="presentation" cellpadding="0" border="0" align="center" cellspacing="0" style="border-spacing: 0"><tr>
         {{#icon-src}}<td class="shareIcon" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><img style="display: block" /></a></td>{{/icon-src}}
         <td width="auto" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><span data-ko-wrap="false">{{replacedcontent}}</span></a></td>
       </tr></table></td>
@@ -669,7 +666,6 @@
   </template>
 
   <template tag="title-text">
-    <!-- TODO nell'unsubscribe linkedText c'è anche uno span interno, non so se serve o meno. -->
     <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
     <def attr="false" selector="tr" style="display: none"></def>
 
@@ -688,7 +684,7 @@
   <template tag="spacer">
     <def attr="height" selector="td" height="{{height}}" style="line-height: {{height}}px"></def>
     <def attr="height-prop" selector="td" style="-ko-line-height: @[{{height-prop}}]px; -ko-attr-height: @[{{height-prop}}]"></def>
-    <!-- padding: 0 e border-spacing: 0 servono per orange e sfr -->
+    <!-- padding: 0 and border-spacing: 0 needed for Orange.fr and Sfr.fr -->
     <tmpl><tr>
         <td width="100%" height="1" style="padding: 0; font-size:1px; line-height: 1px; width: 100%">&nbsp;</td>
       </tr></tmpl>
@@ -697,13 +693,14 @@
   <template tag="divider">
     <def attr="color" selector="table td" style="background-color: {{color}}"></def>
     <def attr="width" selector="table" width="{{width}}%" style="width: {{width}}%"></def>
-    <def attr="height" selector="table td" height="{{height}}" style="line-height: {{height}}px"></def>
-    <def attr="style" selector="table td" style="-ko-background-color: @{{style}}.color; -ko-attr-height: @{{style}}.hrHeight; -ko-line-height: @[{{style}}.hrHeight]px"></def>
+    <!-- use max-height/overflow to avoid iOS mail with accessibility options to show "large" dividers: https://github.com/voidlabs/versafix-template/issues/2 -->
+    <def attr="height" selector="table td" height="{{height}}" style="line-height: {{height}}px; max-height: {{height}}px; overflow: hidden;"></def>
+    <def attr="style" selector="table td" style="-ko-background-color: @{{style}}.color; -ko-attr-height: @{{style}}.hrHeight; -ko-line-height: @[{{style}}.hrHeight]px; -ko-max-height: @[{{style}}.hrHeight]px"></def>
     <def attr="style" selector="table" style="-ko-width: @[{{style}}.hrWidth]%; -ko-attr-width: @[{{style}}.hrWidth]%"></def>
-    <!-- padding: 0 e border-spacing: 0 servono per orange e sfr -->
+    <!-- padding: 0 and border-spacing: 0 needed for Orange.fr and Sfr.fr -->
     <tmpl><tr>
-      <td valign="top" align="center"><table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-spacing: 0"><tr>
-        <td width="100%" height="1" style="padding: 0; font-size:1px; line-height: 1px; width: 100%">&nbsp;</td>
+      <td valign="top" align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-spacing: 0"><tr>
+        <td width="100%" height="1" style="padding: 0; font-size:1px; line-height: 1px; max-height: 1px; width: 100%">&nbsp;</td>
       </tr></table></td>
     </tr></tmpl>
   </template>
@@ -727,8 +724,9 @@
     <def attr="src-prop" selector="img" style="-ko-attr-src: @[{{src-prop}}]"></def>
 
     <!-- use multiple backgroun declaration so clients not supporting border-radius won't show the background too -->
-    <def attr="color" selector="img" style="background: url(), {{color}}"></def>
-    <def attr="color-prop" selector="img" style="-ko-background: @['url(), '+{{color-prop}}]"></def>"
+    <!-- we used to use url() with no content, but this made some sub-request on web versions/web clients: https://github.com/voidlabs/versafix-template/issues/5 -->
+    <def attr="color" selector="img" style="background: url(https://), {{color}}"></def>
+    <def attr="color-prop" selector="img" style="-ko-background: @['url(https://), '+{{color-prop}}]"></def>"
     <def attr="size" selector="img" width="{{size}}" height="{{size}}"></def>
     <def attr="size-prop" selector="img" style="-ko-attr-width: @[{{size-prop}}]; -ko-attr-height: @[{{size-prop}}]"></def>
     <def attr="radius" selector="img" style="border-radius: {{radius}}px"></def>
@@ -747,8 +745,8 @@
   <default selector="block[name='logoBlock'] block-inner[if='externalBackgroundVisible'] linked-img" color="#f3f3f3" size="18px" face="Arial, Helvetica, sans-serif" style="externalTextStyle"></default>
 
   <default selector="columns:not([autowidth])" width="552"></default>
-  <!-- meglio forzare border-spacing a 0 per sfr/orange -->
-  <default selector="column-content" spacing="0"></default>
+  <!-- force border-spacing to 0 for Sfr.fr/Orange.fr -->
+  <default selector="column-content" spacing="0" align="left"></default>
   <default selector="columns:not([autowidth]) column-content" width-breakpoint="552"></default>
   <default selector="content" spacing="0" width="552"></default>
 
@@ -769,7 +767,7 @@
   <default selector="text, title-text, long-text, share-btn, btn, linked-text, linked-img" face="Arial, Helvetica, sans-serif" color="#3f3f3f" size="13px"></default>
   <default selector="text, title-text, long-text:not([fixed-align]), btn, linked-text" align="left"></default>
 
-  <!-- le immagini dei blocchi gallery le metto al 100% su mobile -->
+  <!-- immages on gallery blocks are shown full width (100%) on mobile -->
   <default selector="*[if='gutterVisible eq false'] linked-img" class="mobile-full"></default>
 
   <default selector="social-icon" size="32" radius="50"></default>
@@ -821,14 +819,12 @@
     <block name="logoBlock" label="Logo Block">
       <block-inner if="externalBackgroundVisible" inner-padding="9" inner-class="vb-row">
         <content width="276" spacing="9" width-prop="18 + Math.round(imageWidth)">
-          <!-- TODO nel template originale abbiamo anche un font-size: 18px, externalTextStyle.size ... -->
           <linked-img width="258" placeholder-height="150" width-prop="imageWidth"
             src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
         </content>
       </block-inner>
       <block-inner false if="externalBackgroundVisible eq false" inner-padding="9" inner-class="vb-row">
         <content width="276" spacing="9" width-prop="18 + Math.round(imageWidth)">
-          <!-- TODO nel template originale abbiamo anche un font-size: 18px, externalTextStyle.size ... -->
           <linked-img width="258" placeholder-height="150" width-prop="imageWidth"
             src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
         </content>
@@ -843,7 +839,6 @@
               src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
           </column-content><!--
           --><column-content width="368" width-prop="570 - 2 * 18 - Math.round(imageWidth)" spacing="9">
-            <!-- TODO class="title" -->
             <text editable="titleText" if="titleVisible">Titolo</text>
             <long-text editable="longText"><p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href="">Vocalia e Consonantia</a>, vivono i testi casuali. Vivono isolati nella cittadina di Lettere, sulle coste del Semantico, un immenso oceano linguistico. Un piccolo ruscello chiamato Devoto Oli attraversa quei luoghi, rifornendoli di tutte le regolalie di cui hanno bisogno.</p></long-text>
             <btn editable="buttonLink" if="buttonVisible" padding-top="4">PULSANTE</btn>
@@ -861,7 +856,6 @@
         <content spacing="9" width="552">
           <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150"
             src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="9"></linked-img>
-          <!-- TODO class="title" -->
           <text editable="text" if="titleVisible">Titolo Sezione</text>
           <long-text editable="longText"><p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href="">Vocalia e Consonantia</a>, vivono i testi casuali. Vivono isolati nella cittadina di Lettere, sulle coste del Semantico, un immenso oceano linguistico. Un piccolo ruscello chiamato Devoto Oli attraversa quei luoghi, rifornendoli di tutte le regolalie di cui hanno bisogno.</p></long-text>
           <btn editable="buttonLink" if="buttonVisible" padding-top="4">PULSANTE</btn>
@@ -872,7 +866,6 @@
     <block name="titleBlock" label="Title Block">
       <block-inner inner-padding="0" inner-class="vb-row">
         <content spacing="9" td-styles="padding: 0 9px">
-          <!-- TODO class="title" -->
           <title-text editable="text" align="center" size="22px" style="bigTitleStyle">Titolo Sezione</title-text>
         </content>
       </block-inner>
@@ -886,7 +879,6 @@
 
     <block name="tripleArticleBlock" label="3 Columns Block">
       <block-inner inner-padding="9" inner-class="vb-row">
-      <!-- TODO implementare gestione attributi nel repeater -->
         <columns><repeater repeat="left,middle,right" height="90,70,110"><!--
           --><column-content spacing="9" width="184">
             <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="90" height-prop="imageHeight" padding-bottom="9"
