@@ -548,11 +548,10 @@
     <def attr="padding-bottom" selector="td" style="padding-bottom: {{padding-bottom}}px"></def>
 
     <def attr="editable" selector="a" data-ko-link="{{editable}}.url"></def> 
-    <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @{{editable}}.alt"></def>
+    <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @[{{editable}}.alt == '' ? null : {{editable}}.alt]"></def>
 
     <def attr="content" selector="a" style="-ko-attr-href: @{{content}}.url"></def>
-    <def attr="content" selector="img" style="-ko-attr-src: @{{content}}.src; -ko-attr-alt: @{{content}}.alt"></def>
-
+    <def attr="content" selector="img" style="-ko-attr-src: @{{content}}.src; -ko-attr-alt: @[{{content}}.alt == '' ? null : {{content}}.alt]"></def>
 
     <def attr="width" selector="img" width="{{width}}" style="width: 100%; max-width: {{width}}px"></def>
     <def attr="width" selector="cc-div" style="width: {{width}}px"></def>
