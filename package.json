@@ -1,6 +1,6 @@
 {
   "name": "versafix-template",
-  "version": "1.1.16",
+  "version": "1.1.19",
   "description": "Versafix-1 Master Templates for Mosaico",
   "main": "./src/index.js",
   "repository": {
@@ -8,18 +8,19 @@
     "url": "git://github.com/voidlabs/versafix-template.git"
   },
   "devDependencies": {
-    "async": "^2.6.1",
-    "cheerio": "^0.22.0",
-    "fs-extra": "^5.0.0",
+    "async": "^2.6.2",
+    "cheerio": "^1.0.0-rc.2",
+    "fs-extra": "^7.0.1",
     "htmml": "^1.0.1",
     "mockery": "^2.0.0",
-    "mosaico": "github:voidlabs/mosaico#93b7d39",
+    "mosaico": "github:voidlabs/mosaico#a359e26",
     "phantomjs-prebuilt": "^2.1.16"
   },
   "author": "Stefano Bagnara",
   "license": "MIT",
   "scripts": {
-    "build": "node src/index.js"
+    "build": "node src/index.js",
+    "clean": "node ./node_modules/rimraf/bin.js -- 'dist/template/*' 'dist/template.it/*'"
   },
   "engine": "node >= 6.0.0"
 }
