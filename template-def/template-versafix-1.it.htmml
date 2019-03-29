@@ -124,6 +124,7 @@
       viVisible { label: Vimeo; extend: visible }
       webVisible { label: Website; extend: visible }
       waVisible { label: Whatsapp; extend: visible }
+      tgVisible { label: Telegram; extend: visible }
       instVisible { label: Instagram; extend: visible }
       youVisible { label: YouTube; extend: visible }
       fbUrl { label: Indirizzo Facebook; extend: url }
@@ -135,19 +136,20 @@
       viUrl { label: Indirizzo Vimeo; extend: url}
       webUrl { label: Indirizzo Website; extend: url}
       waUrl { label: Indirizzo Whatsapp; extend: url}
+      tgUrl { label: Indirizzo Telegram; extend: url}
       instUrl { label: Indirizzo Instagram; extend: url}
       youUrl { label: Indirizzo YouTube; extend: url}
 
       socialBlock {
         label: Blocco social footer;
-        properties: socialIconType=Colori fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
+        properties: socialIconType=Colori fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
         variant:socialIconType;
         theme: frameTheme
       }
 
       bigSocialBlock {
         label: Blocco social;
-        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl longTextStyle longText;
+        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl longTextStyle longText;
         variant: bigSocialIconType;
         theme: contentTheme
       }
@@ -726,11 +728,11 @@
 
     <!-- use multiple backgroun declaration so clients not supporting border-radius won't show the background too -->
     <!-- we used to use url() with no content, but this made some sub-request on web versions/web clients: https://github.com/voidlabs/versafix-template/issues/5 -->
-    <def attr="color" selector="img" style="background: url(https://), {{color}}"></def>
-    <def attr="color-prop" selector="img" style="-ko-background: @['url(https://), '+{{color-prop}}]"></def>"
+    <def attr="color" selector="a" style="background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), {{color}}"></def>
+    <def attr="color-prop" selector="a" style="-ko-background: @['url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), '+{{color-prop}}]"></def>"
     <def attr="size" selector="img" width="{{size}}" height="{{size}}"></def>
     <def attr="size-prop" selector="img" style="-ko-attr-width: @[{{size-prop}}]; -ko-attr-height: @[{{size-prop}}]"></def>
-    <def attr="radius" selector="img" style="border-radius: {{radius}}px"></def>
+    <def attr="radius" selector="a" style="border-radius: {{radius}}px"></def>
     <def attr="alt" selector="img" alt="{{alt}}"></def>
     <def attr="href-prop" selector="a" style="-ko-attr-href: @[{{href-prop}}]"></def>
     <tmpl><span data-ko-wrap="false">&nbsp;</span><a href=""><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" /></a></tmpl>
@@ -787,13 +789,18 @@
     </block>
 -->
 
+  <!-- Note: 
+    the conditional comment around the body tag (and /body) is to hide the whole tag to windows 10 mail to prevent really weird bugs with windows 10 mail.
+    the conditional comment also remove the tag from Outlook 2016 and following versions, as they share the same version of windows 10 mail.
+  -->
 
   </template-def>
 </head>
+<!--[if !(gte mso 16)]-->
 <body bgcolor="#3f3f3f" text="#919191" alink="#cccccc" vlink="#cccccc" style="background-color: #3f3f3f; color: #919191;
   -ko-background-color: @_theme_.frameTheme.backgroundColor; -ko-attr-bgcolor: @_theme_.frameTheme.backgroundColor; -ko-color: @_theme_.frameTheme.longTextStyle.color;
   -ko-attr-text: @_theme_.frameTheme.longTextStyle.color; -ko-attr-alink: @_theme_.frameTheme.longTextStyle.linksColor;
-  -ko-attr-vlink: @_theme_.frameTheme.longTextStyle.linksColor"><center>
+  -ko-attr-vlink: @_theme_.frameTheme.longTextStyle.linksColor"><!--<![endif]--><center>
 
   <div data-ko-display="preheaderVisible" data-ko-wrap="false">
 
@@ -984,22 +991,22 @@
     <block name="bigSocialBlock" label="Big Social Block">
       <block-inner inner-padding="18" inner-class="vb-container links-color socialLinks mobile-textcenter">
         <custom-row false if="bigSocialIconType eq 'colors'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
         <custom-row false if="bigSocialIconType eq 'bw'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
         <custom-row if="bigSocialIconType eq 'rdcol'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
         <custom-row false if="bigSocialIconType eq 'rdbl'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdbl-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
@@ -1058,12 +1065,12 @@
           </column-content><!--
           --><column-content width="276" spacing="9">
             <custom-row if="socialIconType eq 'Colori'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
             <custom-row false if="socialIconType eq 'Bianco e Nero'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
@@ -1084,4 +1091,4 @@
       </content>
     </block-inner>
   </block>
-</center></body></html>
+</center><!--[if !(gte mso 16)]--></body><!--<![endif]--></html>
