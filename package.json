@@ -13,7 +13,7 @@
     "fs-extra": "^7.0.1",
     "htmml": "^1.0.1",
     "mockery": "^2.0.0",
-    "mosaico": "github:voidlabs/mosaico#a359e26",
+    "mosaico": "github:voidlabs/mosaico#6225f4d",
     "phantomjs-prebuilt": "^2.1.16"
   },
   "author": "Stefano Bagnara",
