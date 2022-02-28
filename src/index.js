@@ -17,6 +17,12 @@ var templates = [ {
 	'imgDir': './template-def/img/', 
 	'destImgDir': './dist/template.it/img/', 
 	'modelPrefix': './model/template-versafix-1.it'
+}, {
+	'htmml': './template-def/template-versafix-1.fr.htmml',
+	'html': './dist/template.fr/template-versafix-1.fr.html',
+	'imgDir': './template-def/img/', 
+	'destImgDir': './dist/template.fr/img/', 
+	'modelPrefix': './model/template-versafix-1.fr'
 },
 ];
 
