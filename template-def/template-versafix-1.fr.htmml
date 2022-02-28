@@ -61,7 +61,7 @@
       blocks { label: Blocs; properties: blocks[]; }
       link { label: Lien; properties: text url }
       image { label: Image; properties: src url alt }
-      backgroundColor { label: Couleur d\'arrière-plan; extend: color }
+      backgroundColor { label: 'Couleur d\'arrière-plan'; extend: color }
       buttonLink { label: Bouton; extend: link }
       
       /* texts and links */
