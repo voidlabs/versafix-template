@@ -35,9 +35,9 @@
       spacerSize { label: Hauteur; widget: integer; max: 90; min: 4; }
       align { label: Alignement; widget: select; options:left=Gauche|right=Droite|center=Centré}
       alt {
-        label: Texte alternatif;
+        label: Texte de remplacement;
         widget: text;
-        help: Le texte alternatif sera affiché sur les logiciels de messagerie qui ne téléchargent pas les images automatiquement;
+        help: Le texte de remplacement sera affiché dans les logiciels de messagerie qui ne téléchargent pas automatiquement les images;
       }
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText {label: Titre Text;category: hidden;}
@@ -847,8 +847,8 @@
               src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
           </column-content><!--
           --><column-content width="368" width-prop="570 - 2 * 18 - Math.round(imageWidth)" spacing="9">
-            <text editable="titleText" if="titleVisible">Title</text>
-            <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
+            <text editable="titleText" if="titleVisible">Titre</text>
+            <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout Verrières en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi. Le préfet autorisait, c’est-à-dire demandait la formation d’une garde d’honneur ; il fallait déployer toute la pompe possible.</p></long-text>
             <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
           </column-content><!--
           --><column-content false if="imagePos eq 'right'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
@@ -864,8 +864,8 @@
         <content spacing="9" width="552">
           <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150"
             src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="9"></linked-img>
-          <text editable="text" if="titleVisible">Section Title</text>
-          <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
+          <text editable="text" if="titleVisible">Titre section</text>
+          <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout Verrières en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi. Le préfet autorisait, c’est-à-dire demandait la formation d’une garde d’honneur ; il fallait déployer toute la pompe possible.</p></long-text>
           <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
         </content>
       </block-inner>
@@ -874,15 +874,15 @@
     <block name="titleBlock" label="Title Block">
       <block-inner inner-padding="0" inner-class="vb-row">
         <content spacing="9" td-styles="padding: 0 9px">
-          <title-text editable="text" align="center" size="22px" style="bigTitleStyle">Section Title</title-text>
+          <title-text editable="text" align="center" size="22px" style="bigTitleStyle">Titre section</title-text>
         </content>
       </block-inner>
     </block>
 
     <block name="textBlock" label="Text Block">
       <block-inner inner-padding="18" inner-class="vb-container">
-        <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p>
-          <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
+        <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout Verrières en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi.</p>
+          <p>Le préfet autorisait, c’est-à-dire demandait la formation d’une garde d’honneur ; il fallait déployer toute la pompe possible.</p></long-text>
       </block-inner>
     </block>
 
@@ -894,9 +894,9 @@
               src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C90"></linked-img>
             <linked-img false if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="{{height}}" padding-bottom="9"
               src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C100"></linked-img>
-            <text editable="{{repeat}}TitleText" if="titleVisible">Title</text>
-            <long-text editable="{{repeat}}LongText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p></long-text>
-            <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
+            <text editable="{{repeat}}TitleText" if="titleVisible">Titre</text>
+            <long-text editable="{{repeat}}LongText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout Verrières en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi.</p></long-text>
+            <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BOUTON</btn>
           </column-content><!--
         --></repeater></columns>
       </block-inner>
@@ -910,9 +910,9 @@
                 src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C100"></linked-img>
               <linked-img false if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="120" padding-bottom="9"
                 src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C120"></linked-img>
-              <text editable="{{repeat}}TitleText" if="titleVisible">Title</text>
-              <long-text editable="{{repeat}}LongText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p></long-text>
-              <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
+              <text editable="{{repeat}}TitleText" if="titleVisible">Titre</text>
+              <long-text editable="{{repeat}}LongText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout Verrières en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi.</p></long-text>
+              <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BOUTON</btn>
             </column-content><!--
           --></repeater></columns>
       </block-inner>
@@ -928,7 +928,7 @@
 
     <block name="buttonBlock" label="Button Block">
       <block-inner inner-padding="18" inner-class="vb-container">
-        <btn editable="link" inner-padding="12" align="center" inner-hpadding="14px" size="22px" style="bigButtonStyle">BUTTON</btn>
+        <btn editable="link" inner-padding="12" align="center" inner-hpadding="14px" size="22px" style="bigButtonStyle">BOUTON</btn>
       </block-inner>
     </block>
 
