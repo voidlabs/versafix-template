@@ -35,7 +35,7 @@
       spacerSize { label: Hauteur; widget: integer; max: 90; min: 4; }
       align { label: Alignement; widget: select; options:left=Gauche|right=Droite|center=Centré}
       alt {
-        label: Texte de remplacement;
+        label: Texte remplacement;
         widget: text;
         help: Le texte de remplacement sera affiché dans les logiciels de messagerie qui ne téléchargent pas automatiquement les images;
       }
@@ -161,7 +161,7 @@
       shareButtonStyle { label: Bouton partager; properties: face iconColorType=black color size align buttonColor radius }
       shareButtonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @['black']; -ko-font-size: @[size]px; -ko-background-color: @['#CCCCCC']; padding-left: 5px; -ko-border-radius: @[radius]px; }
 
-      shareButtonType { label: Version bouton;widget: select; options:reverse=Bouton marques|simple=icones marques|custom=bouton personnalisés; }
+      shareButtonType { label: Version bouton;widget: select; options:reverse=Bouton marques|simple=Icones marques|custom=Boutons personnalisés; }
       shareBlock fbVisible { label: Facebook; }
       shareBlock twVisible { label: Twitter }
       shareBlock inVisible { label: LinkedIn }
@@ -181,7 +181,7 @@
 
       sideArticleBlock imagePos {label:Position image;widget:select; options: left=Gauche|right=Droite; }
       sideArticleBlock imageWidth { label: Taille image; widget: select; options: 120=Petite|166=Moyenne|258=Grande; }
-      sideArticleBlock { label: Bloc image-texte; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
+      sideArticleBlock { label: Bloc image et texte; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
 
       textBlock { label: Bloc texte; properties: backgroundColor longTextStyle longText; theme: contentTheme}
 
@@ -210,7 +210,7 @@
       tripleImageBlock longTextStyle { label: Texte remplacement; }
       tripleImageBlock { label: Galerie de trois images;properties:gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme}
 
-      buttonBlock { label: Block bouton; theme: contentTheme}
+      buttonBlock { label: Bloc bouton; theme: contentTheme}
       hrBlock { label: Bloc séparateur;  theme: contentTheme}
       /* imageSeparatorBlock { label: Image Separator Block;  theme: contentTheme} */
       spacerBlock { label: Bloc espacement; properties: externalBackgroundVisible=true; theme: contentTheme}
