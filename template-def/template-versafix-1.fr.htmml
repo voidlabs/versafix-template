@@ -810,11 +810,11 @@
       <block-inner inner-padding="0" inner-class="vb-row">
         <columns td-styles="padding: 0 9px"><!--
           --><column-content width="276" spacing="9">
-            <linked-text if="preheaderLinkOption neq 'none'" href="[unsubscribe_link]" href-prop="preheaderLinkOption" editable="unsubscribeText">Unsubscribe</linked-text>
+            <linked-text if="preheaderLinkOption neq 'none'" href="[unsubscribe_link]" href-prop="preheaderLinkOption" editable="unsubscribeText">Désinscription</linked-text>
             <text false if="preheaderLinkOption eq 'none'" content="preheaderText"></text>
           </column-content><!--
           --><column-content width="276" spacing="9" class="mobile-hide">
-            <linked-text align="right" href="[show_link]" editable="webversionText">View in your browser</linked-text>
+            <linked-text align="right" href="[show_link]" editable="webversionText">Afficher dans votre navigateur</linked-text>
           </column-content><!--
         --></columns>
       </block-inner>
@@ -849,7 +849,7 @@
           --><column-content width="368" width-prop="570 - 2 * 18 - Math.round(imageWidth)" spacing="9">
             <text editable="titleText" if="titleVisible">Titre</text>
             <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout Verrières en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi. Le préfet autorisait, c’est-à-dire demandait la formation d’une garde d’honneur ; il fallait déployer toute la pompe possible.</p></long-text>
-            <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
+            <btn editable="buttonLink" if="buttonVisible" padding-top="4">BOUTON</btn>
           </column-content><!--
           --><column-content false if="imagePos eq 'right'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
             <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130"
@@ -1018,7 +1018,7 @@
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" icon-src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" icon-src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Partager</btn>
             </column-content>
           </repeater>
         </columns>
@@ -1027,7 +1027,7 @@
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" icon-src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" icon-src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Partager</btn>
             </column-content>
           </repeater>
         </columns>
@@ -1036,13 +1036,13 @@
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'brand'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-coloured-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-coloured-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Partager</btn>
             </column-content>
             <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'white'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-white-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-white-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Partager</btn>
             </column-content>
             <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'black'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-black-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-black-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Partager</btn>
             </column-content>
           </repeater>
         </columns>
@@ -1061,7 +1061,7 @@
       <block-inner inner-padding="9" inner-class="vb-row">
         <columns><!--
           --><column-content width="276" spacing="9">
-            <long-text fixed-align="left" editable="longText"><p>Address and <a href="">Contacts</a></p></long-text>
+            <long-text fixed-align="left" editable="longText"><p>Adresse et <a href="">Contacts</a></p></long-text>
           </column-content><!--
           --><column-content width="276" spacing="9">
             <custom-row if="socialIconType eq 'colors'" align="right" class="links-color socialLinks mobile-textcenter">
@@ -1084,9 +1084,9 @@
   <block name="footerBlock" label="Unsubscribe Block" theme="frameTheme">
     <block-inner inner-padding="0" inner-class="vb-row">
       <content spacing="9" width="552" td-styles="padding: 0 9px">
-        <long-text editable="longText" fixed-align="center"><p>Email sent to <a href="mailto:[mail]">[mail]</a></p></long-text>
+        <long-text editable="longText" fixed-align="center"><p>Email envoyé à <a href="mailto:[mail]">[mail]</a></p></long-text>
         <linked-text align="center" href="[unsubscribe_link]" editable="disiscrivitiText"
-          color-prop="Color.readability(linkStyle.color, backgroundColor) gt 2 ? linkStyle.color : (Color.isReadable('#ffffff', backgroundColor) ? '#ffffff' : '#000000')">Unsubscribe</linked-text>
+          color-prop="Color.readability(linkStyle.color, backgroundColor) gt 2 ? linkStyle.color : (Color.isReadable('#ffffff', backgroundColor) ? '#ffffff' : '#000000')">Désinscription</linked-text>
         <linked-img width="170" align="center" false if="_root_.sponsor.visible" content="_root_.sponsor" src="img/sponsor.gif" alt="sponsor" />
       </content>
     </block-inner>
