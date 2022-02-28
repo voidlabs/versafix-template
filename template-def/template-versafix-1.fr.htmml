@@ -8,112 +8,112 @@
   <style type="text/css">
     @supports -ko-blockdefs {
       id { widget: id }
-      size { label: Size; widget: select; options: 8|9|10|11|12|13|14|15|16|18|20|22|25|28|31; }
-      visible { label: Visible?; widget: boolean }
-      color { label: Color; widget: color }
+      size { label: Taille; widget: select; options: 8|9|10|11|12|13|14|15|16|18|20|22|25|28|31; }
+      visible { label: Visible ?; widget: boolean }
+      color { label: Couleur; widget: color }
       radius {
-        label: Corner Radius;
+        label: Rayon angle;
         widget: integer;
         max: 20;
-        help: Attention - this property is not supported on all email clients (i.e. Outlook)
+        help: 'Attention - cette propriété n\'est pas supportée sur tous les logiciels de messagerie (ex: Outlook)'
       }
-      face { label: Font; widget: select; options: Arial, Helvetica, sans-serif=Arial|Arial Black, Arial Black, Gadget, sans-serif=Arial Black|Comic Sans MS, Comic Sans MS5, cursive=Comic Sans|Courier New, Courier New, monospace=Courier|Georgia, serif=Georgia|Impact, sans-serif=Impact|Lucida Console, Monaco, monospace=Lucida Console|Lucida Sans Unicode, Lucida Grande, sans-serif=Lucida Sans Unicode|Times New Roman, Times, serif=Times New Roman|Verdana, Geneva, sans-serif=Verdana}
-      decoration { label: Decoration; widget: select; options: none=None|underline=Underline }
-      linksColor { label: Link Color; extend: color }
-      linksDecoration { label: Underlined Links?; extend: decoration }
-      buttonColor { label: Button Color; extend: color }
-      text { label: Paragraph; widget: text }
-      url { label: Link; widget: url }
+      face { label: Police; widget: select; options: Arial, Helvetica, sans-serif=Arial|Arial Black, Arial Black, Gadget, sans-serif=Arial Black|Comic Sans MS, Comic Sans MS5, cursive=Comic Sans|Courier New, Courier New, monospace=Courier|Georgia, serif=Georgia|Impact, sans-serif=Impact|Lucida Console, Monaco, monospace=Lucida Console|Lucida Sans Unicode, Lucida Grande, sans-serif=Lucida Sans Unicode|Times New Roman, Times, serif=Times New Roman|Verdana, Geneva, sans-serif=Verdana}
+      decoration { label: Décoration; widget: select; options: none=Aucune|underline=Souligné }
+      linksColor { label: Couleur lien; extend: color }
+      linksDecoration { label: Liens soulignés ?; extend: decoration }
+      buttonColor { label: Couleur bouton; extend: color }
+      text { label: Paragraphe; widget: text }
+      url { label: Lien; widget: url }
       src { label: Image; widget: src }
-      hrWidth { label: Width; widget: select; options:10|20|30|40|50|60|70|80|90|100; }
-      hrHeight { label: Line height; widget: integer; max: 80; }
+      hrWidth { label: Largeur; widget: select; options:10|20|30|40|50|60|70|80|90|100; }
+      hrHeight { label: Hauteur ligne; widget: integer; max: 80; }
 
-      height { label: Height; widget: integer }
-      imageHeight { label: Image Height; extend: height; }
-      lineHeight { label: Line Height; widget: select; options: normal=Normal|150%=1.5 Lines|200%=Double; }
+      height { label: Hauteur; widget: integer }
+      imageHeight { label: Hauteur image; extend: height; }
+      lineHeight { label: Hauteur ligne; widget: select; options: normal=Normal|150%=1.5 Lines|200%=Double; }
 
-      spacerSize { label: Height; widget: integer; max: 90; min: 4; }
-      align { label: Alignment; widget: select; options:left=Left|right=Right|center=Center}
+      spacerSize { label: Hauteur; widget: integer; max: 90; min: 4; }
+      align { label: Alignement; widget: select; options:left=Gauche|right=Droite|center=Centré}
       alt {
-        label: Alternative Text;
+        label: Texte alternatif;
         widget: text;
-        help: Alternative text will be shown on email clients that does not download image automatically;
+        help: Le texte alternatif sera affiché sur les logiciels de messagerie qui ne téléchargent pas les images automatiquement;
       }
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
-      titleText {label:Title Text;category: hidden;}
-      gutterVisible { label: Show Gutter; extend: visible }
-      socialIconType { label: Icon Version; widget: select; options: bw=Black and White|colors=Colors; }
-      bigSocialIconType { label: Icon Version; widget: select; options:bw=Black and White|colors=Colors|rdcol=Rounded Colors|rdbl=Rounded Black; }
-      bigSocialIconSize { label: Icon Size; widget: select; options: 32=Small|48=Big; }
+      titleText {label: Titre Text;category: hidden;}
+      gutterVisible { label: Afficher gouttière; extend: visible }
+      socialIconType { label: Version icones; widget: select; options: bw=Noir et blanc|colors=Colorées; }
+      bigSocialIconType { label: Version icones; widget: select; options:bw=Noir et blanc|colors=Colorées|rdcol=Colorées arrondies|rdbl=Colorées noir et blanc; }
+      bigSocialIconSize { label: Taille icones; widget: select; options: 32=Petites|48=Grosses; }
 
       preheaderLinkOption {
-        label: Unsubscribe Link;
+        label: Lien désinscription;
         widget: select;
-        options: [profile_link]=Profile|[unsubscribe_link]=Unsubscribe|none=None;
-        help: If -None- is selected, preHeader text will be shown;
+        options: [profile_link]=Profil|[unsubscribe_link]=Désabonnement|none=Aucun;
+        help: Si -Aucun- est sélectionné, le texte de pré-entête sera affiché;
       }
      
-      hrStyle { label: Separator Style;properties:color hrWidth hrHeight; }
+      hrStyle { label: Style séparateur;properties:color hrWidth hrHeight; }
       hrStyle:preview { height: 200%; width: 200%; bottom: 20px; -ko-border-bottom: @[hrHeight]px solid @color; }
-      preheaderVisible { label: Show Preheader; extend: visible; help: Preheader block is the first one on the top of the page. It contains web version link and optionally unsubscribe link or a preheader text that will be shown as a preview on some email clients; }
+      preheaderVisible { label: Afficher pré-entête; extend: visible; help: 'Le bloc de pré-entête est le premier en haut de la page. Il contient un lien permettant d\'afficher le contenu en ligne et un éventuel lien de désinscription ou un texte de pré-entête qui sera utilisé comme aperçu par certains clients de messagerie.'; }
 
       /* content types */
-      blocks { label: Blocks; properties: blocks[]; }
-      link { label: Link; properties: text url }
+      blocks { label: Blocs; properties: blocks[]; }
+      link { label: Lien; properties: text url }
       image { label: Image; properties: src url alt }
-      backgroundColor { label: Background Color; extend: color }
-      buttonLink { label: Button; extend: link }
+      backgroundColor { label: Couleur d\'arrière-plan; extend: color }
+      buttonLink { label: Bouton; extend: link }
       
       /* texts and links */
-      textStyle { label: Text; properties: face color size align }
+      textStyle { label: Texte; properties: face color size align }
       textStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
-      linkStyle { label: Link; properties: face color size decoration=none }
+      linkStyle { label: Lien; properties: face color size decoration=none }
       linkStyle:preview { -ko-bind-text: @['Link']; -ko-font-size: @[size]px; -ko-font-family: @face; -ko-color: @color; -ko-text-decoration: @[decoration] }
-      longTextStyle { label: Paragraph; properties: face color size lineHeight align linksColor   }
+      longTextStyle { label: Paragraphe; properties: face color size lineHeight align linksColor   }
       longTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
-      bigButtonStyle { label: Big Button; extend: buttonStyle }
-      titleTextStyle { label: Title; extend: textStyle }
+      bigButtonStyle { label: Gros bouton; extend: buttonStyle }
+      titleTextStyle { label: Titre; extend: textStyle }
       /* background */
-      externalBackgroundColor { label: External Background; extend: color }
+      externalBackgroundColor { label: arrière-plan externe; extend: color }
 
-      externalTextStyle { label: Alternative Text; extend: textStyle }
+      externalTextStyle { label: Texte remplacement; extend: textStyle }
       externalTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
      
-      bigTitleStyle { label: Title; properties: face color size align}
+      bigTitleStyle { label: Titre; properties: face color size align}
       bigTitleStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
       /* buttons */
-      buttonStyle color { label: Text Color; extend: color }
-      buttonStyle size { label: Text Size; extend: size }
-      buttonStyle { label: Button; properties: face color size align buttonColor radius }
+      buttonStyle color { label: Couleur texte; extend: color }
+      buttonStyle size { label: Taille texte; extend: size }
+      buttonStyle { label: Bouton; properties: face color size align buttonColor radius }
       buttonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; -ko-background-color: @buttonColor; padding-left: 5px; -ko-border-radius: @[radius]px; }
       
       /* contents */
-      preheaderText {label: PreHeader Text; extend:text; help: This text will be shown on some email clients as a preview of the email contents;}
-      leftImage { label: Left Image; extend: image }
-      leftLongText { label: Left Text; extend: text }
-      leftButtonLink { label: Left Button; extend: buttonLink }
-      middleImage { label: Central Image; extend: image }
-      middleLongText { label: Central Text; extend: text }
-      middleButtonLink { label: Central Button; extend: buttonLink }
-      rightImage { label: Right Image; extend: image }
-      rightLongText { label: Right Text; extend: text }
-      rightButtonLink { label: Right Button; extend: buttonLink }
-      webversionText{ label: Web Link Text; extend: text;}
-      unsubscribeText{ label: Unsubscribe Link; extend: text;}
+      preheaderText {label: Texte pré-entête; extend:text; help: Ce texte sera affiché sur certains clients de messagerie en tant qu\'aperçu du contenu de votre email.;}
+      leftImage { label: Image de gauche; extend: image }
+      leftLongText { label: Texte de gauche; extend: text }
+      leftButtonLink { label: Bouton de gauche; extend: buttonLink }
+      middleImage { label: Image du milieu; extend: image }
+      middleLongText { label: Texte du milieu; extend: text }
+      middleButtonLink { label: Bouton du milieu; extend: buttonLink }
+      rightImage { label: Image de droite; extend: image }
+      rightLongText { label: Texte de droite; extend: text }
+      rightButtonLink { label: Bouton de droite; extend: buttonLink }
+      webversionText{ label: Texte lien web; extend: text;}
+      unsubscribeText{ label: Lien de désinscription; extend: text;}
 
-      titleVisible { label: Show Title; extend: visible; }
-      buttonVisible { label: Show Button; extend: visible; }
-      imageVisible { label: Show Image; extend: visible; }
+      titleVisible { label: Afficher titre; extend: visible; }
+      buttonVisible { label: Afficher bouton; extend: visible; }
+      imageVisible { label: Afficher image; extend: visible; }
 
-      contentTheme { label: Main Style; }
+      contentTheme { label: Style principal; }
       contentTheme:preview { -ko-background-color: @[backgroundColor] }
-      frameTheme { label: Frame Style; }
+      frameTheme { label: Style cadre; }
       frameTheme:preview { -ko-background-color: @[backgroundColor] }
-      template preheaderText { label: Preheader; }
+      template preheaderText { label: Pré-entête; }
 
       template { label: Page; theme: frameTheme; properties: preheaderVisible=true; version: 1.1.19; }
 
-      footerBlock { label: Unsubscribe Block; theme: frameTheme }
+      footerBlock { label: Bloc désinscription; theme: frameTheme }
       
       fbVisible { label: Facebook; extend: visible }
       twVisible { label: Twitter; extend: visible }
@@ -141,79 +141,79 @@
       youUrl { label: YouTube Link; extend: url}
 
       socialBlock {
-        label: Social Block;
+        label: Bloc social;
         properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
         variant:socialIconType;
         theme: frameTheme
       }
 
       bigSocialBlock {
-        label: Big Social Block;
+        label: Grand bloc social;
         properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl longTextStyle longText;
         variant: bigSocialIconType;
         theme: contentTheme
       }
 
 
-      shareButtonStyle iconColorType { label: Icon Color; widget: select; options: brand=Brand|white=White|black=Black; }
-      shareButtonStyle color { label: Text Color; extend: color }
-      shareButtonStyle size { label: Text Size; widget: select; options: 10|11|12|13|14|15|16|18|20|22|25; }
-      shareButtonStyle { label: Share Button; properties: face iconColorType=black color size align buttonColor radius }
+      shareButtonStyle iconColorType { label: Couleur icone; widget: select; options: brand=Marque|white=Blanche|black=Noire; }
+      shareButtonStyle color { label: Couleur texte; extend: color }
+      shareButtonStyle size { label: Taille texte; widget: select; options: 10|11|12|13|14|15|16|18|20|22|25; }
+      shareButtonStyle { label: Bouton partager; properties: face iconColorType=black color size align buttonColor radius }
       shareButtonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @['black']; -ko-font-size: @[size]px; -ko-background-color: @['#CCCCCC']; padding-left: 5px; -ko-border-radius: @[radius]px; }
 
-      shareButtonType { label: Button Version;widget: select; options:reverse=Brand buttons|simple=Brand icons|custom=Custom buttons; }
+      shareButtonType { label: Version bouton;widget: select; options:reverse=Bouton marques|simple=icones marques|custom=bouton personnalisés; }
       shareBlock fbVisible { label: Facebook; }
       shareBlock twVisible { label: Twitter }
       shareBlock inVisible { label: LinkedIn }
       shareBlock ggVisible { label: Google+ }
       shareBlock piVisible { label: Pinterest }
       /* shareBlock shareUrlType { label: Share URL; widget: select; options:newsletter=Newsletter|custom=Custom;} */
-      shareBlock customUrl { label: Share Link; }
+      shareBlock customUrl { label: Lien partage; }
       shareBlock {
-        label: Share Block;
+        label: Bloc partage;
         /* shareUrlType=newsletter */
         properties: shareButtonType=reverse fbVisible=true twVisible=true inVisible=false ggVisible=true piVisible=false customUrl;
         variant: shareButtonType;
         theme: contentTheme;
       }
       
-      preheaderBlock { label:Preheader Block;  theme: frameTheme}
+      preheaderBlock { label:Bloc pré-entête;  theme: frameTheme}
 
-      sideArticleBlock imagePos {label:Image position;widget:select; options: left=Left|right=Right; }
-      sideArticleBlock imageWidth { label: Image Size; widget: select; options: 120=Small|166=Medium|258=Big; }
-      sideArticleBlock { label: Image+Text Block; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
+      sideArticleBlock imagePos {label:Position image;widget:select; options: left=Gauche|right=Droite; }
+      sideArticleBlock imageWidth { label: Taille image; widget: select; options: 120=Petite|166=Moyenne|258=Grande; }
+      sideArticleBlock { label: Bloc image-texte; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
 
-      textBlock { label: Text Block; properties: backgroundColor longTextStyle longText; theme: contentTheme}
+      textBlock { label: Bloc texte; properties: backgroundColor longTextStyle longText; theme: contentTheme}
 
-      singleArticleBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big|534=Full }
-      singleArticleBlock { label: Image/Text Block; properties: titleVisible=true buttonVisible=true imageVisible=true imageWidth=534 titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; theme: contentTheme}
+      singleArticleBlock imageWidth { label: Taille image; widget: select; options: 166=Petite|258=Moyenne|350=Grande|534=Pleine }
+      singleArticleBlock { label: Bloc image/texte; properties: titleVisible=true buttonVisible=true imageVisible=true imageWidth=534 titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; theme: contentTheme}
 
-      fixedImageHeightVisible { label: Fix image height; extend: visible; }
-      externalBackgroundVisible { label: Transparent background; extend: visible; }
+      fixedImageHeightVisible { label: Hauteur image fixe; extend: visible; }
+      externalBackgroundVisible { label: Fond transparent; extend: visible; }
 
-      doubleArticleBlock { label: 2 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+      doubleArticleBlock { label: Bloc 2 colonnes; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 
-      tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+      tripleArticleBlock { label: Bloc 3 colonnes; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
       
-      logoBlock longTextStyle { label: Alternative Text; }
-      logoBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big }
-      logoBlock { label: Logo Block; properties: externalBackgroundVisible=true image imageWidth=258; variant: externalBackgroundVisible; theme: contentTheme}
+      logoBlock longTextStyle { label: Texte remplacement; }
+      logoBlock imageWidth { label: Taille image; widget: select; options: 166=Petite|258=Moyenne|350=Grande }
+      logoBlock { label: Bloc logo; properties: externalBackgroundVisible=true image imageWidth=258; variant: externalBackgroundVisible; theme: contentTheme}
       
-      titleBlock { label: Title; theme: contentTheme}
+      titleBlock { label: Titre; theme: contentTheme}
 
-      imageBlock longTextStyle { label: Alternative Text; }
+      imageBlock longTextStyle { label: Texte remplacement; }
       imageBlock { label: Image; properties: gutterVisible=false; variant: gutterVisible; theme: contentTheme }
 
-      doubleImageBlock longTextStyle { label: Alternative Text; }
-      doubleImageBlock { label: Two Image Gallery; properties: gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme }
+      doubleImageBlock longTextStyle { label: Texte remplacement; }
+      doubleImageBlock { label: Galerie de deux images; properties: gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme }
 
-      tripleImageBlock longTextStyle { label: Alternative Text; }
-      tripleImageBlock { label: Three Image Gallery;properties:gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme}
+      tripleImageBlock longTextStyle { label: Texte remplacement; }
+      tripleImageBlock { label: Galerie de trois images;properties:gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme}
 
-      buttonBlock { label: Button Block; theme: contentTheme}
-      hrBlock { label: Separator Block;  theme: contentTheme}
+      buttonBlock { label: Block bouton; theme: contentTheme}
+      hrBlock { label: Bloc séparateur;  theme: contentTheme}
       /* imageSeparatorBlock { label: Image Separator Block;  theme: contentTheme} */
-      spacerBlock { label: Spacer Block; properties: externalBackgroundVisible=true; theme: contentTheme}
+      spacerBlock { label: Bloc espacement; properties: externalBackgroundVisible=true; theme: contentTheme}
 
       spacerBlock:preview,
       logoBlock:preview { -ko-background-color: @[externalBackgroundColor] }
