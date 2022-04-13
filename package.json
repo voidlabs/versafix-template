@@ -8,7 +8,7 @@
     "url": "git://github.com/voidlabs/versafix-template.git"
   },
   "devDependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^9.0.1",
     "htmml": "^1.0.1",
