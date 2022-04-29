@@ -1,4 +1,4 @@
-# Mosaico - Master Template and HTù template generator for Mosaico
+# Mosaico - Master Template and HTMML template generator for Mosaico
 
 Mosaico is a JavaScript library (or maybe a single page application) supporting the editing of email templates.
 This repository contains the [HTMML](https://github.com/voidlabs/htmml) "sources" for the versafix-1 template. They are translated to HTML and directly used by mosaico.
