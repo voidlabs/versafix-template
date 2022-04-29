@@ -1,9 +1,11 @@
 "use strict";
 
-var htmml2html = require('htmml');
-var makeThumbs = require('./makeThumbs');
-var checkTemplateDefs = require('./checkTemplateDefs');
-var fse = require('fs-extra');
+const htmml2html = require('htmml');
+const makeThumbs = require('./makeThumbs');
+const checkTemplateDefs = require('./checkTemplateDefs');
+const fse = require('fs-extra');
+const replace = require('replace-in-file');
+const pkg = require('../package.json');
 
 var templates = [ { 
 	'htmml': './template-def/template-versafix-1.htmml', 
@@ -22,6 +24,11 @@ var templates = [ {
 
 for (var i = 0; i < templates.length; i++) {
 	htmml2html(templates[i].htmml, templates[i].html);
+    replace.sync({
+    	files: templates[i].html,
+    	from: /__VERSION__/g,
+    	to: pkg.version,
+    });
 	fse.copySync(templates[i].imgDir, templates[i].destImgDir);
 	checkTemplateDefs(templates[i].html, templates[i].modelPrefix);
 	makeThumbs(templates[i].html, './edres/', 680, 340);
