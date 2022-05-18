@@ -40,7 +40,7 @@
         help: Alternative text will be shown on email clients that does not download image automatically;
       }
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
-      titleText {label:Title Text;category: hidden;}
+      titleText { label: Title Text; category: hidden }
       gutterVisible { label: Show Gutter; extend: visible }
       socialIconType { label: Icon Version; widget: select; options: bw=Black and White|colors=Colors; }
       bigSocialIconType { label: Icon Version; widget: select; options:bw=Black and White|colors=Colors|rdcol=Rounded Colors|rdbl=Rounded Black; }
@@ -53,9 +53,9 @@
         help: If -None- is selected, preHeader text will be shown;
       }
      
-      hrStyle { label: Separator Style;properties:color hrWidth hrHeight; }
+      hrStyle { label: Separator Style; properties: color hrWidth hrHeight; }
       hrStyle:preview { height: 200%; width: 200%; bottom: 20px; -ko-border-bottom: @[hrHeight]px solid @color; }
-      preheaderVisible { label: Show Preheader; extend: visible; help: Preheader block is the first one on the top of the page. It contains web version link and optionally unsubscribe link or a preheader text that will be shown as a preview on some email clients; }
+      preheaderVisible { label: Show Preheader; extend: visible; help: Preheader block is the first one on the top of the page. It contains web version link and optionally unsubscribe link or a preheader text that will be shown as a preview on some email clients }
 
       /* content types */
       blocks { label: Blocks; properties: blocks[]; }
@@ -99,7 +99,7 @@
       rightLongText { label: Right Text; extend: text }
       rightButtonLink { label: Right Button; extend: buttonLink }
       webversionText{ label: Web Link Text; extend: text;}
-      unsubscribeText{ label: Unsubscribe Link; extend: text;}
+      unsubscribeText{ label: Unsubscribe Text; extend: text;}
 
       titleVisible { label: Show Title; extend: visible; }
       buttonVisible { label: Show Button; extend: visible; }
@@ -578,7 +578,7 @@
 
     <def attr="alt" selector="img" alt="{{alt}}"></def>
     <!-- the DIV is for old IE (IE in compatible mode), like Notes 8 showing full size images -->
-    <tmpl><tr><td width="100%" valign="top" align="center" class="links-color"><!--[if (lte ie 8)]><div style="display: inline-block"><![endif]--><a href=""><img alt="" border="0" hspace="0" align="center" vspace="0" style="vertical-align:top; height: auto; margin: 0 auto" /></a><!--[if (lte ie 8)]></div><![endif]--></td></tr></tmpl>
+    <tmpl><tr><td width="100%" valign="top" align="center" class="links-color"><!--[if (lte ie 8)]><div style="display: inline-block"><![endif]--><a href=""><img alt="" border="0" hspace="0" align="center" vspace="0" style="vertical-align:top; height: auto; margin: 0 auto"></a><!--[if (lte ie 8)]></div><![endif]--></td></tr></tmpl>
   </template>
 
   <template tag="btn">
@@ -662,7 +662,7 @@
     <!-- border-spacing: 0; needed for sfr.fr -->
     <tmpl><tr>
       <td valign="top"><table role="presentation" cellpadding="0" border="0" align="center" cellspacing="0" style="border-spacing: 0"><tr>
-        {{#icon-src}}<td class="shareIcon" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><img style="display: block" /></a></td>{{/icon-src}}
+        {{#icon-src}}<td class="shareIcon" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><img style="display: block"></a></td>{{/icon-src}}
         <td width="auto" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><span data-ko-wrap="false">{{replacedcontent}}</span></a></td>
       </tr></table></td>
     </tr></tmpl>
@@ -729,13 +729,13 @@
     <!-- use multiple backgroun declaration so clients not supporting border-radius won't show the background too -->
     <!-- we used to use url() with no content, but this made some sub-request on web versions/web clients: https://github.com/voidlabs/versafix-template/issues/5 -->
     <def attr="color" selector="a" style="background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), {{color}}"></def>
-    <def attr="color-prop" selector="a" style="-ko-background: @['url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), '+{{color-prop}}]"></def>"
+    <def attr="color-prop" selector="a" style="-ko-background: @['url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), '+{{color-prop}}]"></def>
     <def attr="size" selector="img" width="{{size}}" height="{{size}}"></def>
     <def attr="size-prop" selector="img" style="-ko-attr-width: @[{{size-prop}}]; -ko-attr-height: @[{{size-prop}}]"></def>
     <def attr="radius" selector="a" style="border-radius: {{radius}}px"></def>
     <def attr="alt" selector="img" alt="{{alt}}"></def>
     <def attr="href-prop" selector="a" style="-ko-attr-href: @[{{href-prop}}]"></def>
-    <tmpl><span data-ko-wrap="false">&nbsp;</span><a href=""><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" /></a></tmpl>
+    <tmpl><span data-ko-wrap="false">&nbsp;</span><a href=""><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px"></a></tmpl>
   </template>
 
   <default selector="block[theme='frameTheme']" bgcolor="#3f3f3f" bgcolor-prop="backgroundColor"></default>
@@ -811,7 +811,7 @@
         <columns td-styles="padding: 0 9px"><!--
           --><column-content width="276" spacing="9">
             <linked-text if="preheaderLinkOption neq 'none'" href="[unsubscribe_link]" href-prop="preheaderLinkOption" editable="unsubscribeText">Unsubscribe</linked-text>
-            <text false if="preheaderLinkOption eq 'none'" content="preheaderText"></text>
+            <text false="" if="preheaderLinkOption eq 'none'" content="preheaderText"></text>
           </column-content><!--
           --><column-content width="276" spacing="9" class="mobile-hide">
             <linked-text align="right" href="[show_link]" editable="webversionText">View in your browser</linked-text>
@@ -827,14 +827,12 @@
     <block name="logoBlock" label="Logo Block">
       <block-inner if="externalBackgroundVisible" inner-padding="9" inner-class="vb-row">
         <content width="276" spacing="9" width-prop="18 + Math.round(imageWidth)">
-          <linked-img width="258" placeholder-height="150" width-prop="imageWidth"
-            src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
+          <linked-img width="258" placeholder-height="150" width-prop="imageWidth" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
         </content>
       </block-inner>
-      <block-inner false if="externalBackgroundVisible eq false" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="externalBackgroundVisible eq false" inner-padding="9" inner-class="vb-row">
         <content width="276" spacing="9" width-prop="18 + Math.round(imageWidth)">
-          <linked-img width="258" placeholder-height="150" width-prop="imageWidth"
-            src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
+          <linked-img width="258" placeholder-height="150" width-prop="imageWidth" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
         </content>
       </block-inner>
     </block>
@@ -843,15 +841,14 @@
       <block-inner inner-padding="9" inner-class="vb-row">
         <columns><!--
           --><column-content if="imagePos eq 'left'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
-            <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130"
-              src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
+            <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
           </column-content><!--
           --><column-content width="368" width-prop="570 - 2 * 18 - Math.round(imageWidth)" spacing="9">
             <text editable="titleText" if="titleVisible">Title</text>
             <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
             <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
           </column-content><!--
-          --><column-content false if="imagePos eq 'right'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
+          --><column-content false="" if="imagePos eq 'right'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
             <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130"
               src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
           </column-content><!--
@@ -862,8 +859,7 @@
     <block name="singleArticleBlock" label="Image/Text Block">
       <block-inner inner-padding="9" inner-class="vb-row">
         <content spacing="9" width="552">
-          <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150"
-            src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="9"></linked-img>
+          <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="9"></linked-img>
           <text editable="text" if="titleVisible">Section Title</text>
           <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
           <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
@@ -881,8 +877,7 @@
 
     <block name="textBlock" label="Text Block">
       <block-inner inner-padding="18" inner-class="vb-container">
-        <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p>
-          <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
+        <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p><p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
       </block-inner>
     </block>
 
@@ -890,10 +885,8 @@
       <block-inner inner-padding="9" inner-class="vb-row">
         <columns><repeater repeat="left,middle,right" height="90,70,110"><!--
           --><column-content spacing="9" width="184">
-            <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="90" height-prop="imageHeight" padding-bottom="9"
-              src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C90"></linked-img>
-            <linked-img false if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="{{height}}" padding-bottom="9"
-              src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C100"></linked-img>
+            <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="90" height-prop="imageHeight" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C90"></linked-img>
+            <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="{{height}}" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C100"></linked-img>
             <text editable="{{repeat}}TitleText" if="titleVisible">Title</text>
             <long-text editable="{{repeat}}LongText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p></long-text>
             <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
@@ -906,10 +899,8 @@
       <block-inner inner-padding="9" inner-class="vb-row">
         <columns><repeater repeat="left,right"><!--
             --><column-content spacing="9" width="276">
-              <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="100" height-prop="imageHeight" padding-bottom="9"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C100"></linked-img>
-              <linked-img false if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="120" padding-bottom="9"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C120"></linked-img>
+              <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="100" height-prop="imageHeight" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C100"></linked-img>
+              <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="120" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C120"></linked-img>
               <text editable="{{repeat}}TitleText" if="titleVisible">Title</text>
               <long-text editable="{{repeat}}LongText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p></long-text>
               <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
@@ -934,12 +925,10 @@
 
     <block name="imageBlock" label="Image">
       <block-inner if="gutterVisible eq false" inner-padding="0" inner-class="vb-container">
-        <linked-img editable="image" width="570" placeholder-height="200"
-          src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C200"></linked-img>
+        <linked-img editable="image" width="570" placeholder-height="200" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C200"></linked-img>
       </block-inner>
-      <block-inner false if="gutterVisible" inner-padding="18" inner-class="vb-container">
-        <linked-img editable="image" width="534" placeholder-height="280"
-          src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C280"></linked-img>
+      <block-inner false="" if="gutterVisible" inner-padding="18" inner-class="vb-container">
+        <linked-img editable="image" width="534" placeholder-height="280" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C280"></linked-img>
       </block-inner>
     </block>
 
@@ -947,20 +936,16 @@
       <block-inner if="gutterVisible eq false" inner-padding="0" inner-class="vb-row">
         <columns width="570"><repeater repeat="left,right"><!--
             --><column-content width-breakpoint="570" width="285">
-              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="285" height="180" height-prop="imageHeight"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
-              <linked-img false if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="285" placeholder-height="180"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="285" height="180" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="285" placeholder-height="180" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
             </column-content><!--
           --></repeater></columns>
       </block-inner>
-      <block-inner false if="gutterVisible" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="gutterVisible" inner-padding="9" inner-class="vb-row">
         <columns><repeater repeat="left,right"><!--
             --><column-content spacing="9" width="276">
-              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="180" height-prop="imageHeight"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
-              <linked-img false if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="180" 
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="180" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="180" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
             </column-content><!--
       --></repeater></columns>
       </block-inner>
@@ -970,20 +955,16 @@
       <block-inner if="gutterVisible eq false" inner-padding="0" inner-class="vb-row">
         <columns width="570"><repeater repeat="left,middle,right"><!--
             --><column-content width-breakpoint="570" width="190">
-              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="190" height="160" height-prop="imageHeight"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
-              <linked-img false if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="190" placeholder-height="160"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="190" height="160" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="190" placeholder-height="160" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
             </column-content><!--
        --></repeater></columns>
       </block-inner>
-      <block-inner false if="gutterVisible" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="gutterVisible" inner-padding="9" inner-class="vb-row">
         <columns><repeater repeat="left,middle,right"><!--
             --><column-content spacing="9" width="184">
-              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="160" height-prop="imageHeight"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
-              <linked-img false if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="160"
-                src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="160" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="160" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
             </column-content><!--
           --></repeater></columns>
       </block-inner>
@@ -991,12 +972,12 @@
 
     <block name="bigSocialBlock" label="Big Social Block">
       <block-inner inner-padding="18" inner-class="vb-container links-color socialLinks mobile-textcenter">
-        <custom-row false if="bigSocialIconType eq 'colors'" align="center" class="links-color socialLinks mobile-textcenter">
+        <custom-row false="" if="bigSocialIconType eq 'colors'" align="center" class="links-color socialLinks mobile-textcenter">
           <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
-        <custom-row false if="bigSocialIconType eq 'bw'" align="center" class="links-color socialLinks mobile-textcenter">
+        <custom-row false="" if="bigSocialIconType eq 'bw'" align="center" class="links-color socialLinks mobile-textcenter">
           <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
           </repeater>
@@ -1006,8 +987,9 @@
             <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
-        <custom-row false if="bigSocialIconType eq 'rdbl'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube"> <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdbl-96.png" alt="{{name}}"></social-icon>
+        <custom-row false="" if="bigSocialIconType eq 'rdbl'" align="center" class="links-color socialLinks mobile-textcenter">
+          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+            <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdbl-96.png" alt="{{name}}"></social-icon>
           </repeater>
         </custom-row>
       </block-inner>
@@ -1018,31 +1000,31 @@
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" icon-src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" icon-src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
             </column-content>
           </repeater>
         </columns>
       </block-inner>
-      <block-inner false if="shareButtonType eq 'simple'" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="shareButtonType eq 'simple'" inner-padding="9" inner-class="vb-row">
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" icon-src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" icon-src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
             </column-content>
           </repeater>
         </columns>
       </block-inner>
-      <block-inner false if="shareButtonType eq 'custom'" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="shareButtonType eq 'custom'" inner-padding="9" inner-class="vb-row">
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'brand'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-coloured-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-coloured-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
             </column-content>
             <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'white'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-white-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-white-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
             </column-content>
             <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'black'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-black-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-black-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
             </column-content>
           </repeater>
         </columns>
@@ -1050,7 +1032,7 @@
     </block>
 
     <block height="24" height-prop="spacerSize" td-styles="font-size:1px; height: 1px" name="spacerBlock" label="Spacer Block">
-      <block-inner false if="externalBackgroundVisible eq false" inner-class="vb-container">
+      <block-inner false="" if="externalBackgroundVisible eq false" inner-class="vb-container">
         <spacer height="24" height-prop="spacerSize"></spacer>
       </block-inner>
       <div data-ko-display="externalBackgroundVisible" data-ko-wrap="false">&nbsp;</div>
@@ -1069,7 +1051,7 @@
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
-            <custom-row false if="socialIconType eq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
+            <custom-row false="" if="socialIconType eq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
               <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
               </repeater>
@@ -1085,9 +1067,8 @@
     <block-inner inner-padding="0" inner-class="vb-row">
       <content spacing="9" width="552" td-styles="padding: 0 9px">
         <long-text editable="longText" fixed-align="center"><p>Email sent to <a href="mailto:[mail]">[mail]</a></p></long-text>
-        <linked-text align="center" href="[unsubscribe_link]" editable="disiscrivitiText"
-          color-prop="Color.readability(linkStyle.color, backgroundColor) gt 2 ? linkStyle.color : (Color.isReadable('#ffffff', backgroundColor) ? '#ffffff' : '#000000')">Unsubscribe</linked-text>
-        <linked-img width="170" align="center" false if="_root_.sponsor.visible" content="_root_.sponsor" src="img/sponsor.gif" alt="sponsor" />
+        <linked-text align="center" href="[unsubscribe_link]" editable="disiscrivitiText" color-prop="Color.readability(linkStyle.color, backgroundColor) gt 2 ? linkStyle.color : (Color.isReadable('#ffffff', backgroundColor) ? '#ffffff' : '#000000')">Unsubscribe</linked-text>
+        <linked-img width="170" align="center" false="" if="_root_.sponsor.visible" content="_root_.sponsor" src="img/sponsor.gif" alt="sponsor"></linked-img>
       </content>
     </block-inner>
   </block>
