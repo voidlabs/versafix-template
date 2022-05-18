@@ -11,7 +11,7 @@
     "async": "^3.2.3",
     "cheerio": "1.0.0-rc.5",
     "fs-extra": "^10.1.0",
-    "htmml": "1.0.3",
+    "htmml": "1.0.4",
     "mockery": "^2.1.0",
     "mosaico": "^0.18.1",
     "phantomjs-prebuilt": "^2.1.16",
@@ -25,6 +25,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node src/index.js",
+    "translate": "node src/translate.js",
     "clean": "node ./node_modules/rimraf/bin.js -- dist/template/* dist/template.it/*"
   },
   "engine": "node >= 6.0.0"

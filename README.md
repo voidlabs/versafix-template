@@ -11,6 +11,9 @@ You need NodeJS v6.0 or higher + ImageMagick
 
 ```javascript
   npm install
+  # run this to generate the htmml for the non english language
+  npm run translate
+  # run this to generate final templates starting from htmml files
   npm run build
 ```
 
@@ -20,6 +23,15 @@ This will run, for each template, 3 things
 - Copy the img files from def to dist.
 - Generate the template model, or check the template model against previously generated models, to track compatibility issues
 - Generate the template and block thumbnails (```edres``` folder) for the templates.
+
+```javascript
+  # run this to generate the htmml for the non english language
+  npm run translate
+```
+
+This will generate the italian HTMML template starting from the english one and the translation definition JSON file.
+Given this overwrite a file in the template-def folder be care to not loose your local changes.
+If you use this translation then you probably want to run the translate task before the build task.
 
 ### Src vs Generated
 
