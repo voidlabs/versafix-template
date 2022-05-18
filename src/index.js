@@ -19,6 +19,12 @@ var templates = [ {
 	'imgDir': './template-def/img/', 
 	'destImgDir': './dist/template.it/img/', 
 	'modelPrefix': './model/template-versafix-1.it'
+}, {
+	'htmml': './template-def/template-versafix-1.voxmail.htmml',
+	'html': './dist/template.voxmail/template-versafix-1.voxmail.html',
+	'imgDir': './template-def/img/', 
+	'destImgDir': './dist/template.voxmail/img/', 
+	'modelPrefix': './model/template-versafix-1.voxmail'
 },
 ];
 

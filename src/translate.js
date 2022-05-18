@@ -5,6 +5,10 @@ var templates = [{
 	'translateSrc': './template-def/template-versafix-1.htmml',
 	'translateDef': './template-def/template-versafix-1.it.json',
 	'htmml': './template-def/template-versafix-1.it.htmml',
+},{
+	'translateSrc': './template-def/template-versafix-1.it.htmml',
+	'translateDef': './template-def/template-versafix-1.voxmail.json',
+	'htmml': './template-def/template-versafix-1.voxmail.htmml',
 }];
 
 for (var i = 0; i < templates.length; i++) {

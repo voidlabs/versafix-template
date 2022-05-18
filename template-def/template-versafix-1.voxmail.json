@@ -1,0 +1,23 @@
+{
+    "//": "NOTE: custom asymmetric changes in italian translation. See the 'bw=Black and White|colors=Colors' translation above.",
+    "customReplacements": {
+        "style": [
+            {
+                "replace": "socialIconType=Colori ",
+                "search": "socialIconType=colors "
+            }
+        ],
+        "custom-row[if]": [
+            {
+                "attribute": "if",
+                "replace": "socialIconType eq 'Bianco e Nero'",
+                "search": "socialIconType eq 'bw'"
+            },
+            {
+                "attribute": "if",
+                "replace": "socialIconType eq 'Colori'",
+                "search": "socialIconType eq 'colors'"
+            }
+        ]
+    }
+}

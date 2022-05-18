@@ -26,7 +26,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	});
 
 	// Almost magic selector to detect content nodes:
-	$(':not(:empty):not(style)').each(function(idx, el) {
+	if (transformDef.hasOwnProperty('strings')) $(':not(:empty):not(style)').each(function(idx, el) {
 	    if (el.children.length >= 1) {
 	        // If the element has only one child and is not a text element then it is not text content.
 	        if (el.children.length == 1 && el.children[0].type !== 'text') return;
@@ -152,7 +152,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	    return newStyle;
 	};
 
-	$('style').each(function(idx, el) {
+	if (transformDef.hasOwnProperty('strings')) $('style').each(function(idx, el) {
 	    if (el.children.length >= 1) {
 	        var style = el.children[0].data;
 	        var newStyle = processStylesheetRules(style);
