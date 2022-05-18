@@ -167,11 +167,9 @@
       shareBlock inVisible { label: LinkedIn }
       shareBlock ggVisible { label: Google+ }
       shareBlock piVisible { label: Pinterest }
-      /* shareBlock shareUrlType { label: Share URL; widget: select; options:newsletter=Newsletter|custom=Custom;} */
       shareBlock customUrl { label: Share Link; }
       shareBlock {
         label: Share Block;
-        /* shareUrlType=newsletter */
         properties: shareButtonType=reverse fbVisible=true twVisible=true inVisible=false ggVisible=true piVisible=false customUrl;
         variant: shareButtonType;
         theme: contentTheme;
@@ -212,7 +210,6 @@
 
       buttonBlock { label: Button Block; theme: contentTheme}
       hrBlock { label: Separator Block;  theme: contentTheme}
-      /* imageSeparatorBlock { label: Image Separator Block;  theme: contentTheme} */
       spacerBlock { label: Spacer Block; properties: externalBackgroundVisible=true; theme: contentTheme}
 
       spacerBlock:preview,
