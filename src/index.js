@@ -38,5 +38,5 @@ for (var i = 0; i < templates.length; i++) {
 	fse.copySync(templates[i].tdDir+'img/', templates[i].destDir+'img/');
 	fse.copySync(templates[i].tdDir+'edres/', templates[i].destDir+'edres/');
 	checkTemplateDefs(templates[i].html, templates[i].modelPrefix);
-	makeThumbs(templates[i].html, './edres/', 680, 340);
+	makeThumbs(templates[i].html, './edres/', 640, 640);
 }
