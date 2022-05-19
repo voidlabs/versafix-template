@@ -44,7 +44,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	                    var newContent = $(el).html().replace(c, repl);
 	                    $(el).html(newContent);
 	                }
-	            } else {
+	            } else if (!transformDef.hasOwnProperty("partial") || !transformDef.partial) {
 	                console.log("Missing translation for ", '[' + c + ']', '[' + foundText + ']');
 	            }
 	        }
@@ -124,6 +124,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	                                    case 'label':
 	                                    case 'help':
 	                                    case 'options':
+	                                    case 'buttonsetLabels':
 	                                    case '-ko-bind-text':
 	                                        if (transformDef.strings.hasOwnProperty(val)) {
 	                                            if (transformDef.strings[val] !== null) {
@@ -137,7 +138,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	                                                newStyle = newStyle.substr(0, offsets.start - 1) + prop + newStyle.substr(offsets.end - 1);
 	                                                // newStyle = removeStyle(newStyle, decls[k].position.start, decls[k].position.end, 0, 0, 0, decls[k].name+': '+transformDef.strings[val]);
 	                                            }
-	                                        } else {
+	                                        } else if (!transformDef.hasOwnProperty("partial") || !transformDef.partial) {
 	                                            console.log("Missing translation: ", decls[k].name, decls[k].value);
 	                                        }
 	                                        break;
