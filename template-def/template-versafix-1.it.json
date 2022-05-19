@@ -121,19 +121,16 @@
         "Icon Size": "Dimensioni icone",
         "bw=Black and White|colors=Colors|rdcol=Rounded Colors|rdbl=Rounded Black": "bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate",
         "Icon Version": "Versione icone",
-
-        "//": "NOTE: this is legacy code. We used to have custom keys in the italian template, so we have to keep using them. See also the custom replacement rules",
-        "bw=Black and White|colors=Colors": "Bianco e Nero=Bianco e Nero|Colori=Colori",
+        "bw=Black and White|colors=Colors": "bw=Bianco e Nero|colors=Colori",
         "Show Gutter": "Mostra spaziatura",
         "Sponsor": "Sponsor",
         "Title Text": "Testo titolo",
         "Alternative text will be shown on email clients that does not download image automatically": "Il testo alternativo viene visualizzato dai programmi che non caricano le immagini automaticamente",
-        "left=Left|right=Right|center=Center": "left=Sinistra|right=Destra|center=Centrato",
+        "left=Left|center=Center|right=Right": "left=Sinistra|center=Centrato|right=Destra",
         "Alignment": "Allineamento",
         "Height": "Altezza",
-
-        "//": "TODO: missing translation!!",
-        "normal=Normal|150%=1.5 Lines|200%=Double": "normal=Normal|150%=1.5 Lines|200%=Double",
+        "normal=Normal|150%=1.5 Lines|200%=Double": "normal=Normale|150%=1.5 Linee|200%=Doppia",
+        "normal=1x|150%=1.5x|200%=2x": null,
 
         "//": "NOTE: we currently have 'line height' used in 2 ways (with 2 different cases)",
         "Line Height": "Altezza",
