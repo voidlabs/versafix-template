@@ -17,7 +17,9 @@
         max: 20;
         help: Attenzione - questa proprietà non è supportata da tutti i client di posta (ad esempio Outlook)
       }
-      face { label: Font; widget: select; options: Arial, Helvetica, sans-serif=Arial|Arial Black, Arial Black, Gadget, sans-serif=Arial Black|Comic Sans MS, Comic Sans MS5, cursive=Comic Sans|Courier New, Courier New, monospace=Courier|Georgia, serif=Georgia|Impact, sans-serif=Impact|Lucida Console, Monaco, monospace=Lucida Console|Lucida Sans Unicode, Lucida Grande, sans-serif=Lucida Sans Unicode|Times New Roman, Times, serif=Times New Roman|Verdana, Geneva, sans-serif=Verdana}
+      face { label: Font; widget: select; options: Arial, Helvetica, sans-serif=Arial|Arial Black, Arial Black, Gadget, sans-serif=Arial Black|Comic Sans MS, Comic Sans MS5, cursive=Comic Sans|Courier New, Courier New, monospace=Courier|Georgia, serif=Georgia|Impact, sans-serif=Impact|Lucida Console, Monaco, monospace=Lucida Console|Lucida Sans Unicode, Lucida Grande, sans-serif=Lucida Sans Unicode|Times New Roman, Times, serif=Times New Roman|Verdana, Geneva, sans-serif=Verdana;
+        renderHint: fontface
+      }
       decoration { label: Sottolineatura; widget: select; options: none=Nessuna|underline=Sottolineato }
       linksColor { label: Colore link; extend: color }
       linksDecoration { label: Link sottolineati?; extend: decoration }
@@ -29,11 +31,15 @@
       hrHeight { label: Spessore linea; widget: integer; max: 80; }
 
       height { label: Altezza; widget: integer }
-      imageHeight { label: Altezza immagine; extend: height; }
-      lineHeight { label: Altezza; widget: select; options: normal=Normal|150%=1.5 Lines|200%=Double; }
+      imageHeight { label: Altezza immagine; widget: integer; min: 10; max: 1000 }
+      lineHeight { label: Altezza; widget: select; options: normal=Normale|150%=1.5 Linee|200%=Doppia;
+        buttonsetLabels: normal=1x|150%=1.5x|200%=2x;
+      }
 
       spacerSize { label: Altezza; widget: integer; max: 90; min: 4; }
-      align { label: Allineamento; widget: select; options:left=Sinistra|right=Destra|center=Centrato}
+      align { label: Allineamento; widget: select; options:left=Sinistra|center=Centrato|right=Destra;
+        buttonsetIconClasses: left=fa fa-fw fa-align-left|center=fa fa-fw fa-align-center|right=fa fa-fw fa-align-right
+      }
       alt {
         label: Testo alternativo;
         widget: text;
@@ -42,9 +48,19 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Testo titolo; category: hidden }
       gutterVisible { label: Mostra spaziatura; extend: visible }
-      socialIconType { label: Versione icone; widget: select; options: Bianco e Nero=Bianco e Nero|Colori=Colori; }
-      bigSocialIconType { label: Versione icone; widget: select; options:bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate; }
-      bigSocialIconSize { label: Dimensioni icone; widget: select; options: 32=Piccole|48=Grandi; }
+      socialIconType { label: Versione icone; widget: select; options: bw=Bianco e Nero|colors=Colori;
+        renderHint: images; 
+        imagesSources: bw=url('edres/_social-select-bw.png')
+                      |colors=url('edres/_social-select-colors.png')
+      }
+      bigSocialIconType { label: Versione icone; widget: select; options:bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate;
+        renderHint: images; 
+        imagesSources: bw=url('edres/_social-select-bw.png')
+                      |colors=url('edres/_social-select-colors.png')
+                      |rdcol=url('edres/_social-select-rdcol.png')
+                      |rdbl=url('edres/_social-select-rdbl.png')
+      }
+      bigSocialIconSize { label: Dimensioni icone; widget: select; options: 32=Piccole|48=Grandi; renderHint: buttonset }
 
       preheaderLinkOption {
         label: Link disiscrizione;
@@ -154,7 +170,6 @@
         theme: contentTheme
       }
 
-
       shareButtonStyle iconColorType { label: Colore icone; widget: select; options: brand=Colori|white=Bianco|black=Nero; }
       shareButtonStyle color { label: Colore testo; extend: color }
       shareButtonStyle size { label: Dimensione testo; widget: select; options: 10|11|12|13|14|15|16|18|20|22|25; }
@@ -177,8 +192,12 @@
       
       preheaderBlock { label:Blocco Preintestazione;  theme: frameTheme}
 
-      sideArticleBlock imagePos {label:Posizione immagine;widget:select; options: left=Sinistra|right=Destra; }
-      sideArticleBlock imageWidth { label: Dimensioni Immagine; widget: select; options: 120=Piccola|166=Media|258=Grande; }
+      sideArticleBlock imagePos {label:Posizione immagine;widget:select; options: left=Sinistra|right=Destra;
+        buttonsetIconClasses: left=fa fa-fw fa-address-card-o|right=fa fa-fw fa-address-card-o fa-flip-horizontal
+      }
+      sideArticleBlock imageWidth { label: Dimensioni Immagine; widget: select; options: 120=Piccola|166=Media|258=Grande;
+        renderHint: buttonset;
+      }
       sideArticleBlock { label: Blocco Immagine+Testo; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
 
       textBlock { label: Blocco Testo; properties: backgroundColor longTextStyle longText; theme: contentTheme}
@@ -210,7 +229,7 @@
 
       buttonBlock { label: Blocco Pulsante; theme: contentTheme}
       hrBlock { label: Blocco Separatore;  theme: contentTheme}
-      spacerBlock { label: Blocco Spaziatore; properties: externalBackgroundVisible=true; theme: contentTheme}
+      spacerBlock { label: Blocco Spaziatore; properties: externalBackgroundVisible=true; variant: externalBackgroundVisible; theme: contentTheme }
 
       spacerBlock:preview,
       logoBlock:preview { -ko-background-color: @[externalBackgroundColor] }
@@ -563,6 +582,7 @@
     <def attr="height" selector="img" height="{{height}}" style="height: auto"></def>
     <def attr="placeholder-height" selector="img" data-ko-placeholder-height="{{placeholder-height}}" style="height: auto"></def>
     <def attr="height-prop" selector="img" style="-ko-attr-height: @[{{height-prop}}]"></def>
+    <def attr="height-prop" selector="a" data-ko-height="{{height-prop}}"></def>
 
     <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
     <def attr="align" selector="img" align="{{align}}"></def>
@@ -575,7 +595,8 @@
 
     <def attr="alt" selector="img" alt="{{alt}}"></def>
     <!-- the DIV is for old IE (IE in compatible mode), like Notes 8 showing full size images -->
-    <tmpl><tr><td width="100%" valign="top" align="center" class="links-color"><!--[if (lte ie 8)]><div style="display: inline-block"><![endif]--><a href=""><img alt="" border="0" hspace="0" align="center" vspace="0" style="vertical-align:top; height: auto; margin: 0 auto"></a><!--[if (lte ie 8)]></div><![endif]--></td></tr></tmpl>
+    <!-- the display: inline-block in the a tag is required for the data-ko-height to work correctly -->
+    <tmpl><tr><td width="100%" valign="top" align="center" class="links-color"><!--[if (lte ie 8)]><div style="display: inline-block"><![endif]--><a href="" style="display: inline-block;"><img alt="" border="0" hspace="0" align="center" vspace="0" style="vertical-align:top; height: auto; margin: 0 auto"></a><!--[if (lte ie 8)]></div><![endif]--></td></tr></tmpl>
   </template>
 
   <template tag="btn">
@@ -683,7 +704,7 @@
 
   <template tag="spacer">
     <def attr="height" selector="td" height="{{height}}" style="line-height: {{height}}px"></def>
-    <def attr="height-prop" selector="td" style="-ko-line-height: @[{{height-prop}}]px; -ko-attr-height: @[{{height-prop}}]"></def>
+    <def attr="height-prop" selector="td" data-ko-height="{{height-prop}}" style="-ko-line-height: @[{{height-prop}}]px; -ko-attr-height: @[{{height-prop}}]"></def>
     <!-- padding: 0 and border-spacing: 0 needed for Orange.fr and Sfr.fr -->
     <tmpl><tr>
         <td width="100%" height="1" style="padding: 0; font-size:1px; line-height: 1px; width: 100%">&nbsp;</td>
@@ -1031,7 +1052,7 @@
       <block-inner false="" if="externalBackgroundVisible eq false" inner-class="vb-container">
         <spacer height="24" height-prop="spacerSize"></spacer>
       </block-inner>
-      <div data-ko-display="externalBackgroundVisible" data-ko-wrap="false">&nbsp;</div>
+      <div data-ko-height="spacerSize" style="height: 24px; -ko-height: @[spacerSize]px" data-ko-display="externalBackgroundVisible" data-ko-wrap="false">&nbsp;</div>
     </block>
 
 
