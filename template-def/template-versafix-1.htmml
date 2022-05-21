@@ -23,7 +23,7 @@
       decoration { label: Decoration; widget: select; options: none=None|underline=Underline }
       linksColor { label: Link Color; extend: color }
       linksDecoration { label: Underlined Links?; extend: decoration }
-      buttonColor { label: Button Color; extend: color }
+      buttonColor { label: Button Color; extend: color; transparent: true }
       text { label: Paragraph; widget: text }
       url { label: Link; widget: url }
       src { label: Image; widget: src }
@@ -98,7 +98,7 @@
       bigTitleStyle { label: Title; properties: face color size align}
       bigTitleStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
       /* buttons */
-      buttonStyle color { label: Text Color; extend: color }
+      buttonStyle color { label: Text Color; extend: color; transparent: true; }
       buttonStyle size { label: Text Size; extend: size }
       buttonStyle { label: Button; properties: face color size align buttonColor radius }
       buttonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; -ko-background-color: @buttonColor; padding-left: 5px; -ko-border-radius: @[radius]px; }
@@ -171,7 +171,7 @@
       }
 
       shareButtonStyle iconColorType { label: Icon Color; widget: select; options: brand=Brand|white=White|black=Black; }
-      shareButtonStyle color { label: Text Color; extend: color }
+      shareButtonStyle color { label: Text Color; extend: color; transparent: true; }
       shareButtonStyle size { label: Text Size; widget: select; options: 10|11|12|13|14|15|16|18|20|22|25; }
       shareButtonStyle { label: Share Button; properties: face iconColorType=black color size align buttonColor radius }
       shareButtonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @['black']; -ko-font-size: @[size]px; -ko-background-color: @['#CCCCCC']; padding-left: 5px; -ko-border-radius: @[radius]px; }
