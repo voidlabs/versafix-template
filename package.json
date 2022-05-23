@@ -1,6 +1,6 @@
 {
   "name": "versafix-template",
-  "version": "1.1.20-dev",
+  "version": "1.1.20",
   "description": "Versafix-1 Master Templates for Mosaico",
   "main": "./src/index.js",
   "repository": {
@@ -37,7 +37,11 @@
       "releaseName": "v${version}"
     },
     "hooks": {
-      "after:bump": ["npm run clean", "npm run translate", "npm run build"],
+      "after:bump": [
+        "npm run clean",
+        "npm run translate",
+        "npm run build"
+      ],
       "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
     }
   }
