@@ -48,7 +48,7 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Testo titolo; category: hidden }
       gutterVisible { label: Mostra spaziatura; extend: visible }
-      socialIconType { label: Versione icone; widget: select; options: bw=Bianco e Nero|colors=Colori;
+      socialIconType { label: Versione icone; widget: select; options: Bianco e Nero=Bianco e Nero|Colori=Colori;
         renderHint: images; 
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
@@ -158,7 +158,7 @@
 
       socialBlock {
         label: Blocco social footer;
-        properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
+        properties: socialIconType=Colori fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
         variant:socialIconType;
         theme: frameTheme
       }
@@ -1524,7 +1524,7 @@
       --><div style="display:inline-block; vertical-align:top; width: 100%; max-width: 276px; -mru-width: 0px; min-width: calc(276 * 100% / 552); -ko-min-width: @['calc(' + (276) * 100 / 552 + '%)']; max-width: calc(100%); -ko-max-width: @['calc(100%)']; width: calc(552 * 552px - 552 * 100%); -ko-width: @['calc('+ 552 * 552 + 'px - ' + 552 * 100 +'%)']" class="mobile-full"><!--
         --><table role="presentation" class="vb-content" border="0" cellspacing="9" cellpadding="0" style="border-collapse: separate; width: 100%; mso-cellspacing: 9px; border-spacing: 9px; -yandex-p: calc(2px - 3%)" width="276" align="left">
           
-            <tr data-ko-display="socialIconType eq 'colors'"><td width="100%" valign="top" style="font-weight: normal; text-align: right" align="right" class="links-color socialLinks mobile-textcenter">
+            <tr data-ko-display="socialIconType eq 'Colori'"><td width="100%" valign="top" style="font-weight: normal; text-align: right" align="right" class="links-color socialLinks mobile-textcenter">
               
                 <span data-ko-wrap="false" data-ko-display="fbVisible">&nbsp;</span><a href="" data-ko-display="fbVisible" style="background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #3b5998; border-radius: 50px; -ko-attr-href: @[fbUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/fb-colors-96.png" width="32" height="32" alt="Facebook"></a>
               
@@ -1551,7 +1551,7 @@
                 <span data-ko-wrap="false" data-ko-display="youVisible" style="display: none">&nbsp;</span><a href="" data-ko-display="youVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #cd201f; border-radius: 50px; -ko-attr-href: @[youUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/you-colors-96.png" width="32" height="32" alt="Youtube"></a>
               
             </td></tr>
-            <tr data-ko-display="socialIconType eq 'bw'" style="display: none"><td width="100%" valign="top" style="font-weight: normal; text-align: right" align="right" class="links-color socialLinks mobile-textcenter">
+            <tr data-ko-display="socialIconType eq 'Bianco e Nero'" style="display: none"><td width="100%" valign="top" style="font-weight: normal; text-align: right" align="right" class="links-color socialLinks mobile-textcenter">
               
                 <span data-ko-wrap="false" data-ko-display="fbVisible">&nbsp;</span><a href="" data-ko-display="fbVisible" style="background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[fbUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/fb-bw-96.png" width="32" height="32" alt="Facebook"></a>
               

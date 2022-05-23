@@ -1,0 +1,549 @@
+[
+  {
+    "type": "logoBlock",
+    "customStyle": false,
+    "externalBackgroundVisible": true,
+    "image": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "imageWidth": "258",
+    "id": "",
+    "externalBackgroundColor": null,
+    "externalTextStyle": {
+      "type": "textStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null
+    },
+    "backgroundColor": null,
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    }
+  },
+  {
+    "type": "sideArticleBlock",
+    "customStyle": false,
+    "backgroundColor": null,
+    "titleVisible": true,
+    "buttonVisible": true,
+    "imageWidth": "166",
+    "imagePos": "left",
+    "titleTextStyle": {
+      "type": "textStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null
+    },
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "buttonStyle": {
+      "type": "buttonStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null,
+      "buttonColor": null,
+      "radius": null
+    },
+    "image": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "longText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali. Vivono isolati nella cittadina di Lettere, sulle coste del Semantico, un immenso oceano linguistico. Un piccolo ruscello chiamato Devoto Oli attraversa quei luoghi, rifornendoli di tutte le regolalie di cui hanno bisogno.</p>",
+    "buttonLink": {
+      "type": "link",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "titleText": "Titolo"
+  },
+  {
+    "type": "singleArticleBlock",
+    "customStyle": false,
+    "titleVisible": true,
+    "buttonVisible": true,
+    "imageVisible": true,
+    "imageWidth": "534",
+    "titleTextStyle": {
+      "type": "textStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null
+    },
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "buttonStyle": {
+      "type": "buttonStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null,
+      "buttonColor": null,
+      "radius": null
+    },
+    "image": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "longText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali. Vivono isolati nella cittadina di Lettere, sulle coste del Semantico, un immenso oceano linguistico. Un piccolo ruscello chiamato Devoto Oli attraversa quei luoghi, rifornendoli di tutte le regolalie di cui hanno bisogno.</p>",
+    "buttonLink": {
+      "type": "link",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null,
+    "text": "Titolo Sezione"
+  },
+  {
+    "type": "titleBlock",
+    "customStyle": false,
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null,
+    "bigTitleStyle": {
+      "type": "bigTitleStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null
+    },
+    "text": "Titolo Sezione"
+  },
+  {
+    "type": "textBlock",
+    "customStyle": false,
+    "backgroundColor": null,
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "longText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali.</p><p>Vivono isolati nella cittadina di Lettere, sulle coste del Semantico, un immenso oceano linguistico. Un piccolo ruscello chiamato Devoto Oli attraversa quei luoghi, rifornendoli di tutte le regolalie di cui hanno bisogno.</p>",
+    "id": "",
+    "externalBackgroundColor": null
+  },
+  {
+    "type": "tripleArticleBlock",
+    "customStyle": false,
+    "backgroundColor": null,
+    "titleVisible": true,
+    "buttonVisible": true,
+    "imageVisible": true,
+    "fixedImageHeightVisible": true,
+    "titleTextStyle": {
+      "type": "textStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null
+    },
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "buttonStyle": {
+      "type": "buttonStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null,
+      "buttonColor": null,
+      "radius": null
+    },
+    "leftImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "leftLongText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali.</p>",
+    "leftButtonLink": {
+      "type": "buttonLink",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "middleImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "middleLongText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali.</p>",
+    "middleButtonLink": {
+      "type": "buttonLink",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "rightImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "rightLongText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali.</p>",
+    "rightButtonLink": {
+      "type": "buttonLink",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "imageHeight": "90",
+    "leftTitleText": "Titolo",
+    "middleTitleText": "Titolo",
+    "rightTitleText": "Titolo"
+  },
+  {
+    "type": "doubleArticleBlock",
+    "customStyle": false,
+    "backgroundColor": null,
+    "titleVisible": true,
+    "buttonVisible": true,
+    "imageVisible": true,
+    "fixedImageHeightVisible": true,
+    "titleTextStyle": {
+      "type": "textStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null
+    },
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "buttonStyle": {
+      "type": "buttonStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null,
+      "buttonColor": null,
+      "radius": null
+    },
+    "leftImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "leftLongText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali.</p>",
+    "leftButtonLink": {
+      "type": "buttonLink",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "rightImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "rightLongText": "<p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href=\"\">Vocalia e Consonantia</a>, vivono i testi casuali.</p>",
+    "rightButtonLink": {
+      "type": "buttonLink",
+      "text": "PULSANTE",
+      "url": ""
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "imageHeight": "100",
+    "leftTitleText": "Titolo",
+    "rightTitleText": "Titolo"
+  },
+  {
+    "type": "hrBlock",
+    "customStyle": false,
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null,
+    "hrStyle": {
+      "type": "hrStyle",
+      "color": null,
+      "hrWidth": null,
+      "hrHeight": null
+    }
+  },
+  {
+    "type": "buttonBlock",
+    "customStyle": false,
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null,
+    "bigButtonStyle": {
+      "type": "buttonStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "align": null,
+      "buttonColor": null,
+      "radius": null
+    },
+    "link": {
+      "type": "link",
+      "text": "PULSANTE",
+      "url": ""
+    }
+  },
+  {
+    "type": "imageBlock",
+    "customStyle": false,
+    "gutterVisible": false,
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null,
+    "image": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    }
+  },
+  {
+    "type": "doubleImageBlock",
+    "customStyle": false,
+    "gutterVisible": false,
+    "fixedImageHeightVisible": true,
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "imageHeight": "180",
+    "backgroundColor": null,
+    "leftImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "rightImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    }
+  },
+  {
+    "type": "tripleImageBlock",
+    "customStyle": false,
+    "gutterVisible": false,
+    "fixedImageHeightVisible": true,
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "id": "",
+    "externalBackgroundColor": null,
+    "imageHeight": "160",
+    "backgroundColor": null,
+    "leftImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "middleImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    },
+    "rightImage": {
+      "type": "image",
+      "src": "",
+      "url": "",
+      "alt": null
+    }
+  },
+  {
+    "type": "bigSocialBlock",
+    "customStyle": false,
+    "bigSocialIconType": "rdcol",
+    "bigSocialIconSize": "48",
+    "fbVisible": true,
+    "fbUrl": "",
+    "twVisible": true,
+    "twUrl": "",
+    "ggVisible": true,
+    "ggUrl": "",
+    "webVisible": false,
+    "webUrl": "",
+    "waVisible": false,
+    "waUrl": "",
+    "tgVisible": false,
+    "tgUrl": "",
+    "inVisible": true,
+    "inUrl": "",
+    "piVisible": false,
+    "piUrl": "",
+    "flVisible": false,
+    "flUrl": "",
+    "viVisible": false,
+    "viUrl": "",
+    "instVisible": true,
+    "instUrl": "",
+    "youVisible": true,
+    "youUrl": "",
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "longText": null,
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null
+  },
+  {
+    "type": "shareBlock",
+    "customStyle": false,
+    "shareButtonType": "reverse",
+    "fbVisible": true,
+    "twVisible": true,
+    "inVisible": false,
+    "ggVisible": true,
+    "piVisible": false,
+    "customUrl": null,
+    "id": "",
+    "externalBackgroundColor": null,
+    "backgroundColor": null,
+    "shareButtonStyle": {
+      "type": "shareButtonStyle",
+      "face": null,
+      "iconColorType": null,
+      "color": null,
+      "size": null,
+      "align": null,
+      "buttonColor": null,
+      "radius": null
+    },
+    "fbText": "Condividi",
+    "twText": "Condividi",
+    "inText": "Condividi",
+    "ggText": "Condividi",
+    "piText": "Condividi"
+  },
+  {
+    "type": "spacerBlock",
+    "customStyle": false,
+    "externalBackgroundVisible": true,
+    "id": "",
+    "externalBackgroundColor": null,
+    "spacerSize": "24",
+    "backgroundColor": null
+  },
+  {
+    "type": "socialBlock",
+    "customStyle": false,
+    "socialIconType": "Colori",
+    "fbVisible": true,
+    "fbUrl": "",
+    "twVisible": true,
+    "twUrl": "",
+    "ggVisible": true,
+    "ggUrl": "",
+    "webVisible": false,
+    "webUrl": "",
+    "waVisible": false,
+    "waUrl": "",
+    "tgVisible": false,
+    "tgUrl": "",
+    "inVisible": false,
+    "inUrl": "",
+    "piVisible": false,
+    "piUrl": "",
+    "flVisible": false,
+    "flUrl": "",
+    "viVisible": false,
+    "viUrl": "",
+    "instVisible": false,
+    "instUrl": "",
+    "youVisible": false,
+    "youUrl": "",
+    "longTextStyle": {
+      "type": "longTextStyle",
+      "face": null,
+      "color": null,
+      "size": null,
+      "lineHeight": null,
+      "align": null,
+      "linksColor": null
+    },
+    "longText": "<p>Indirizzo Aziendale e <a href=\"\">Contatti</a></p>",
+    "backgroundColor": null,
+    "id": ""
+  }
+]
