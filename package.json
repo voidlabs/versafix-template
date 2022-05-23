@@ -32,6 +32,9 @@
   },
   "engine": "node >= 6.0.0",
   "release-it": {
+    "git": {
+      "addUntrackedFiles": true,
+    },
     "github": {
       "release": true,
       "releaseName": "v${version}"
