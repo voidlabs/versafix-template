@@ -15,6 +15,7 @@
     "mockery": "^2.1.0",
     "mosaico": "^0.18.1",
     "phantomjs-prebuilt": "^2.1.16",
+    "release-it": "^15.0.0",
     "replace-in-file": "^6.3.2",
     "rimraf": "^3.0.2"
   },
@@ -26,7 +27,13 @@
   "scripts": {
     "build": "node src/index.js",
     "translate": "node src/translate.js",
-    "clean": "node ./node_modules/rimraf/bin.js -- dist/template/* dist/template.it/*"
+    "clean": "node ./node_modules/rimraf/bin.js -- dist/template/* dist/template.it/*",
+    "release": "release-it"
   },
-  "engine": "node >= 6.0.0"
+  "engine": "node >= 6.0.0",
+  "release-it": {
+    "github": {
+      "release": true
+    }
+  }
 }
