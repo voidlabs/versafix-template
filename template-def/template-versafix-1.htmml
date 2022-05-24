@@ -31,7 +31,7 @@
       hrHeight { label: Line height; widget: integer; max: 80; }
 
       height { label: Height; widget: integer }
-      imageHeight { label: Image Height; widget: integer; min: 10; max: 1000 }
+      imageHeight { label: Image Height; extend: height; min: 10; max: 1000 }
       lineHeight { label: Line Height; widget: select; options: normal=Normal|150%=1.5 Lines|200%=Double;
         buttonsetLabels: normal=1x|150%=1.5x|200%=2x;
       }
@@ -568,10 +568,10 @@
     <def attr="padding-bottom" selector="td" style="padding-bottom: {{padding-bottom}}px"></def>
 
     <def attr="editable" selector="a" data-ko-link="{{editable}}.url"></def> 
-    <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @[{{editable}}.alt == '' ? null : {{editable}}.alt]"></def>
+    <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @{{editable}}.alt; -ko-attr-alt-if: {{editable}}.alt !== '';"></def>
 
     <def attr="content" selector="a" style="-ko-attr-href: @{{content}}.url"></def>
-    <def attr="content" selector="img" style="-ko-attr-src: @{{content}}.src; -ko-attr-alt: @[{{content}}.alt == '' ? null : {{content}}.alt]"></def>
+    <def attr="content" selector="img" style="-ko-attr-src: @{{content}}.src; -ko-attr-alt: @{{content}}.alt; -ko-attr-alt-if: {{content}}.alt !== '';"></def>
 
     <def attr="width" selector="img" width="{{width}}" style="width: 100%; max-width: {{width}}px"></def>
     <def attr="width" selector="cc-div" style="width: {{width}}px"></def>
