@@ -6,6 +6,9 @@ const checkTemplateDefs = require('./checkTemplateDefs');
 const fse = require('fs-extra');
 const replace = require('replace-in-file');
 const pkg = require('../package.json');
+const tmp = require('tmp');
+const myArgs = process.argv.slice(2);
+const test = myArgs.length > 0 && myArgs[0] == 'test';
 
 var templates = [ { 
 	'htmml': './template-def/template-versafix-1.htmml', 
@@ -28,15 +31,19 @@ var templates = [ {
 },
 ];
 
+var ok = true;
 for (var i = 0; i < templates.length; i++) {
-	htmml2html(templates[i].htmml, templates[i].html);
+	var htmlFile = test ? tmp.fileSync().name : templates[i].html;
+	htmml2html(templates[i].htmml, htmlFile);
     replace.sync({
-    	files: templates[i].html,
+    	files: htmlFile,
     	from: /__VERSION__/g,
     	to: pkg.version,
     });
-	fse.copySync(templates[i].tdDir+'img/', templates[i].destDir+'img/');
-	fse.copySync(templates[i].tdDir+'edres/', templates[i].destDir+'edres/');
-	checkTemplateDefs(templates[i].html, templates[i].modelPrefix);
-	makeThumbs(templates[i].html, './edres/', 640, 640);
+	if (!test) fse.copySync(templates[i].tdDir+'img/', templates[i].destDir+'img/');
+	if (!test) fse.copySync(templates[i].tdDir+'edres/', templates[i].destDir+'edres/');
+	ok = checkTemplateDefs(htmlFile, templates[i].modelPrefix, false) && ok;
+	if (!test) makeThumbs(htmlFile, './edres/', 640, 640);
 }
+
+if (!ok) process.exitCode = 1;

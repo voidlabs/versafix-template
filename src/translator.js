@@ -4,11 +4,12 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 var cssParse = require("mensch/lib/parser.js");
 
-function templateTranslator(templatePath, transformDefPath, outputPath) {
+function templateTranslator(templatePath, transformDefPath, outputPath, testRun) {
 
 	var templatecode = "" + fs.readFileSync(templatePath);
 	var output = outputPath;
 	var transformDef = JSON.parse(fs.readFileSync(transformDefPath));
+	var ok = true;
 
 	var $ = cheerio.load(templatecode, {
 	    normalizeWhitespace: false,
@@ -45,6 +46,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	                    $(el).html(newContent);
 	                }
 	            } else if (!transformDef.hasOwnProperty("partial") || !transformDef.partial) {
+	            	ok = false;
 	                console.log("Missing translation for ", '[' + c + ']', '[' + foundText + ']');
 	            }
 	        }
@@ -139,6 +141,7 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	                                                // newStyle = removeStyle(newStyle, decls[k].position.start, decls[k].position.end, 0, 0, 0, decls[k].name+': '+transformDef.strings[val]);
 	                                            }
 	                                        } else if (!transformDef.hasOwnProperty("partial") || !transformDef.partial) {
+	                                        	ok = false;
 	                                            console.log("Missing translation: ", decls[k].name, decls[k].value);
 	                                        }
 	                                        break;
@@ -189,9 +192,12 @@ function templateTranslator(templatePath, transformDefPath, outputPath) {
 	            });
 	        }
 
-	var dir = path.dirname(output);
-	if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-	fs.writeFileSync(output, $.html());
+	if (ok && !testRun) {
+		var dir = path.dirname(output);
+		if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+		fs.writeFileSync(output, $.html());
+	}
+	return ok;
 }
 
 module.exports = templateTranslator;

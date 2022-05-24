@@ -17,7 +17,8 @@
     "phantomjs-prebuilt": "^2.1.16",
     "release-it": "^15.0.0",
     "replace-in-file": "^6.3.2",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "tmp": "^0.2.1"
   },
   "overrides": {
     "css-what": "5.0.1"
@@ -28,6 +29,7 @@
     "build": "node src/index.js",
     "translate": "node src/translate.js",
     "clean": "node ./node_modules/rimraf/bin.js -- dist/template/* dist/template.it/*",
+    "test": "node src/test.js",
     "release": "release-it"
   },
   "engine": "node >= 6.0.0",
@@ -40,6 +42,10 @@
       "releaseName": "v${version}"
     },
     "hooks": {
+      "before:init": [
+        "npm run translate test",
+        "npm run build test"
+      ],
       "after:bump": [
         "npm run clean",
         "npm run translate",

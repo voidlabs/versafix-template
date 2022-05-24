@@ -6,7 +6,7 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 var mockery = require('mockery');
 
-var checkTemplateDefs = function (templateFile, modelPrefix) {
+var checkTemplateDefs = function (templateFile, modelPrefix, testRun) {
 	mockery.enable();
 	// 'knockout', 'console', 'mensch', 'jsep', './cheerio', './parser.js', '../src/js/converter/main.js', './utils.js', './domutils.js', './editor.js', './declarations.js', './model.js', './stylesheet.js'
 	mockery.registerAllowables(['mosaico/src/js/converter/main.js', './model.js', './domutils.js', 'console', './cheerio', './editor.js', './parser.js', './checkmodel.js', './declarations.js', './utils.js']);
@@ -80,13 +80,15 @@ var checkTemplateDefs = function (templateFile, modelPrefix) {
 		var blockDefs = templateConverter.generateEditors(templateDef, widgets, joinUrl, editorsTemplateCreator, baseThreshold);
 
 		if (createOutput) {
-			// FIRST TIME CREATE
-			console.log("## Creating first time compiled artifacts for template " + templateFile);
-			fs.writeFileSync(outModelFile, JSON.stringify(model, ' ', 2));
-			fs.writeFileSync(outBlockDefsFile, JSON.stringify(blockDefs, ' ', 2));
-			fs.writeFileSync(outDefFile, JSON.stringify(templateDef, ' ', 2));
-			fs.writeFileSync(outTemplates, templates);
-			console.log("## Done with " + templateFile);
+			if (!testRun) {
+				// FIRST TIME CREATE
+				console.log("## Creating first time compiled artifacts for template " + templateFile);
+				fs.writeFileSync(outModelFile, JSON.stringify(model, ' ', 2));
+				fs.writeFileSync(outBlockDefsFile, JSON.stringify(blockDefs, ' ', 2));
+				fs.writeFileSync(outDefFile, JSON.stringify(templateDef, ' ', 2));
+				fs.writeFileSync(outTemplates, templates);
+				console.log("## Done with " + templateFile);
+			}
 		} else {
 			console.log("## Checking template compatibility " + templateFile);
 			var savedModel = JSON.parse(fs.readFileSync(outModelFile, 'utf8'));
@@ -105,13 +107,16 @@ var checkTemplateDefs = function (templateFile, modelPrefix) {
 			} else {
 				console.log("## Done checking template compatibility " + templateFile);
 			}
+			// return invalid model
+			if (validDef > 1 || validModel > 1) return false;
 		}
 	} catch (e) {
 		console.error("Exception while compiling template: " + templateFile, e);
+		return false;
 	}
 
 	mockery.disable();
-
+	return true;
 };
 
 module.exports = checkTemplateDefs;
