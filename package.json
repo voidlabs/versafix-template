@@ -1,6 +1,6 @@
 {
   "name": "versafix-template",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "description": "Versafix-1 Master Templates for Mosaico",
   "main": "./src/index.js",
   "repository": {
