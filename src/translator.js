@@ -2,7 +2,8 @@
 var path = require('path');
 var fs = require('fs');
 var cheerio = require('cheerio');
-var cssParse = require("mensch/lib/parser.js");
+var cssParse = require('mensch/lib/parser.js');
+var entities = require('entities');
 
 function templateTranslator(templatePath, transformDefPath, outputPath, testRun) {
 
@@ -35,7 +36,8 @@ function templateTranslator(templatePath, transformDefPath, outputPath, testRun)
 	        var foundText = '';
 	        for (var i = 0; i < el.children.length; i++)
 	            if (el.children[i].type == 'text') {
-	                if (el.children[i].data.trim() !== '' && !el.children[i].data.trim().match(/^{{.*}}$/)) foundText += el.children[i].data.trim();
+	            	var t = entities.decodeHTML(el.children[i].data).trim();
+	                if (t !== '' && !t.match(/^{{.*}}$/)) foundText += el.children[i].data.trim();
 	            }
 	        if (foundText) {
 	            var c = $(el).html().trim();
