@@ -79,58 +79,88 @@ if (system.args.length < 5 || system.args.length > 5) {
     console.error(msgStack.join('\n'));
   };
 
+  var _getBoundingRect = function (selector) {
+    // console.log("X", document.querySelector(selector));
+    // return { left: 10, top: 10, width: 500, height: 100 };
+    return document.querySelector(selector).getBoundingClientRect();
+  };
+
+  var _computeBoundRectAndSetClipRect = function(sel) {
+    // console.log("renderding "+i+" "+blockNames[i]);
+    var boundRect2 = page.evaluate(_getBoundingRect, sel);
+    var boundRect = {};
+    boundRect.width = size[0];
+    boundRect.left = 0;
+    boundRect.top = boundRect2.top;
+    boundRect.height = boundRect2.height;
+    setClipRect(page, boundRect, margin, boundRect.height / boundRect.width);
+    return boundRect;
+  }
+
   page.open(address, function (status) {
     if (status !== 'success') {
       console.log('Unable to load the address!');
       phantom.exit();
     } else {
 
+      page.evaluate(function () {
+        var bbody = document.getElementsByTagName('body')[0];
+        window.origBodyClass = bbody.getAttribute("class");
+      });
+
       /* console.log('content', page.content); */
       page.evaluate(function () {
         var bbody = document.getElementsByTagName('body')[0];
-        bbody.setAttribute("class", bbody.getAttribute("class") + " preview");
-
+        bbody.setAttribute("class", window.origBodyClass + " preview blockpreview");
       });
-      window.setTimeout(function () {
-        var blockNames = page.evaluate(function () {
+      var b64s = [];
+      var boundRects = [];
+      var blockNames;
+
+      var _renderBlocks = function () {
+        blockNames = page.evaluate(function () {
           var nodelist = document.querySelectorAll('[data-ko-container] [data-ko-block]');
           var blockNames = [];
           for (var i = 0; i < nodelist.length; i++) {
             blockNames.push(nodelist[i].getAttribute('data-ko-block'));
           }
-          blockNames.push("_full");
+          // blockNames.push("_full");
           return blockNames;
         });
         console.log(blockNames);
-        var b64s = [];
-        var boundRects = [];
-        var _getBoundingRect = function (selector) {
-          // console.log("X", document.querySelector(selector));
-          // return { left: 10, top: 10, width: 500, height: 100 };
-          return document.querySelector(selector).getBoundingClientRect();
-        };
         for (var i = 0; i < blockNames.length; i++) {
           var sel;
           var blockName = blockNames[i];
-          if (blockName == '_full') {
-            sel = 'body';
-          } else {
+          // if (blockName == '_full') {
+          //   sel = 'body';
+          // } else {
             sel = '[data-ko-block=' + blockName + ']';
-          }
-          // console.log("renderding "+i+" "+blockNames[i]);
-          var boundRect2 = page.evaluate(_getBoundingRect, sel);
-          var boundRect = {};
-          boundRect.width = size[0];
-          boundRect.left = 0;
-          boundRect.top = boundRect2.top;
-          boundRect.height = boundRect2.height;
-          setClipRect(page, boundRect, margin, boundRect.height / boundRect.width);
+          // }
 
+          boundRect = _computeBoundRectAndSetClipRect(sel);
           boundRects.push(boundRect);
           b64s.push(page.renderBase64('PNG'));
         }
 
+        page.evaluate(function () {
+          var bbody = document.getElementsByTagName('body')[0];
+          bbody.setAttribute("class", window.origBodyClass + " preview fullpreview");
+        });
+        window.setTimeout(_renderFull, 2000);
+      }
 
+      var _renderFull = function() {
+        blockNames.push("_full");
+        boundRect = _computeBoundRectAndSetClipRect('body');
+        boundRects.push(boundRect);
+        b64s.push(page.renderBase64('PNG'));
+
+        _renderImages();
+      }
+
+      window.setTimeout(_renderBlocks, 2000);
+
+      var _renderImages = function() {
         i = 0;
 
         var process = function (boundRects, arg2) {
@@ -160,7 +190,7 @@ if (system.args.length < 5 || system.args.length > 5) {
 
         process(boundRects, system.args[2]);
 
-      }, 2000);
+      };
 
     }
   });
