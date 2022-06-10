@@ -150,7 +150,18 @@
         "10|20|30|40|50|60|70|80|90|100": null,
         "166=Small|258=Medium|350=Big": "166=Piccola|258=Media|350=Grande",
         "166=Small|258=Medium|350=Big|534=Full": "166=Piccola|258=Media|350=Grande|534=Intera",
+        "143=Mini|190=Small|285=Medium|380=Big|427=Large": "143=Mini|190=Piccola|285=Media|380=Grande|427=Molto grande",
         "120=Small|166=Medium|258=Big": "120=Piccola|166=Media|258=Grande",
+
+        "Block Spacing": "Spaziature",
+        "Bottom Padding": "Margine inferiore",
+        "Top Padding": "Margine superiore",
+        "Horizontal Spacing": "Spazio orizzontale",
+        "Vertical Spacing": "Spazio verticale",
+        "Horizontal Padding": "Spazio orizzontale",
+        "Vertical Padding": "Spazio verticale",
+        "Border Color": "Colore Bordo",
+        "Border Width": "Spessore Bordo",
 
         "@['Button']": "@['Pulsante']",
         "@['AaZz']": null,
