@@ -102,7 +102,7 @@
       buttonStyle size { label: Text Size; extend: size }
       buttonStyle { label: Button; properties: face color size align buttonColor radius }
       buttonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; -ko-background-color: @buttonColor; padding-left: 5px; -ko-border-radius: @[radius]px; }
-      
+
       /* contents */
       preheaderText {label: PreHeader Text; extend:text; help: This text will be shown on some email clients as a preview of the email contents;}
       leftImage { label: Left Image; extend: image }
@@ -185,12 +185,12 @@
       shareBlock customUrl { label: Share Link; }
       shareBlock {
         label: Share Block;
-        properties: shareButtonType=reverse fbVisible=true twVisible=true inVisible=false ggVisible=true piVisible=false customUrl;
+        properties: shareButtonType=reverse fbVisible=true twVisible=true inVisible=false ggVisible=true piVisible=false customUrl shareButtonStyle;
         variant: shareButtonType;
         theme: contentTheme;
       }
       
-      preheaderBlock { label:Preheader Block;  theme: frameTheme}
+      preheaderBlock { label:Preheader Block; theme: frameTheme; visibility: _root_.preheaderVisible; /* this is a fixed block:  using "visibility" property link this to the boolean variable that deal with its visibility and let mosaico add a trash button to hide it "inline" */ }
 
       sideArticleBlock imagePos {label:Image position;widget:select; options: left=Left|right=Right;
         buttonsetIconClasses: left=fa fa-fw fa-address-card-o|right=fa fa-fw fa-address-card-o fa-flip-horizontal
@@ -213,10 +213,12 @@
       tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
       
       logoBlock longTextStyle { label: Alternative Text; }
-      logoBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big }
-      logoBlock { label: Logo Block; properties: externalBackgroundVisible=true image imageWidth=258; variant: externalBackgroundVisible; theme: contentTheme}
+      logoBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big;
+        renderHint: buttonset;
+      }
+      logoBlock { label: Logo Block; properties: externalBackgroundVisible=true image imageWidth=258 externalTextStyle; variant: externalBackgroundVisible; theme: contentTheme}
       
-      titleBlock { label: Title; theme: contentTheme}
+      titleBlock { label: Title; properties: bigTitleStyle; theme: contentTheme }
 
       imageBlock longTextStyle { label: Alternative Text; }
       imageBlock { label: Image; properties: gutterVisible=false; variant: gutterVisible; theme: contentTheme }
@@ -227,8 +229,8 @@
       tripleImageBlock longTextStyle { label: Alternative Text; }
       tripleImageBlock { label: Three Image Gallery;properties:gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme}
 
-      buttonBlock { label: Button Block; theme: contentTheme}
-      hrBlock { label: Separator Block;  theme: contentTheme}
+      buttonBlock { label: Button Block; properties: bigButtonStyle; theme: contentTheme}
+      hrBlock { label: Separator Block; properties: hrStyle; theme: contentTheme }
       spacerBlock { label: Spacer Block; properties: externalBackgroundVisible=true; variant: externalBackgroundVisible; theme: contentTheme }
 
       spacerBlock:preview,
@@ -277,12 +279,13 @@
 
     /* outlook */
     table { mso-table-rspace: 0pt; mso-table-lspace: 0pt; }
+
     #outlook a { padding: 0; }
     img { outline: none; text-decoration: none; border: none; -ms-interpolation-mode: bicubic; }
     a img { border: none; }
 
     @media screen and (max-width: 600px) {
-      table.vb-container, table.vb-row {
+      table.vb-row {
         width: 95% !important;
       }
 
@@ -406,20 +409,25 @@
   </template>
 
   <template tag="block-inner">
+    <def attr="class"></def>
+
     <def attr="if" selector="div[data-ko-wrap]" data-ko-display="{{if}}"></def>
     <def attr="false" selector="div[data-ko-wrap]" style="display: none"></def>
 
     <def attr="inner-bgcolor" selector="div div table" bgcolor="{{inner-bgcolor}}" style="background-color: {{inner-bgcolor}}"></def>
     <def attr="inner-bgcolor-prop" selector="div div table" style="-ko-background-color: @[{{inner-bgcolor-prop}}]; -ko-attr-bgcolor: @[{{inner-bgcolor-prop}}]"></def>
-    <def attr="inner-padding" selector="div div table" cellspacing="{{inner-padding}}" style="mso-cellspacing: {{inner-padding}}px; border-spacing: {{inner-padding}}px"></def>
+    <def attr="inner-padding" selector="div div table" cellspacing="{{inner-padding}}"></def>
+
     <def attr="inner-width" selector="div div table, cc-table" width="{{inner-width}}"></def>
     <!-- div[class] is required by old webkits not supporting max-width on tables -->
     <!-- Check on Safari for Windows v4.0.5 531.2.7 -->
     <def attr="inner-width" selector="div div table, div div" style="max-width: {{inner-width}}px; -mru-width: 0px"></def>
-    <def attr="inner-class" selector="div div table" class="{{inner-class}}"></def>
+
     <!-- was display:inline-block", see https://github.com/voidlabs/versafix-template/issues/3 -->
+    <!-- the first table-tr-td is need to force width in MSO because the inner table
+         has  a width: 100% and MSO doesn't understand the max-width on the div -->
     <tmpl>{{#if}}<div data-ko-wrap="false" style="width: 100%;">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top"><![endif]--><!--
-      --><div style="margin: 0 auto"><table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; width: 100%">
+      --><div style="margin: 0 auto"><table role="presentation" class="vb-row" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%">
         {{replacedcontent}}
       </table></div><!--
     --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->{{#if}}</div>{{/if}}</tmpl>
@@ -430,14 +438,27 @@
     <def attr="width" selector="cc-table" width="{{width}}"></def>
     <!-- use a div inside the TD so that columns widths are handled correctly when the horizontal spacing of the container is different from its vertical spacing and the content should not fill 100% of the space but leave some spacing -->
     <def attr="width" selector="div" style="max-width: {{width}}px; -mru-width: 0px"></def>
-    <def attr="td-styles" selector="td" style="{{td-styles}}"></def>
+
+    <!-- NOTE: the selector must be created so to not add the padding the {{dir}} td too -->
+    <!--       also make sure dir is applied after this one, otherwise the other td will have styles too -->
+    <def attr="horizontal-inner-padding" selector="td[style]" style="padding: 0 {{horizontal-inner-padding}}px;"></def>
+    <!-- used by doubleImageBlock and tripleImageBlock so to have vertical block padding added only externally instead of once for each column -->
+    <def attr="vertical-inner-padding" selector="td[style]" style="padding-top: {{vertical-inner-padding}}px; padding-bottom: {{vertical-inner-padding}}px;"></def>
+
+    <def attr="mso-vertical-inner-padding" selector="cc-table" style="mso-padding-top-alt: {{mso-vertical-inner-padding}}px; mso-padding-bottom-alt: {{mso-vertical-inner-padding}}px;"></def>
+
+    <!-- web.de|gmx, and maybe orange do not support dir in table/td -->
+    <!-- the template will add a whole table-tr-td when the dir attribute is used, to prevent some vertical line in MSO:
+         https://github.com/hteumeuleu/email-bugs/issues/97 -->
+    <def attr="dir" selector="table[dir] td" dir="{{dir}}" style="direction: {{dir}}; border-collapse: collapse;"></def>
+    <def attr="dir-prop" selector="table[dir] td" style="-ko-attr-dir: @[{{dir-prop}}]; -ko-direction: @[{{dir-prop}}]"></def>
+
     <tmpl><tr>
-      <td align="center" valign="top" style="font-size: 0"><div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
+      <td align="center" valign="top" style="font-size: 0">{{#dir}}<table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top">{{/dir}}<div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
         -->{{replacedcontent}}<!--
-      --><!--[if (gte mso 9)|(lte ie 8)]></tr></table><![endif]--></div></td>
+      --><!--[if (gte mso 9)|(lte ie 8)]></tr></table><![endif]--></div>{{#dir}}</td></tr></table>{{/dir}}</td>
     </tr></tmpl>
   </template>
-
 
   <template tag="content">
     <def attr="width" selector="table" width="{{width}}"></def>
@@ -446,23 +467,25 @@
     <!-- uso la forma con espressione perchè mosaico ha un bug nella ricerca del valore di default e non lo cerca nella prop precedente -->
     <def attr="width-prop" selector="div" style="-ko-max-width: @[{{width-prop}} + 'px']"></def>
 
-    <!-- border-spacing forzato per orange -->
-    <def attr="spacing" selector="table" cellspacing="{{spacing}}" style="mso-cellspacing: {{spacing}}px; border-spacing: {{spacing}}px"></def>
+    <!-- we used to have forced border-spacing for orange, but we now moved to collapsed borders -->
+    <def attr="spacing" selector="table" cellspacing="{{spacing}}"></def>
+
     <def attr="align" selector="table" align="{{align}}"></def>
     <def attr="text-align" selector="table" style="text-align: {{text-align}}"></def>
 
     <def attr="class" selector="div" class="{{class}}"></def>
-    <def attr="td-styles" selector="td" style="{{td-styles}}"></def>
+
+    <def attr="horizontal-inner-padding" selector="td" style="padding: 0 {{horizontal-inner-padding}}px;"></def>
+    <def attr="vertical-inner-padding" selector="td" style="padding-top: {{vertical-inner-padding}}px; padding-bottom: {{vertical-inner-padding}}px;"></def>
 
     <!-- the div used to have a  display: inline-block style. Removed it trying to remove unwanted space on iOS 10 -->
     <tmpl><tr>
       <td align="center" valign="top" style="font-size: 0"><div style="vertical-align:top; width:100%"><!--
-        --><table role="presentation" class="vb-content" border="0" cellspacing="0" cellpadding="0" style="border-collapse: separate; width: 100%">
+        --><table role="presentation" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; width: 100%">
           {{replacedcontent}}
         </table></div></td>
     </tr></tmpl>
   </template>
-
 
   <template tag="column-content">
     <def attr="if" selector="div[data-ko-wrap], cc-td" data-ko-display="{{if}}"></def>
@@ -475,8 +498,10 @@
     <!-- uso la forma con espressione perchè mosaico ha un bug nella ricerca del valore di default e non lo cerca nella prop precedente -->
     <def attr="width-prop" selector="div" style="-ko-max-width: @[{{width-prop}} + 'px']"></def>
 
-    <!-- border-spacing forzato per orange -->
-    <def attr="spacing" selector="table" cellspacing="{{spacing}}" style="mso-cellspacing: {{spacing}}px; border-spacing: {{spacing}}px"></def>
+    <def attr="dir" selector="table" dir="{{dir}}" style="direction: {{dir}}"></def>
+
+    <!-- we used to have forced border-spacing for orange, but we now moved to collapsed borders -->
+    <def attr="spacing" selector="table" cellspacing="{{spacing}}"></def>
 
     <!-- workaround for Yandex issue with calc: https://github.com/voidlabs/versafix-template/issues/1 -->
     <def attr="align" selector="table" align="{{align}}" style="-yandex-p: calc(2px - 3%)"></def>
@@ -484,13 +509,18 @@
 
     <def attr="class" selector="cc-td, div" class="{{class}}"></def>
 
+    <!-- padding on div elements is not supported by MSO, so we also add the same padding
+         to the wrapping table element inserted by the MSO conditional comment, by using mso-padding-alt,
+         because t-online shows every conditional comment, so it would show both spaces if we use a real css property -->
+    <def attr="notmso-vertical-inner-padding" selector="div div" style="padding-top: {{notmso-vertical-inner-padding}}px; padding-bottom: {{notmso-vertical-inner-padding}}px;"></def>
+
     <!-- Here is the complex "hybrid layout" adaptive solution -->
     <def attr="width-breakpoint" selector="div" style="min-width: calc({{width}} * 100% / {{width-breakpoint}}); -ko-min-width: @['calc(' + ({{#width-prop}}true ? {{width-prop}} : {{/width-prop}}{{width}}) * 100 / {{width-breakpoint}} + '%)']; max-width: calc(100%); -ko-max-width: @['calc(100%)']; width: calc({{width-breakpoint}} * {{width-breakpoint}}px - {{width-breakpoint}} * 100%); -ko-width: @['calc('+ {{width-breakpoint}} * {{width-breakpoint}} + 'px - ' + {{width-breakpoint}} * 100 +'%)']"></def>
 
     <!-- border-collapse forced for Orange.fr compatibility -->
     <tmpl>{{#if}}<div data-ko-wrap="false" style="display:inline-block" class="mobile-full">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><td align="left" valign="top"><![endif]--><!--
       --><div style="display:inline-block; vertical-align:top" class="mobile-full"><!--
-        --><table role="presentation" class="vb-content" border="0" cellspacing="0" cellpadding="0" style="border-collapse: separate">
+        --><table role="presentation" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
           {{replacedcontent}}
         </table><!--
       --></div><!--[if (gte mso 9)|(lte ie 8)]></td><![endif]-->{{#if}}</div>{{/if}}</tmpl>
@@ -514,6 +544,8 @@
     <def attr="style" selector="td" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
     <def attr="style" selector="a" style="-ko-color: @{{style}}.color; -ko-text-decoration: @{{style}}.decoration"></def>
 
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+
     <tmpl><tr><td width="100%" valign="top" style="font-weight: normal"><a>{{replacedcontent}}</a></td></tr></tmpl>
   </template>
 
@@ -526,6 +558,8 @@
     <def attr="face" selector="td" style="font-family: {{face}}"></def>
     <def attr="editable" selector="span" data-ko-editable="{{editable}}"></def>
     <def attr="content" selector="span" style="-ko-bind-text: @{{content}}"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
 
     <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
 
@@ -543,6 +577,8 @@
     <def attr="color" selector="td" style="color: {{color}}"></def>
     <def attr="size" selector="td" style="font-size: {{size}}"></def>
     <def attr="face" selector="td" style="font-family: {{face}}"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
 
     <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
     <def attr="line-height" selector="td" style="line-height: {{line-height}}"></def>
@@ -565,7 +601,10 @@
     <def attr="face" selector="img" style="font-family: {{face}}"></def>
     <def attr="style" selector="img" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
 
+    <!-- Note: use content-spacing-style-with-padding-bottom instead of content-spacing-style when using this -->
     <def attr="padding-bottom" selector="td" style="padding-bottom: {{padding-bottom}}px"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
 
     <def attr="editable" selector="a" data-ko-link="{{editable}}.url"></def> 
     <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @{{editable}}.alt; -ko-attr-alt-if: {{editable}}.alt !== '';"></def>
@@ -603,15 +642,17 @@
     <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
     <def attr="false" selector="tr" style="display: none"></def>
 
-    <def attr="inner-padding" selector="table" cellpadding="{{inner-padding}}" style="mso-padding-alt: {{inner-padding}}px {{inner-padding}}px {{inner-padding}}px {{inner-padding}}px"></def>
+    <!-- NOTE: we expect inner-padding and inner-hpadding to always be used together in btn. Using only one of them will create issues. -->
+    <def attr="inner-padding" selector="table" cellpadding="{{inner-padding}}" style="mso-padding-alt: {{inner-padding}}px {{inner-hpadding}}px {{inner-padding}}px {{inner-hpadding}}px"></def>
     <def attr="inner-padding" selector="table td" style="padding: {{inner-padding}}px"></def>
 
-    <def attr="padding-top" selector="table" style="padding-top: {{padding-top}}px"></def>
+    <!-- padding on the table won't work on MSO clients, so we use margin here -->
+    <def attr="padding-top" selector="table" style="margin-top: {{padding-top}}px"></def>
 
     <def attr="height" selector="table td" height="{{height}}"></def>
 
-    <def attr="inner-hpadding" selector="table td" style="padding-left: {{inner-hpadding}}; padding-right: {{inner-hpadding}}"></def>
-    <def attr="align" selector="td[valign], table" align="{{align}}"></def>
+    <def attr="inner-hpadding" selector="table td" style="padding-left: {{inner-hpadding}}px; padding-right: {{inner-hpadding}}px"></def>
+    <def attr="align" selector="td[valign='top'], table" align="{{align}}"></def>
 
     <def attr="href" selector="a" href="{{href}}"></def>
 
@@ -619,11 +660,16 @@
     <def attr="color" selector="table td, a" style="color: {{color}}"></def>
     <def attr="size" selector="table td, a" style="font-size: {{size}}"></def>
     <def attr="face" selector="table td, a" style="font-family: {{face}}"></def>
-    <def attr="radius" selector="table td" style="border-radius: {{radius}}px"></def>
+
+    <def attr="border-radius" selector="table td" style="border-radius: {{border-radius}}px"></def>
+
     <def attr="style" selector="table td" style="-ko-border-radius: @[{{style}}.radius]px; -ko-attr-bgcolor: @{{style}}.buttonColor; -ko-background-color: @{{style}}.buttonColor"></def>
+
     <!-- Libero.it webmail alters font-size for a tags not defining font sizes inline -->
     <def attr="style" selector="table td, a" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
-    <def attr="style" selector="td[valign], table" style="{{#align}}-ko-attr-align: @{{style}}.align{{/align}}"></def>
+    <def attr="style" selector="td[valign='top'], table" style="{{#align}}-ko-attr-align: @{{style}}.align{{/align}}"></def>
+
+    <def attr="content-spacing" selector="td[valign='top']" style="{{content-spacing}}"></def>
 
     <def attr="editable" selector="span" data-ko-editable="{{editable}}.text"></def>
     <def attr="editable" selector="a" style="-ko-attr-href: @{{editable}}.url"></def>
@@ -651,7 +697,7 @@
     <def attr="color" selector="table td, a" style="color: {{color}}"></def>
     <def attr="size" selector="table td, a" style="font-size: {{size}}"></def>
     <def attr="face" selector="table td, a" style="font-family: {{face}}"></def>
-    <def attr="radius" selector="table" style="border-radius: {{radius}}px"></def>
+    <def attr="border-radius" selector="table" style="border-radius: {{border-radius}}px"></def>
 
     <!-- Libero.it webmail alters font-size for a tags not defining font sizes inline -->
     <def attr="custom-style" selector="table" style="-ko-attr-bgcolor: @{{custom-style}}.buttonColor; -ko-background-color: @{{custom-style}}.buttonColor"></def>
@@ -664,15 +710,13 @@
     <def attr="btn-style"    selector="table td, a" style="-ko-font-size: @[{{btn-style}}.size]px; -ko-font-family: @{{btn-style}}.face"></def>
     <def attr="custom-style" selector="table td, a" style="-ko-font-size: @[{{custom-style}}.size]px; -ko-font-family: @{{custom-style}}.face"></def>
 
-    <!--
-    font-style (face/size)
-    btn-style (face/size/radius)
-    custom-style (face/size/radius/color)
-    -->
+    <def attr="content-spacing" selector="td[valign='top']" style="{{content-spacing}}"></def>
 
     <def attr="editable" selector="span" data-ko-editable="{{editable}}"></def>
 
-    <def attr="icon-src" selector="img" src="{{icon-src}}"></def>
+    <def attr="src" selector="img" src="{{src}}"></def>
+    <def attr="src-prop" selector="img" style="-ko-attr-src: @[{{src-prop}}]"></def>
+
     <def attr="icon-alt" selector="img" alt="{{icon-alt}}"></def>
     <def attr="icon-size" selector="img" width="{{icon-size}}" height="{{icon-size}}" ></def>
     <def attr="icon-size" selector="td.shareIcon" width="{{icon-size}}"></def>
@@ -680,7 +724,7 @@
     <!-- border-spacing: 0; needed for sfr.fr -->
     <tmpl><tr>
       <td valign="top"><table role="presentation" cellpadding="0" border="0" align="center" cellspacing="0" style="border-spacing: 0"><tr>
-        {{#icon-src}}<td class="shareIcon" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><img style="display: block"></a></td>{{/icon-src}}
+        {{#src}}<td class="shareIcon" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><img style="display: block"></a></td>{{/src}}
         <td width="auto" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><span data-ko-wrap="false">{{replacedcontent}}</span></a></td>
       </tr></table></td>
     </tr></tmpl>
@@ -697,6 +741,9 @@
     <def attr="editable" selector="span" data-ko-editable="{{editable}}"></def>
     <def attr="content" selector="span" style="-ko-bind-text: @{{content}}"></def>
     <def attr="style" selector="td" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face; -ko-text-align: @{{style}}.align; -ko-attr-align: @{{style}}.align"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+
     <tmpl><tr>
       <td width="100%" valign="top" style="font-weight: normal"><span style="font-weight: normal">{{replacedcontent}}</span></td>
     </tr></tmpl>
@@ -718,6 +765,9 @@
     <def attr="height" selector="table td" height="{{height}}" style="line-height: {{height}}px; max-height: {{height}}px; overflow: hidden;"></def>
     <def attr="style" selector="table td" style="-ko-background-color: @{{style}}.color; -ko-attr-height: @{{style}}.hrHeight; -ko-line-height: @[{{style}}.hrHeight]px; -ko-max-height: @[{{style}}.hrHeight]px"></def>
     <def attr="style" selector="table" style="-ko-width: @[{{style}}.hrWidth]%; -ko-attr-width: @[{{style}}.hrWidth]%"></def>
+
+    <def attr="content-spacing" selector="td[valign='top']" style="{{content-spacing}}"></def>
+
     <!-- padding: 0 and border-spacing: 0 needed for Orange.fr and Sfr.fr -->
     <tmpl><tr>
       <td valign="top" align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-spacing: 0"><tr>
@@ -732,12 +782,15 @@
 
     <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
     <def attr="class" selector="td" class="{{class}}"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+
     <tmpl><tr><td width="100%" valign="top" style="font-weight: normal">{{replacedcontent}}</td></tr></tmpl>
   </template>
 
   <template tag="social-icon">
-    <def attr="if" selector="span, a" data-ko-display="{{if}}"></def>
-    <def attr="false" selector="span, a" style="display: none"></def>
+    <def attr="if" selector="div, a" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="div, a" style="display: none"></def>
 
     <def attr="src" selector="img" src="{{src}}"></def>
 
@@ -753,24 +806,41 @@
     <def attr="radius" selector="a" style="border-radius: {{radius}}px"></def>
     <def attr="alt" selector="img" alt="{{alt}}"></def>
     <def attr="href-prop" selector="a" style="-ko-attr-href: @[{{href-prop}}]"></def>
-    <tmpl><span data-ko-wrap="false">&nbsp;</span><a href=""><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px"></a></tmpl>
+    <tmpl><div data-ko-wrap="false" style="display: inline-block;">&nbsp;<a href=""><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px"></a></div></tmpl>
   </template>
 
   <default selector="block[theme='frameTheme']" bgcolor="#3f3f3f" bgcolor-prop="backgroundColor"></default>
   <default selector="block" theme="contentTheme" bgcolor="#bfbfbf" bgcolor-prop="externalBackgroundColor"></default>
 
   <default selector="block-inner" inner-width="570"></default>
+  <default selector="block-inner.gutterless" inner-padding="0"></default>
+  <default selector="block[theme='frameTheme'] block-inner" inner-padding="0"></default>
+  <default selector="block-inner" inner-padding="9"></default>
 
   <default selector="block[theme='contentTheme'] block-inner:not([if='externalBackgroundVisible'])" inner-bgcolor="#ffffff" inner-bgcolor-prop="backgroundColor"></default>
 
   <default selector="block[name='logoBlock'] block-inner[if='externalBackgroundVisible'] linked-img" color="#f3f3f3" size="18px" face="Arial, Helvetica, sans-serif" style="externalTextStyle"></default>
 
   <default selector="columns:not([autowidth])" width="552"></default>
-  <!-- force border-spacing to 0 for Sfr.fr/Orange.fr -->
-  <default selector="column-content" spacing="0" align="left"></default>
   <default selector="columns:not([autowidth]) column-content" width-breakpoint="552"></default>
-  <default selector="content" spacing="0" width="552"></default>
 
+  <default selector=".fixedhalfgutter content, [theme='frameTheme'] content" vertical-inner-padding="4"></default>
+  <default selector="content" horizontal-inner-padding="9" vertical-inner-padding="13" spacing="9" width="552"></default>
+
+  <!-- socialBlock -->
+  <default selector="[theme='frameTheme'] block-inner.multicolumns columns" mso-vertical-inner-padding="4"></default>
+  <!-- preHeaderBlock -->
+  <default selector="[theme='frameTheme'] block-inner:not(.multicolumns):not(.gutterless) columns" vertical-inner-padding="4"></default>
+  <!-- tripleArticleBlock, doubleArticleBlock, partially socialBlock -->
+  <default selector="block-inner.multicolumns columns" mso-vertical-inner-padding="13"></default>
+  <default selector="block-inner:not(.gutterless) columns" horizontal-inner-padding="9"></default>
+  <default selector="block-inner:not(.multicolumns):not(.gutterless) columns" vertical-inner-padding="13"></default>
+
+  <default selector="[theme='frameTheme'] .multicolumns column-content" notmso-vertical-inner-padding="4"></default>
+  <default selector=".multicolumns column-content" notmso-vertical-inner-padding="13"></default>
+  <!-- force border-spacing to 0 for Sfr.fr/Orange.fr -->
+  <default selector=".gutterless column-content" spacing="0"></default>
+  <default selector="column-content" spacing="9" align="left"></default>
 
   <default selector="block[theme='frameTheme'] linked-text" color="#ffffff" decoration="underline" style="linkStyle"></default>
   <default selector="block[theme='frameTheme'] long-text"></default>
@@ -780,13 +850,18 @@
   <default selector="block[theme='contentTheme'] text" size="18px" style="titleTextStyle"></default>
   <default selector="block[theme='contentTheme'] long-text" line-height="normal" style="longTextStyle"></default>
   <default selector="share-btn" inner-addhpadding="4px" icon-size="24" icon-alt="{{name}}"></default>
-  <default selector="block[theme='contentTheme'] btn" inner-hpadding="18px" style="buttonStyle"></default>
-  <default selector="block[theme='contentTheme'] btn, share-btn" inner-padding="6" bgcolor="#bfbfbf" radius="4"></default>
+  <default selector="block[theme='contentTheme'] btn" inner-hpadding="18" style="buttonStyle"></default>
+  <default selector="block[theme='contentTheme'] btn, share-btn" inner-padding="6" bgcolor="#bfbfbf" border-radius="4"></default>
   <default selector="block[theme='contentTheme'] linked-img" style="longTextStyle"></default>
 
   <default selector="divider" color="#3f3f3f"></default>
   <default selector="text, title-text, long-text, share-btn, btn, linked-text, linked-img" face="Arial, Helvetica, sans-serif" color="#3f3f3f" size="13px"></default>
   <default selector="text, title-text, long-text:not([fixed-align]), btn, linked-text" align="left"></default>
+
+  <!-- some linked-img is used gutterless containers, so we don't declare them here -->
+  <default selector="text, title-text, long-text, share-btn, btn, linked-text, custom-row, divider" content-spacing="padding: 9px; padding-top: 5px; padding-bottom: 5px"></default>
+  <default selector="linked-img[padding-bottom]" content-spacing="padding: 9px; padding-top: 5px; padding-bottom: 13px"></default>
+  <default selector="block-inner:not(.gutterless) linked-img:not([padding-bottom])" content-spacing="padding: 9px; padding-top: 5px; padding-bottom: 5px"></default>
 
   <!-- immages on gallery blocks are shown full width (100%) on mobile -->
   <default selector="*[if='gutterVisible eq false'] linked-img" class="mobile-full"></default>
@@ -796,7 +871,7 @@
 
 <!--
     <block name="imageSeparatorBlock" label="Image Separator">
-      <block-inner inner-padding="0" inner-class="vb-container" inner-bgcolor="#bfbfbf" inner-bgcolor-prop="externalBackgroundColor">
+      <block-inner class="gutterless" inner-bgcolor="#bfbfbf" inner-bgcolor-prop="externalBackgroundColor">
         <linked-img width="570" height="52"
           src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C52"
           src-prop="'img?method=magic&params=0,0&src=uploads/fgbg.png&src2=uploads/shadow2.png&white='+externalBackgroundColor+'&black='+backgroundColor"></linked-img>
@@ -810,11 +885,12 @@
   <!-- Note: 
     the conditional comment around the body tag (and /body) is to hide the whole tag to windows 10 mail to prevent really weird bugs with windows 10 mail.
     the conditional comment also remove the tag from Outlook 2016 and following versions, as they share the same version of windows 10 mail.
+    2022-06-09: switched to gte mso 15 to remove the body also to Outlook 2013 so 1px lines are white instead of the external frame color.
   -->
 
   </template-def>
 </head>
-<!--[if !(gte mso 16)]-->
+<!--[if !(gte mso 15)]-->
 <body bgcolor="#3f3f3f" text="#919191" alink="#cccccc" vlink="#cccccc" style="background-color: #3f3f3f; color: #919191;
   -ko-background-color: @_theme_.frameTheme.backgroundColor; -ko-attr-bgcolor: @_theme_.frameTheme.backgroundColor; -ko-color: @_theme_.frameTheme.longTextStyle.color;
   -ko-attr-text: @_theme_.frameTheme.longTextStyle.color; -ko-attr-alink: @_theme_.frameTheme.longTextStyle.linksColor;
@@ -825,13 +901,13 @@
     <block name="preheaderBlock" label="Preheader Block" theme="frameTheme">
       <div data-ko-display="preheaderLinkOption neq 'none'" style="display: none; font-size:1px; line-height: 1px; max-height:0px; max-width: 0px; opacity: 0; overflow: hidden; 
           -ko-bind-text: @preheaderText"></div>
-      <block-inner inner-padding="0" inner-class="vb-row">
-        <columns td-styles="padding: 0 9px"><!--
-          --><column-content width="276" spacing="9">
+      <block-inner>
+        <columns><!--
+          --><column-content width="276">
             <linked-text if="preheaderLinkOption neq 'none'" href="[unsubscribe_link]" href-prop="preheaderLinkOption" editable="unsubscribeText">Unsubscribe</linked-text>
             <text false="" if="preheaderLinkOption eq 'none'" content="preheaderText"></text>
           </column-content><!--
-          --><column-content width="276" spacing="9" class="mobile-hide">
+          --><column-content width="276" class="mobile-hide">
             <linked-text align="right" href="[show_link]" editable="webversionText">View in your browser</linked-text>
           </column-content><!--
         --></columns>
@@ -843,115 +919,117 @@
   <div data-ko-container="main" data-ko-wrap="false">
 
     <block name="logoBlock" label="Logo Block">
-      <block-inner if="externalBackgroundVisible" inner-padding="9" inner-class="vb-row">
-        <content width="276" spacing="9" width-prop="18 + Math.round(imageWidth)">
+      <block-inner if="externalBackgroundVisible">
+        <content width="276" width-prop="18 + Math.round(imageWidth)">
           <linked-img width="258" placeholder-height="150" width-prop="imageWidth" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
         </content>
       </block-inner>
-      <block-inner false="" if="externalBackgroundVisible eq false" inner-padding="9" inner-class="vb-row">
-        <content width="276" spacing="9" width-prop="18 + Math.round(imageWidth)">
+      <block-inner false="" if="externalBackgroundVisible eq false">
+        <content width="276" width-prop="18 + Math.round(imageWidth)">
           <linked-img width="258" placeholder-height="150" width-prop="imageWidth" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
         </content>
       </block-inner>
     </block>
 
     <block name="sideArticleBlock" label="Image+Text Block">
-      <block-inner inner-padding="9" inner-class="vb-row">
-        <columns><!--
-          --><column-content if="imagePos eq 'left'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
+      <block-inner>
+        <columns dir="ltr" dir-prop="imagePos eq 'left' ? 'ltr' : 'rtl'"><!--
+          --><column-content dir="ltr" width="184" width-prop="18 + Math.round(imageWidth)">
             <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
           </column-content><!--
-          --><column-content width="368" width-prop="570 - 2 * 18 - Math.round(imageWidth)" spacing="9">
+          --><column-content dir="ltr" width="368" width-prop="552 - 18 - Math.round(imageWidth)">
             <text editable="titleText" if="titleVisible">Title</text>
             <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
-            <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
-          </column-content><!--
-          --><column-content false="" if="imagePos eq 'right'" width="184" spacing="9" width-prop="18 + Math.round(imageWidth)">
-            <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130"
-              src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
+            <btn editable="buttonLink" if="buttonVisible" padding-top="2">BUTTON</btn>
           </column-content><!--
         --></columns>
       </block-inner>
     </block>
 
     <block name="singleArticleBlock" label="Image/Text Block">
-      <block-inner inner-padding="9" inner-class="vb-row">
-        <content spacing="9" width="552">
-          <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="9"></linked-img>
+      <block-inner>
+        <content>
+          <linked-img if="imageVisible" editable="image" width="534" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="8"></linked-img>
           <text editable="text" if="titleVisible">Section Title</text>
           <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
-          <btn editable="buttonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
+          <btn editable="buttonLink" if="buttonVisible" padding-top="2">BUTTON</btn>
         </content>
       </block-inner>
     </block>
 
     <block name="titleBlock" label="Title Block">
-      <block-inner inner-padding="0" inner-class="vb-row">
-        <content spacing="9" td-styles="padding: 0 9px">
+      <block-inner class="gutterless fixedhalfgutter">
+        <content>
           <title-text editable="text" align="center" size="22px" style="bigTitleStyle">Section Title</title-text>
         </content>
       </block-inner>
     </block>
 
     <block name="textBlock" label="Text Block">
-      <block-inner inner-padding="18" inner-class="vb-container">
-        <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p><p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
+      <block-inner>
+        <content>
+          <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p><p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
+        </content>
       </block-inner>
     </block>
 
     <block name="tripleArticleBlock" label="3 Columns Block">
-      <block-inner inner-padding="9" inner-class="vb-row">
-        <columns><repeater repeat="left,middle,right" height="90,70,110"><!--
-          --><column-content spacing="9" width="184">
-            <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="90" height-prop="imageHeight" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C90"></linked-img>
-            <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="{{height}}" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C100"></linked-img>
+      <block-inner class="multicolumns">
+        <columns horizontal-inner-padding="9"><repeater repeat="left,middle,right" height="90,70,110"><!--
+          --><column-content width="184">
+            <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="90" height-prop="imageHeight" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C90"></linked-img>
+            <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="{{height}}" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C{{height}}"></linked-img>
             <text editable="{{repeat}}TitleText" if="titleVisible">Title</text>
             <long-text editable="{{repeat}}LongText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p></long-text>
-            <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
+            <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="2">BUTTON</btn>
           </column-content><!--
         --></repeater></columns>
       </block-inner>
     </block>
 
     <block name="doubleArticleBlock" label="2 Columns Block">
-      <block-inner inner-padding="9" inner-class="vb-row">
-        <columns><repeater repeat="left,right"><!--
-            --><column-content spacing="9" width="276">
-              <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="100" height-prop="imageHeight" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C100"></linked-img>
-              <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="120" padding-bottom="9" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C120"></linked-img>
+      <block-inner class="multicolumns">
+        <columns horizontal-inner-padding="9"><repeater repeat="left,right" height="90,120"><!--
+            --><column-content width="276">
+              <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="100" height-prop="imageHeight" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C100"></linked-img>
+              <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="{{height}}" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C{{height}}"></linked-img>
               <text editable="{{repeat}}TitleText" if="titleVisible">Title</text>
               <long-text editable="{{repeat}}LongText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</p></long-text>
-              <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="4">BUTTON</btn>
+              <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="2">BUTTON</btn>
             </column-content><!--
           --></repeater></columns>
       </block-inner>
     </block>
 
     <block name="hrBlock" label="Separator Block">
-      <block-inner inner-padding="0" inner-class="vb-row">
-        <content spacing="9" td-styles="padding: 0 9px">
+      <block-inner class="gutterless fixedhalfgutter">
+        <content>
           <divider width="100" height="1" style="hrStyle"></divider>
         </content>
       </block-inner>
     </block>
 
     <block name="buttonBlock" label="Button Block">
-      <block-inner inner-padding="18" inner-class="vb-container">
-        <btn editable="link" inner-padding="12" align="center" inner-hpadding="14px" size="22px" style="bigButtonStyle">BUTTON</btn>
+      <block-inner>
+        <content>
+          <btn editable="link" inner-padding="12" align="center" inner-hpadding="14" size="22px" style="bigButtonStyle">BUTTON</btn>
+        </content>
       </block-inner>
     </block>
 
     <block name="imageBlock" label="Image">
-      <block-inner if="gutterVisible eq false" inner-padding="0" inner-class="vb-container">
+      <block-inner if="gutterVisible eq false" class="gutterless">
         <linked-img editable="image" width="570" placeholder-height="200" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C200"></linked-img>
       </block-inner>
-      <block-inner false="" if="gutterVisible" inner-padding="18" inner-class="vb-container">
-        <linked-img editable="image" width="534" placeholder-height="280" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C280"></linked-img>
+      <block-inner false="" if="gutterVisible">
+        <content>
+          <linked-img editable="image" width="534" placeholder-height="280" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C280"></linked-img>
+        </content>
       </block-inner>
     </block>
 
     <block name="doubleImageBlock" label="Two Image Gallery">
-      <block-inner if="gutterVisible eq false" inner-padding="0" inner-class="vb-row">
+      <block-inner if="gutterVisible eq false" class="gutterless">
         <columns width="570"><repeater repeat="left,right"><!--
             --><column-content width-breakpoint="570" width="285">
               <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="285" height="180" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
@@ -959,9 +1037,9 @@
             </column-content><!--
           --></repeater></columns>
       </block-inner>
-      <block-inner false="" if="gutterVisible" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="gutterVisible">
         <columns><repeater repeat="left,right"><!--
-            --><column-content spacing="9" width="276">
+            --><column-content width="276">
               <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="258" height="180" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
               <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" placeholder-height="180" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
             </column-content><!--
@@ -970,7 +1048,7 @@
     </block>
 
     <block name="tripleImageBlock" label="Three Image Gallery">
-      <block-inner if="gutterVisible eq false" inner-padding="0" inner-class="vb-row">
+      <block-inner if="gutterVisible eq false" class="gutterless">
         <columns width="570"><repeater repeat="left,middle,right"><!--
             --><column-content width-breakpoint="570" width="190">
               <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="190" height="160" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
@@ -978,9 +1056,9 @@
             </column-content><!--
        --></repeater></columns>
       </block-inner>
-      <block-inner false="" if="gutterVisible" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="gutterVisible">
         <columns><repeater repeat="left,middle,right"><!--
-            --><column-content spacing="9" width="184">
+            --><column-content width="184">
               <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="166" height="160" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
               <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" placeholder-height="160" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
             </column-content><!--
@@ -989,60 +1067,41 @@
     </block>
 
     <block name="bigSocialBlock" label="Big Social Block">
-      <block-inner inner-padding="18" inner-class="vb-container links-color socialLinks mobile-textcenter">
-        <custom-row false="" if="bigSocialIconType eq 'colors'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
-            <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
-          </repeater>
-        </custom-row>
-        <custom-row false="" if="bigSocialIconType eq 'bw'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
-            <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
-          </repeater>
-        </custom-row>
-        <custom-row if="bigSocialIconType eq 'rdcol'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
-            <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" alt="{{name}}"></social-icon>
-          </repeater>
-        </custom-row>
-        <custom-row false="" if="bigSocialIconType eq 'rdbl'" align="center" class="links-color socialLinks mobile-textcenter">
-          <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
-            <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdbl-96.png" alt="{{name}}"></social-icon>
-          </repeater>
-        </custom-row>
+      <block-inner>
+        <content>
+          <custom-row align="center" class="links-color socialLinks mobile-textcenter">
+            <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+bigSocialIconType+'-96.png')" alt="{{name}}"></social-icon>
+            </repeater>
+          </custom-row>
+        </content>
       </block-inner>
     </block>
 
     <block name="shareBlock" label="Share Block">
-      <block-inner if="shareButtonType eq 'reverse'" inner-padding="9" inner-class="vb-row">
+      <block-inner if="shareButtonType eq 'reverse'">
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
-            <column-content {{default}}="{{prefix}}Visible" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" icon-src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
+            <column-content {{default}}="{{prefix}}Visible" align="center">
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
             </column-content>
           </repeater>
         </columns>
       </block-inner>
-      <block-inner false="" if="shareButtonType eq 'simple'" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="shareButtonType eq 'simple'">
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
-            <column-content {{default}}="{{prefix}}Visible" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" icon-src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
+            <column-content {{default}}="{{prefix}}Visible" align="center">
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
             </column-content>
           </repeater>
         </columns>
       </block-inner>
-      <block-inner false="" if="shareButtonType eq 'custom'" inner-padding="9" inner-class="vb-row">
+      <block-inner false="" if="shareButtonType eq 'custom'">
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
-            <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'brand'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-coloured-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
-            </column-content>
-            <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'white'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-white-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
-            </column-content>
-            <column-content {{default}}="{{prefix}}Visible and shareButtonStyle.iconColorType eq 'black'" spacing="9" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" icon-src="img/icons/{{prefix}}-black-96.png" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
+            <column-content {{default}}="{{prefix}}Visible" align="center">
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" src="img/icons/{{prefix}}-black-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+shareButtonStyle.iconColorType+'-96.png')" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
             </column-content>
           </repeater>
         </columns>
@@ -1050,20 +1109,19 @@
     </block>
 
     <block height="24" height-prop="spacerSize" td-styles="font-size:1px; height: 1px" name="spacerBlock" label="Spacer Block">
-      <block-inner false="" if="externalBackgroundVisible eq false" inner-class="vb-container">
+      <block-inner false="" if="externalBackgroundVisible eq false" class="gutterless">
         <spacer height="24" height-prop="spacerSize"></spacer>
       </block-inner>
       <div data-ko-height="spacerSize" style="height: 24px; -ko-height: @[spacerSize]px" data-ko-display="externalBackgroundVisible" data-ko-wrap="false">&nbsp;</div>
     </block>
 
-
     <block name="socialBlock" label="Social Block" theme="frameTheme">
-      <block-inner inner-padding="9" inner-class="vb-row">
-        <columns><!--
-          --><column-content width="276" spacing="9">
+      <block-inner inner-padding="9" class="multicolumns">
+        <columns vertical-inner-padding="9"><!--
+          --><column-content width="276">
             <long-text fixed-align="left" editable="longText"><p>Address and <a href="">Contacts</a></p></long-text>
           </column-content><!--
-          --><column-content width="276" spacing="9">
+          --><column-content width="276">
             <custom-row if="socialIconType eq 'colors'" align="right" class="links-color socialLinks mobile-textcenter">
               <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
@@ -1082,12 +1140,12 @@
   </div>
 
   <block name="footerBlock" label="Unsubscribe Block" theme="frameTheme">
-    <block-inner inner-padding="0" inner-class="vb-row">
-      <content spacing="9" width="552" td-styles="padding: 0 9px">
+    <block-inner>
+      <content>
         <long-text editable="longText" fixed-align="center"><p>Email sent to <a href="mailto:[mail]">[mail]</a></p></long-text>
         <linked-text align="center" href="[unsubscribe_link]" editable="disiscrivitiText" color-prop="Color.readability(linkStyle.color, backgroundColor) gt 2 ? linkStyle.color : (Color.isReadable('#ffffff', backgroundColor) ? '#ffffff' : '#000000')">Unsubscribe</linked-text>
         <linked-img width="170" align="center" false="" if="_root_.sponsor.visible" content="_root_.sponsor" src="img/sponsor.gif" alt="sponsor"></linked-img>
       </content>
     </block-inner>
   </block>
-</center><!--[if !(gte mso 16)]--></body><!--<![endif]--></html>
+</center><!--[if !(gte mso 15)]--></body><!--<![endif]--></html>
