@@ -8,16 +8,16 @@
     "url": "git://github.com/voidlabs/versafix-template.git"
   },
   "devDependencies": {
-    "async": "^3.2.3",
-    "cheerio": "1.0.0-rc.11",
-    "entities": "^4.3.0",
+    "async": "^3.2.4",
+    "cheerio": "1.0.0-rc.12",
+    "entities": "^4.4.0",
     "fs-extra": "^10.1.0",
     "htmml": "1.0.4",
     "mockery": "^2.1.0",
-    "mosaico": "^0.18.4",
+    "mosaico": "^0.18.6",
     "phantomjs-prebuilt": "^2.1.16",
-    "release-it": "^15.0.0",
-    "replace-in-file": "^6.3.2",
+    "release-it": "^15.4.2",
+    "replace-in-file": "^6.3.5",
     "rimraf": "^3.0.2",
     "tmp": "^0.2.1"
   },
