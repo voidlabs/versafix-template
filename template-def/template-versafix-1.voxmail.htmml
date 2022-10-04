@@ -53,12 +53,38 @@
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
       }
-      bigSocialIconType { label: Versione icone; widget: select; options:bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate;
+      bigSocialIconType { label: Versione icone; widget: select; 
+        options: bw=Cerchio Grigio
+                |colors=Cerchio Colorato
+                |bwb=Cerchio Nero
+                |sqbw=Quadrato Grigio
+                |sqcolors=Quadrato Colorato
+                |sqbwb=Quadrato Nero
+                |rdcol=Cerchiate a colori
+                |rdbl=Cerchiate nere
+                |rdw=Cerchiate bianche
+                |sqrdcol=Squadrate a colori
+                |sqrdbl=Squadrate nere
+                |sqrdw=Squadrate bianche
+                |white=Bianche
+                |coloured=Colorate
+                |black=Nere;
         renderHint: images; 
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
+                      |bwb=url('edres/_social-select-bwb.png')
+                      |sqbw=url('edres/_social-select-sqbw.png')
+                      |sqcolors=url('edres/_social-select-sqcolors.png')
+                      |sqbwb=url('edres/_social-select-sqbwb.png')
                       |rdcol=url('edres/_social-select-rdcol.png')
                       |rdbl=url('edres/_social-select-rdbl.png')
+                      |rdw=url('edres/_social-select-rdw.png')
+                      |sqrdcol=url('edres/_social-select-sqrdcol.png')
+                      |sqrdbl=url('edres/_social-select-sqrdbl.png')
+                      |sqrdw=url('edres/_social-select-sqrdw.png')
+                      |white=url('edres/_social-select-white.png')
+                      |coloured=url('edres/_social-select-coloured.png')
+                      |black=url('edres/_social-select-black.png');
       }
       bigSocialIconSize { label: Dimensioni icone; widget: select; options: 32=Piccole|48=Grandi; renderHint: buttonset }
 
@@ -153,6 +179,8 @@
       tgVisible { label: Telegram; extend: visible }
       instVisible { label: Instagram; extend: visible }
       youVisible { label: YouTube; extend: visible }
+      ttVisible { label: TikTok; extend: visible }
+      tcVisible { label: Twitch; extend: visible }
       fbUrl { label: Indirizzo Facebook; extend: url }
       twUrl { label: Indirizzo Twitter; extend: url}
       ggUrl { label: Indirizzo Google+; extend: url}
@@ -165,17 +193,19 @@
       tgUrl { label: Indirizzo Telegram; extend: url}
       instUrl { label: Indirizzo Instagram; extend: url}
       youUrl { label: Indirizzo YouTube; extend: url}
+      ttUrl { label: Indirizzo TikTok; extend: url}
+      tcUrl { label: Indirizzo Twitch; extend: url}
 
       socialBlock {
         label: Blocco social footer;
-        properties: socialIconType=Colori fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
+        properties: socialIconType=Colori fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl ttVisible=false ttUrl tcVisible=false tcUrl longTextStyle longText backgroundColor;
         variant:socialIconType;
         theme: frameTheme
       }
 
       bigSocialBlock {
         label: Blocco social;
-        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl longTextStyle longText;
+        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl ttVisible=false ttUrl longTextStyle tcVisible=false tcUrl longTextStyle longText;
         variant: bigSocialIconType;
         theme: contentTheme
       }
@@ -1163,7 +1193,7 @@
       <block-inner>
         <content>
           <custom-row align="center" class="links-color socialLinks mobile-textcenter">
-            <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+            <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,if,false if,false if,false if,if,false if,false if,false if,if,if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
               <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+bigSocialIconType+'-96.png')" alt="{{name}}"></social-icon>
             </repeater>
           </custom-row>
@@ -1216,12 +1246,12 @@
           </column-content><!--
           --><column-content width="276">
             <custom-row if="socialIconType eq 'Colori'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
             <custom-row false="" if="socialIconType eq 'Bianco e Nero'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,if,false if,false if,false if,false if,false if,false if,false if,false if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
