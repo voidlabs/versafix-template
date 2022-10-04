@@ -53,12 +53,38 @@
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
       }
-      bigSocialIconType { label: Versione icone; widget: select; options:bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate;
+      bigSocialIconType { label: Versione icone; widget: select; 
+        options: bw=Cerchio Grigio
+                |colors=Cerchio Colorato
+                |bwb=Cerchio Nero
+                |sqbw=Quadrato Grigio
+                |sqcolors=Quadrato Colorato
+                |sqbwb=Quadrato Nero
+                |rdcol=Cerchiate a colori
+                |rdbl=Cerchiate nere
+                |rdw=Cerchiate bianche
+                |sqrdcol=Squadrate a colori
+                |sqrdbl=Squadrate nere
+                |sqrdw=Squadrate bianche
+                |white=Bianche
+                |coloured=Colorate
+                |black=Nere;
         renderHint: images; 
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
+                      |bwb=url('edres/_social-select-bwb.png')
+                      |sqbw=url('edres/_social-select-sqbw.png')
+                      |sqcolors=url('edres/_social-select-sqcolors.png')
+                      |sqbwb=url('edres/_social-select-sqbwb.png')
                       |rdcol=url('edres/_social-select-rdcol.png')
                       |rdbl=url('edres/_social-select-rdbl.png')
+                      |rdw=url('edres/_social-select-rdw.png')
+                      |sqrdcol=url('edres/_social-select-sqrdcol.png')
+                      |sqrdbl=url('edres/_social-select-sqrdbl.png')
+                      |sqrdw=url('edres/_social-select-sqrdw.png')
+                      |white=url('edres/_social-select-white.png')
+                      |coloured=url('edres/_social-select-coloured.png')
+                      |black=url('edres/_social-select-black.png');
       }
       bigSocialIconSize { label: Dimensioni icone; widget: select; options: 32=Piccole|48=Grandi; renderHint: buttonset }
 
@@ -137,7 +163,7 @@
       frameTheme:preview { -ko-background-color: @[backgroundColor] }
       template preheaderText { label: Preheader; }
 
-      template { label: Pagina; theme: frameTheme; properties: preheaderVisible=true; version: 1.3.0; }
+      template { label: Pagina; theme: frameTheme; properties: preheaderVisible=true; version: 1.3.1; }
 
       footerBlock { label: Blocco Disiscrizione; theme: frameTheme }
       
@@ -153,6 +179,8 @@
       tgVisible { label: Telegram; extend: visible }
       instVisible { label: Instagram; extend: visible }
       youVisible { label: YouTube; extend: visible }
+      ttVisible { label: TikTok; extend: visible }
+      tcVisible { label: Twitch; extend: visible }
       fbUrl { label: Indirizzo Facebook; extend: url }
       twUrl { label: Indirizzo Twitter; extend: url}
       ggUrl { label: Indirizzo Google+; extend: url}
@@ -165,17 +193,19 @@
       tgUrl { label: Indirizzo Telegram; extend: url}
       instUrl { label: Indirizzo Instagram; extend: url}
       youUrl { label: Indirizzo YouTube; extend: url}
+      ttUrl { label: Indirizzo TikTok; extend: url}
+      tcUrl { label: Indirizzo Twitch; extend: url}
 
       socialBlock {
         label: Blocco social footer;
-        properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
+        properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl ttVisible=false ttUrl tcVisible=false tcUrl longTextStyle longText backgroundColor;
         variant:socialIconType;
         theme: frameTheme
       }
 
       bigSocialBlock {
         label: Blocco social;
-        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl longTextStyle longText;
+        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl ttVisible=false ttUrl longTextStyle tcVisible=false tcUrl longTextStyle longText;
         variant: bigSocialIconType;
         theme: contentTheme
       }
@@ -1165,6 +1195,10 @@
             
               <div data-ko-wrap="false" style="display: inline-block;" data-ko-display="youVisible">&nbsp;<a href="" data-ko-display="youVisible" style="border-radius: 50px; -ko-attr-href: @[youUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/you-'+bigSocialIconType+'-96.png')]; -ko-attr-width: @[bigSocialIconSize]; -ko-attr-height: @[bigSocialIconSize]" src="img/icons/you-rdcol-96.png" width="48" height="48" alt="Youtube"></a></div>
             
+              <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="ttVisible">&nbsp;<a href="" data-ko-display="ttVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[ttUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/tt-'+bigSocialIconType+'-96.png')]; -ko-attr-width: @[bigSocialIconSize]; -ko-attr-height: @[bigSocialIconSize]" src="img/icons/tt-rdcol-96.png" width="48" height="48" alt="TikTok"></a></div>
+            
+              <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="tcVisible">&nbsp;<a href="" data-ko-display="tcVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[tcUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/tc-'+bigSocialIconType+'-96.png')]; -ko-attr-width: @[bigSocialIconSize]; -ko-attr-height: @[bigSocialIconSize]" src="img/icons/tc-rdcol-96.png" width="48" height="48" alt="Twitch"></a></div>
+            
           </td></tr>
         
         </table></div></td>
@@ -1502,6 +1536,10 @@
               
                 <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="youVisible">&nbsp;<a href="" data-ko-display="youVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #cd201f; border-radius: 50px; -ko-attr-href: @[youUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/you-colors-96.png" width="32" height="32" alt="Youtube"></a></div>
               
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="ttVisible">&nbsp;<a href="" data-ko-display="ttVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #000000; border-radius: 50px; -ko-attr-href: @[ttUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/tt-colors-96.png" width="32" height="32" alt="TikTok"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="tcVisible">&nbsp;<a href="" data-ko-display="tcVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #9146ff; border-radius: 50px; -ko-attr-href: @[tcUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/tc-colors-96.png" width="32" height="32" alt="Twitch"></a></div>
+              
             </td></tr>
             <tr data-ko-display="socialIconType eq 'bw'" style="display: none"><td width="100%" valign="top" style="font-weight: normal; text-align: right; padding: 9px; padding-top: 5px; padding-bottom: 5px; padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[blockSpacing.horizontalSpacing]px; -ko-padding-top: @[blockSpacing.verticalSpacing]px; -ko-padding-bottom: @[blockSpacing.verticalSpacing]px;" align="right" class="links-color socialLinks mobile-textcenter">
               
@@ -1528,6 +1566,10 @@
                 <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="instVisible">&nbsp;<a href="" data-ko-display="instVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[instUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/inst-bw-96.png" width="32" height="32" alt="Instagram"></a></div>
               
                 <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="youVisible">&nbsp;<a href="" data-ko-display="youVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[youUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/you-bw-96.png" width="32" height="32" alt="Youtube"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="ttVisible">&nbsp;<a href="" data-ko-display="ttVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[ttUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/tt-bw-96.png" width="32" height="32" alt="TikTok"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="tcVisible">&nbsp;<a href="" data-ko-display="tcVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[tcUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/tc-bw-96.png" width="32" height="32" alt="Twitch"></a></div>
               
             </td></tr>
           
