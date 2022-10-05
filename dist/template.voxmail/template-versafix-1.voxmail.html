@@ -48,10 +48,38 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Testo titolo; category: hidden }
       gutterVisible { label: Mostra spaziatura; extend: visible }
-      socialIconType { label: Versione icone; widget: select; options: Bianco e Nero=Bianco e Nero|Colori=Colori;
+      socialIconType { label: Versione icone; widget: select;
+        options: Colori=Cerchio Colorato
+                |Bianco e Nero=Cerchio Grigio
+                |bwb=Cerchio Nero
+                |sqbw=Quadrato Grigio
+                |sqcolors=Quadrato Colorato
+                |sqbwb=Quadrato Nero
+                |rdcol=Cerchiate a colori
+                |rdbl=Cerchiate nere
+                |rdw=Cerchiate bianche
+                |sqrdcol=Squadrate a colori
+                |sqrdbl=Squadrate nere
+                |sqrdw=Squadrate bianche
+                |white=Bianche
+                |coloured=Colorate
+                |black=Nere;
         renderHint: images; 
-        imagesSources: bw=url('edres/_social-select-bw.png')
-                      |colors=url('edres/_social-select-colors.png')
+        imagesSources: colors=url('edres/_social-select-colors.png')
+                      |bw=url('edres/_social-select-bw.png')
+                      |bwb=url('edres/_social-select-bwb.png')
+                      |sqbw=url('edres/_social-select-sqbw.png')
+                      |sqcolors=url('edres/_social-select-sqcolors.png')
+                      |sqbwb=url('edres/_social-select-sqbwb.png')
+                      |rdcol=url('edres/_social-select-rdcol.png')
+                      |rdbl=url('edres/_social-select-rdbl.png')
+                      |rdw=url('edres/_social-select-rdw.png')
+                      |sqrdcol=url('edres/_social-select-sqrdcol.png')
+                      |sqrdbl=url('edres/_social-select-sqrdbl.png')
+                      |sqrdw=url('edres/_social-select-sqrdw.png')
+                      |white=url('edres/_social-select-white.png')
+                      |coloured=url('edres/_social-select-coloured.png')
+                      |black=url('edres/_social-select-black.png');
       }
       bigSocialIconType { label: Versione icone; widget: select; 
         options: bw=Cerchio Grigio
@@ -1570,6 +1598,37 @@
                 <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="ttVisible">&nbsp;<a href="" data-ko-display="ttVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[ttUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/tt-bw-96.png" width="32" height="32" alt="TikTok"></a></div>
               
                 <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="tcVisible">&nbsp;<a href="" data-ko-display="tcVisible" style="display: none; background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), #818181; border-radius: 50px; -ko-attr-href: @[tcUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px" src="img/icons/tc-bw-96.png" width="32" height="32" alt="Twitch"></a></div>
+              
+            </td></tr>
+            <tr data-ko-display="socialIconType neq 'Colori' and socialIconType neq 'Bianco e Nero'" style="display: none"><td width="100%" valign="top" style="font-weight: normal; text-align: right; padding: 9px; padding-top: 5px; padding-bottom: 5px; padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[blockSpacing.horizontalSpacing]px; -ko-padding-top: @[blockSpacing.verticalSpacing]px; -ko-padding-bottom: @[blockSpacing.verticalSpacing]px;" align="right" class="links-color socialLinks mobile-textcenter">
+              
+                <div data-ko-wrap="false" style="display: inline-block;" data-ko-display="fbVisible">&nbsp;<a href="" data-ko-display="fbVisible" style="border-radius: 50px; -ko-attr-href: @[fbUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/fb-'+socialIconType+'-96.png')]" src="img/icons/fb-rdcol-96.png" width="32" height="32" alt="Facebook"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block;" data-ko-display="twVisible">&nbsp;<a href="" data-ko-display="twVisible" style="border-radius: 50px; -ko-attr-href: @[twUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/tw-'+socialIconType+'-96.png')]" src="img/icons/tw-rdcol-96.png" width="32" height="32" alt="Twitter"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="ggVisible">&nbsp;<a href="" data-ko-display="ggVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[ggUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/gg-'+socialIconType+'-96.png')]" src="img/icons/gg-rdcol-96.png" width="32" height="32" alt="Google"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="webVisible">&nbsp;<a href="" data-ko-display="webVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[webUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/web-'+socialIconType+'-96.png')]" src="img/icons/web-rdcol-96.png" width="32" height="32" alt="Web"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="waVisible">&nbsp;<a href="" data-ko-display="waVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[waUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/wa-'+socialIconType+'-96.png')]" src="img/icons/wa-rdcol-96.png" width="32" height="32" alt="Whatsapp"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="tgVisible">&nbsp;<a href="" data-ko-display="tgVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[tgUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/tg-'+socialIconType+'-96.png')]" src="img/icons/tg-rdcol-96.png" width="32" height="32" alt="Telegram"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="inVisible">&nbsp;<a href="" data-ko-display="inVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[inUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/in-'+socialIconType+'-96.png')]" src="img/icons/in-rdcol-96.png" width="32" height="32" alt="Linkedin"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="piVisible">&nbsp;<a href="" data-ko-display="piVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[piUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/pi-'+socialIconType+'-96.png')]" src="img/icons/pi-rdcol-96.png" width="32" height="32" alt="Pinterest"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="flVisible">&nbsp;<a href="" data-ko-display="flVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[flUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/fl-'+socialIconType+'-96.png')]" src="img/icons/fl-rdcol-96.png" width="32" height="32" alt="Flickr"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="viVisible">&nbsp;<a href="" data-ko-display="viVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[viUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/vi-'+socialIconType+'-96.png')]" src="img/icons/vi-rdcol-96.png" width="32" height="32" alt="Vimeo"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block;" data-ko-display="instVisible">&nbsp;<a href="" data-ko-display="instVisible" style="border-radius: 50px; -ko-attr-href: @[instUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/inst-'+socialIconType+'-96.png')]" src="img/icons/inst-rdcol-96.png" width="32" height="32" alt="Instagram"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="youVisible">&nbsp;<a href="" data-ko-display="youVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[youUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/you-'+socialIconType+'-96.png')]" src="img/icons/you-rdcol-96.png" width="32" height="32" alt="Youtube"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="ttVisible">&nbsp;<a href="" data-ko-display="ttVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[ttUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/tt-'+socialIconType+'-96.png')]" src="img/icons/tt-rdcol-96.png" width="32" height="32" alt="TikTok"></a></div>
+              
+                <div data-ko-wrap="false" style="display: inline-block; display: none" data-ko-display="tcVisible">&nbsp;<a href="" data-ko-display="tcVisible" style="display: none; border-radius: 50px; -ko-attr-href: @[tcUrl]"><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px; -ko-attr-src: @[Url.templatePath('img/icons/tc-'+socialIconType+'-96.png')]" src="img/icons/tc-rdcol-96.png" width="32" height="32" alt="Twitch"></a></div>
               
             </td></tr>
           

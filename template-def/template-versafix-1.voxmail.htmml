@@ -48,10 +48,38 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Testo titolo; category: hidden }
       gutterVisible { label: Mostra spaziatura; extend: visible }
-      socialIconType { label: Versione icone; widget: select; options: Bianco e Nero=Bianco e Nero|Colori=Colori;
+      socialIconType { label: Versione icone; widget: select;
+        options: Colori=Cerchio Colorato
+                |Bianco e Nero=Cerchio Grigio
+                |bwb=Cerchio Nero
+                |sqbw=Quadrato Grigio
+                |sqcolors=Quadrato Colorato
+                |sqbwb=Quadrato Nero
+                |rdcol=Cerchiate a colori
+                |rdbl=Cerchiate nere
+                |rdw=Cerchiate bianche
+                |sqrdcol=Squadrate a colori
+                |sqrdbl=Squadrate nere
+                |sqrdw=Squadrate bianche
+                |white=Bianche
+                |coloured=Colorate
+                |black=Nere;
         renderHint: images; 
-        imagesSources: bw=url('edres/_social-select-bw.png')
-                      |colors=url('edres/_social-select-colors.png')
+        imagesSources: colors=url('edres/_social-select-colors.png')
+                      |bw=url('edres/_social-select-bw.png')
+                      |bwb=url('edres/_social-select-bwb.png')
+                      |sqbw=url('edres/_social-select-sqbw.png')
+                      |sqcolors=url('edres/_social-select-sqcolors.png')
+                      |sqbwb=url('edres/_social-select-sqbwb.png')
+                      |rdcol=url('edres/_social-select-rdcol.png')
+                      |rdbl=url('edres/_social-select-rdbl.png')
+                      |rdw=url('edres/_social-select-rdw.png')
+                      |sqrdcol=url('edres/_social-select-sqrdcol.png')
+                      |sqrdbl=url('edres/_social-select-sqrdbl.png')
+                      |sqrdw=url('edres/_social-select-sqrdw.png')
+                      |white=url('edres/_social-select-white.png')
+                      |coloured=url('edres/_social-select-coloured.png')
+                      |black=url('edres/_social-select-black.png');
       }
       bigSocialIconType { label: Versione icone; widget: select; 
         options: bw=Cerchio Grigio
@@ -1253,6 +1281,11 @@
             <custom-row false="" if="socialIconType eq 'Bianco e Nero'" align="right" class="links-color socialLinks mobile-textcenter">
               <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
+              </repeater>
+            </custom-row>
+            <custom-row false="" if="socialIconType neq 'Colori' and socialIconType neq 'Bianco e Nero'" align="right" class="links-color socialLinks mobile-textcenter">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+                <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+socialIconType+'-96.png')" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
           </column-content><!--
