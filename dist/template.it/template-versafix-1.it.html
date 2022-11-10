@@ -48,10 +48,10 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Testo titolo; category: hidden }
       gutterVisible { label: Mostra spaziatura; extend: visible }
-      socialIconType { label: Versione icone; widget: select; options: bw=Bianco e Nero|colors=Colori;
+      socialIconType { label: Versione icone; widget: select; options: colors=Colori|bw=Bianco e Nero;
         renderHint: images; 
-        imagesSources: bw=url('edres/_social-select-bw.png')
-                      |colors=url('edres/_social-select-colors.png')
+        imagesSources: colors=url('edres/_social-select-colors.png')
+                      |bw=url('edres/_social-select-bw.png')
       }
       bigSocialIconType { label: Versione icone; widget: select; options:bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate;
         renderHint: images; 
@@ -489,7 +489,7 @@
       --><div style="margin: 0 auto; max-width: 570px; -mru-width: 0px"><table role="presentation" class="vb-row" border="0" cellpadding="0" cellspacing="9" style="border-collapse: collapse; width: 100%; background-color: #ffffff; -ko-background-color: @[backgroundColor]; -ko-attr-bgcolor: @[backgroundColor]; max-width: 570px; -mru-width: 0px" bgcolor="#ffffff" width="570">
         
         <tr>
-      <td align="center" valign="top" style="font-size: 0; padding: 0 9px; padding-top: 13px; padding-bottom: 13px;"><table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top" dir="ltr" style="direction: ltr; border-collapse: collapse; -ko-attr-dir: @[imagePos eq 'left' ? 'ltr' : 'rtl']; -ko-direction: @[imagePos eq 'left' ? 'ltr' : 'rtl']"><div style="width:100%; max-width: 552px; -mru-width: 0px"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0" width="552"><tr><![endif]--><!--
+      <td align="center" valign="top" style="font-size: 0; padding: 0 9px; padding-top: 13px; padding-bottom: 13px;"><table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" valign="top" dir="ltr" style="direction: ltr; border-collapse: collapse; -ko-attr-dir: @[imagePos eq 'left' ? 'ltr' : 'rtl']; -ko-direction: @[imagePos eq 'left' ? 'ltr' : 'rtl']"><div style="width:100%; max-width: 552px; -mru-width: 0px"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0" width="552"><tr><![endif]--><!--
         --><!--
           --><!--[if (gte mso 9)|(lte ie 8)]><td align="left" valign="top" width="184" style="-ko-attr-width: @[18 + Math.round(imageWidth)]"><![endif]--><!--
       --><div style="display:inline-block; vertical-align:top; width: 100%; max-width: 184px; -mru-width: 0px; -ko-max-width: @[18 + Math.round(imageWidth) + 'px']; min-width: calc(184 * 100% / 552); -ko-min-width: @['calc(' + (true ? 18 + Math.round(imageWidth) : 184) * 100 / 552 + '%)']; max-width: calc(100%); -ko-max-width: @['calc(100%)']; width: calc(552 * 552px - 552 * 100%); -ko-width: @['calc('+ 552 * 552 + 'px - ' + 552 * 100 +'%)']" class="mobile-full"><!--

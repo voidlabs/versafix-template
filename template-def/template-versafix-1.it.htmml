@@ -48,10 +48,10 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Testo titolo; category: hidden }
       gutterVisible { label: Mostra spaziatura; extend: visible }
-      socialIconType { label: Versione icone; widget: select; options: bw=Bianco e Nero|colors=Colori;
+      socialIconType { label: Versione icone; widget: select; options: colors=Colori|bw=Bianco e Nero;
         renderHint: images; 
-        imagesSources: bw=url('edres/_social-select-bw.png')
-                      |colors=url('edres/_social-select-colors.png')
+        imagesSources: colors=url('edres/_social-select-colors.png')
+                      |bw=url('edres/_social-select-bw.png')
       }
       bigSocialIconType { label: Versione icone; widget: select; options:bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate;
         renderHint: images; 
@@ -454,7 +454,7 @@
     <def attr="dir-prop" selector="table[dir] td" style="-ko-attr-dir: @[{{dir-prop}}]; -ko-direction: @[{{dir-prop}}]"></def>
 
     <tmpl><tr>
-      <td align="center" valign="top" style="font-size: 0">{{#dir}}<table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top">{{/dir}}<div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
+      <td align="center" valign="top" style="font-size: 0">{{#dir}}<table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" valign="top">{{/dir}}<div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
         -->{{replacedcontent}}<!--
       --><!--[if (gte mso 9)|(lte ie 8)]></tr></table><![endif]--></div>{{#dir}}</td></tr></table>{{/dir}}</td>
     </tr></tmpl>
