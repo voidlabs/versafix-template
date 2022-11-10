@@ -10,6 +10,10 @@
             {
                 "replace": "socialIconType=Colori ",
                 "search": "socialIconType=colors "
+            },
+            {
+                "replace": "Colori=url('edres/_social-select-colors.png')\n                      |Bianco e Nero=url('edres/_social-select-bw.png')",
+                "search": "colors=url('edres/_social-select-colors.png')\n                      |bw=url('edres/_social-select-bw.png')"
             }
         ],
         "custom-row[if]": [
