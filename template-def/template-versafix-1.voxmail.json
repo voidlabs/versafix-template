@@ -2,7 +2,7 @@
     "//": "NOTE: custom asymmetric changes in italian translation. See the 'bw=Black and White|colors=Colors' translation above.",
     "strings": {
         "//": "NOTE: this is legacy code. We used to have custom keys in the italian template used in VOXmail, so we have to keep using them. See also the custom replacement rules",
-        "bw=Bianco e Nero|colors=Colori": "Bianco e Nero=Bianco e Nero|Colori=Colori"
+        "colors=Colori|bw=Bianco e Nero": "Colori=Colori|Bianco e Nero=Bianco e Nero"
     },
     "partial": true,
     "customReplacements": {
@@ -10,7 +10,11 @@
             {
                 "replace": "socialIconType=Colori ",
                 "search": "socialIconType=colors "
-            }
+            },
+            {
+                "replace": "Colori=url('edres/_social-select-colors.png')\n                      |Bianco e Nero=url('edres/_social-select-bw.png')",
+                "search": "colors=url('edres/_social-select-colors.png')\n                      |bw=url('edres/_social-select-bw.png')"
+            }            
         ],
         "custom-row[if]": [
             {
