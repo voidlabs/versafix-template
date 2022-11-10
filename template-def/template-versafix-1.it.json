@@ -121,7 +121,7 @@
         "Icon Size": "Dimensioni icone",
         "bw=Black and White|colors=Colors|rdcol=Rounded Colors|rdbl=Rounded Black": "bw=Bianco e Nero|colors=Colori|rdcol=Colorate Cerchiate|rdbl=Nere Cerchiate",
         "Icon Version": "Versione icone",
-        "bw=Black and White|colors=Colors": "bw=Bianco e Nero|colors=Colori",
+        "colors=Colors|bw=Black and White": "colors=Colori|bw=Bianco e Nero",
         "Show Gutter": "Mostra spaziatura",
         "Sponsor": "Sponsor",
         "Title Text": "Testo titolo",
