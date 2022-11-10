@@ -48,10 +48,10 @@
       sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
       titleText { label: Title Text; category: hidden }
       gutterVisible { label: Show Gutter; extend: visible }
-      socialIconType { label: Icon Version; widget: select; options: bw=Black and White|colors=Colors;
+      socialIconType { label: Icon Version; widget: select; options: colors=Colors|bw=Black and White;
         renderHint: images; 
-        imagesSources: bw=url('edres/_social-select-bw.png')
-                      |colors=url('edres/_social-select-colors.png')
+        imagesSources: colors=url('edres/_social-select-colors.png')
+                      |bw=url('edres/_social-select-bw.png')
       }
       bigSocialIconType { label: Icon Version; widget: select; options:bw=Black and White|colors=Colors|rdcol=Rounded Colors|rdbl=Rounded Black;
         renderHint: images; 
