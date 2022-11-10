@@ -551,7 +551,7 @@
     <def attr="dir-prop" selector="table[dir] td" style="-ko-attr-dir: @[{{dir-prop}}]; -ko-direction: @[{{dir-prop}}]"></def>
 
     <tmpl><tr>
-      <td align="center" valign="top" style="font-size: 0">{{#dir}}<table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top">{{/dir}}<div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
+      <td align="center" valign="top" style="font-size: 0">{{#dir}}<table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" valign="top">{{/dir}}<div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
         -->{{replacedcontent}}<!--
       --><!--[if (gte mso 9)|(lte ie 8)]></tr></table><![endif]--></div>{{#dir}}</td></tr></table>{{/dir}}</td>
     </tr></tmpl>
