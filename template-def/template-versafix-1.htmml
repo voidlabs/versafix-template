@@ -949,7 +949,7 @@
     <block name="singleArticleBlock" label="Image/Text Block">
       <block-inner>
         <content>
-          <linked-img if="imageVisible" editable="image" width="534" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="8"></linked-img>
+          <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="8"></linked-img>
           <text editable="text" if="titleVisible">Section Title</text>
           <long-text editable="longText"><p>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></long-text>
           <btn editable="buttonLink" if="buttonVisible" padding-top="2">BUTTON</btn>
