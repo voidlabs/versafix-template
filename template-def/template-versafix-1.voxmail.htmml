@@ -949,7 +949,7 @@
     <block name="singleArticleBlock" label="Image/Text Block">
       <block-inner>
         <content>
-          <linked-img if="imageVisible" editable="image" width="534" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="8"></linked-img>
+          <linked-img if="imageVisible" editable="image" width="534" width-prop="imageWidth" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="8"></linked-img>
           <text editable="text" if="titleVisible">Titolo Sezione</text>
           <long-text editable="longText"><p>In una terra lontana, dietro le montagne Parole, lontani dalle terre di <a href="">Vocalia e Consonantia</a>, vivono i testi casuali. Vivono isolati nella cittadina di Lettere, sulle coste del Semantico, un immenso oceano linguistico. Un piccolo ruscello chiamato Devoto Oli attraversa quei luoghi, rifornendoli di tutte le regolalie di cui hanno bisogno.</p></long-text>
           <btn editable="buttonLink" if="buttonVisible" padding-top="2">PULSANTE</btn>
