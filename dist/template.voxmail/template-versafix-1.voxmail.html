@@ -383,7 +383,11 @@
         max-width: none !important;
       }
     }
-    /* previously used also screen and (max-device-width: 600px) but Yahoo Mail doesn't support multiple queries */
+    
+    /* samsung email workaround */
+    @media screen and (max-width: 384px) {
+      .mail-message-content { width: 414px !important; }
+    }
   </style>
   <style type="text/css" data-inline="true">
     [data-ko-block=tripleArticleBlock] .links-color a, 
