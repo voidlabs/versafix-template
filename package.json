@@ -8,17 +8,17 @@
     "url": "git://github.com/voidlabs/versafix-template.git"
   },
   "devDependencies": {
-    "async": "^3.2.4",
+    "async": "^3.2.5",
     "cheerio": "1.0.0-rc.12",
     "entities": "^4.5.0",
     "fs-extra": "^11.1.1",
     "htmml": "1.0.4",
     "mockery": "^2.1.0",
-    "mosaico": "^0.18.9",
+    "mosaico": "^0.18.10",
     "phantomjs-prebuilt": "^2.1.16",
-    "release-it": "^15.11.0",
-    "replace-in-file": "^7.0.1",
-    "del-cli": "^5.0.0",
+    "release-it": "^17.0.0",
+    "replace-in-file": "^7.0.2",
+    "del-cli": "^5.1.0",
     "tmp": "^0.2.1"
   },
   "author": "Stefano Bagnara",
