@@ -196,7 +196,7 @@
       footerBlock { label: Unsubscribe Block; theme: frameTheme }
       
       fbVisible { label: Facebook; extend: visible }
-      twVisible { label: Twitter; extend: visible }
+      twVisible { label: X / Twitter; extend: visible }
       ggVisible { label: Google+; extend: visible }
       inVisible { label: LinkedIn; extend: visible }
       piVisible { label: Pinterest; extend: visible }
@@ -210,7 +210,7 @@
       ttVisible { label: TikTok; extend: visible }
       tcVisible { label: Twitch; extend: visible }
       fbUrl { label: Facebook Link; extend: url }
-      twUrl { label: Twitter Link; extend: url}
+      twUrl { label: X / Twitter Link; extend: url}
       ggUrl { label: Google+ Link; extend: url}
       inUrl { label: LinkedIn Link; extend: url}
       piUrl { label: Pinterest Link; extend: url}
@@ -246,7 +246,7 @@
 
       shareButtonType { label: Button Version;widget: select; options:reverse=Brand buttons|simple=Brand icons|custom=Custom buttons; }
       shareBlock fbVisible { label: Facebook; }
-      shareBlock twVisible { label: Twitter }
+      shareBlock twVisible { label: X / Twitter }
       shareBlock inVisible { label: LinkedIn }
       shareBlock ggVisible { label: Google+ }
       shareBlock piVisible { label: Pinterest }
@@ -1225,7 +1225,7 @@
       <block-inner>
         <content>
           <custom-row align="center" class="links-color socialLinks mobile-textcenter">
-            <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,if,false if,false if,false if,if,if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+            <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,if,false if,false if,false if,if,if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
               <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+bigSocialIconType+'-96.png')" alt="{{name}}"></social-icon>
             </repeater>
           </custom-row>
@@ -1236,7 +1236,7 @@
     <block name="shareBlock" label="Share Block">
       <block-inner if="shareButtonType eq 'reverse'">
         <columns autowidth="1">
-          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
+          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" align="center">
               <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
             </column-content>
@@ -1245,7 +1245,7 @@
       </block-inner>
       <block-inner false="" if="shareButtonType eq 'simple'">
         <columns autowidth="1">
-          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
+          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" align="center">
               <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Share</share-btn>
             </column-content>
@@ -1254,7 +1254,7 @@
       </block-inner>
       <block-inner false="" if="shareButtonType eq 'custom'">
         <columns autowidth="1">
-          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
+          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#4099FF,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" align="center">
               <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" src="img/icons/{{prefix}}-black-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+shareButtonStyle.iconColorType+'-96.png')" editable="{{prefix}}Text" custom-style="shareButtonStyle">Share</share-btn>
             </column-content>
@@ -1278,17 +1278,17 @@
           </column-content><!--
           --><column-content width="276">
             <custom-row if="socialIconType eq 'colors'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
             <custom-row false="" if="socialIconType eq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
             <custom-row false="" if="socialIconType neq 'colors' and socialIconType neq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
-              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#4099FF,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
                 <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+socialIconType+'-96.png')" alt="{{name}}"></social-icon>
               </repeater>
             </custom-row>
