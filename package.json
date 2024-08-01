@@ -18,7 +18,7 @@
     "mosaico": "^0.18.10",
     "phantomjs-prebuilt": "^2.1.16",
     "release-it": "^17.6.0",
-    "replace-in-file": "^8.1.0",
+    "replace-in-file": "^7.0.2",
     "tmp": "^0.2.3"
   },
   "author": "Stefano Bagnara",

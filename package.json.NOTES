@@ -1,0 +1,1 @@
+- replace-in-file locket to 7.x because 8.x is an ES5 module
