@@ -339,7 +339,6 @@
   </style>
   <style type="text/css" data-inline="true">
     body { margin: 0; padding: 0; }
-    img { border: 0px; display: block; }
 
     .socialLinks { font-size: 6px; }
     .socialLinks a {
@@ -349,6 +348,9 @@
     .long-text p { margin: 1em 0px; }
     .long-text p:last-child { margin-bottom: 0px; }
     .long-text p:first-child { margin-top: 0px; }
+
+    /* :not([data-emoji]) is like a noop to hide this rule in Gmail to workaround emojification bug in Gmail: it is not really used by Gmail and this is currently equivalent to img:not(a) */
+    img:not([data-emoji]) { border: 0px; display: block; }
   </style>
   <style type="text/css">
     /* yahoo, hotmail */
@@ -1256,7 +1258,7 @@
         <columns autowidth="1">
           <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#000000,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
             <column-content {{default}}="{{prefix}}Visible" align="center">
-              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" src="img/icons/{{prefix}}-black-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+shareButtonStyle.iconColorType+'-96.png')" editable="{{prefix}}Text" custom-style="shareButtonStyle">Condividi</share-btn>
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" src="img/icons/{{prefix}}-black-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+(shareButtonStyle.iconColorType == 'brand' ? 'coloured' : shareButtonStyle.iconColorType)+'-96.png')" editable="{{prefix}}Text" custom-style="shareButtonStyle">Condividi</share-btn>
             </column-content>
           </repeater>
         </columns>
