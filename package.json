@@ -10,16 +10,16 @@
   "devDependencies": {
     "async": "^3.2.5",
     "cheerio": "1.0.0-rc.12",
-    "entities": "^4.5.0",
-    "fs-extra": "^11.1.1",
+    "del-cli": "^5.1.0",
+    "entities": "^5.0.0",
+    "fs-extra": "^11.2.0",
     "htmml": "1.0.4",
     "mockery": "^2.1.0",
     "mosaico": "^0.18.10",
     "phantomjs-prebuilt": "^2.1.16",
-    "release-it": "^17.0.0",
-    "replace-in-file": "^7.0.2",
-    "del-cli": "^5.1.0",
-    "tmp": "^0.2.1"
+    "release-it": "^17.6.0",
+    "replace-in-file": "^8.1.0",
+    "tmp": "^0.2.3"
   },
   "author": "Stefano Bagnara",
   "license": "MIT",
