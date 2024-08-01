@@ -339,7 +339,6 @@
   </style>
   <style type="text/css" data-inline="true">
     body { margin: 0; padding: 0; }
-    img { border: 0px; display: block; }
 
     .socialLinks { font-size: 6px; }
     .socialLinks a {
@@ -349,6 +348,9 @@
     .long-text p { margin: 1em 0px; }
     .long-text p:last-child { margin-bottom: 0px; }
     .long-text p:first-child { margin-top: 0px; }
+
+    /* :not([data-emoji]) is like a noop to hide this rule in Gmail to workaround emojification bug in Gmail: it is not really used by Gmail and this is currently equivalent to img:not(a) */
+    img:not([data-emoji]) { border: 0px; display: block; }
   </style>
   <style type="text/css">
     /* yahoo, hotmail */
