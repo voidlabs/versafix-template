@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <title style="-ko-bind-text: @titleText">TITRE</title>
+  <style type="text/css">
+    @supports -ko-blockdefs {
+      id { widget: id }
+      size { label: Taille; widget: integer; min: 8; max: 60; }
+      visible { label: Visible ?; widget: boolean }
+      color { label: Couleur; widget: color }
+      radius {
+        label: Rayon arrondi;
+        widget: integer;
+        max: 40;
+        help: 'Attention - cette propriété n\'est pas supportée sur tous les logiciels de messagerie (ex: Outlook)'
+      }
+      face { label: Police; widget: select; options: Arial, Helvetica, sans-serif=Arial|Arial Black, Arial Black, Gadget, sans-serif=Arial Black|Comic Sans MS, Comic Sans MS5, cursive=Comic Sans|Courier New, Courier New, monospace=Courier|Georgia, serif=Georgia|Impact, sans-serif=Impact|Lucida Console, Monaco, monospace=Lucida Console|Lucida Sans Unicode, Lucida Grande, sans-serif=Lucida Sans Unicode|Times New Roman, Times, serif=Times New Roman|Verdana, Geneva, sans-serif=Verdana;
+        renderHint: fontface
+      }
+      decoration { label: Décorations; widget: select; options: none=Aucun|underline=Souligné }
+      linksColor { label: Couleur lien; extend: color }
+      linksDecoration { label: Liens souligné ?; extend: decoration }
+      buttonColor { label: Couleur bouton; extend: color; transparent: true }
+      text { label: Paragraphe; widget: text }
+      url { label: Lien; widget: url }
+      src { label: Image; widget: src }
+      hrWidth { label: Largeur; widget: integer; min: 5; max: 100; step: 5; }
+      hrHeight { label: Hauteur ligne; widget: integer; max: 80; }
+
+      height { label: Hauteur; widget: integer }
+      imageHeight { label: Hauteur image; extend: height; min: 10; max: 1000 }
+      lineHeight { label: Hauteur; widget: select; options: normal=Normale|150%=1,5 Lignes|200%=Double;
+        buttonsetLabels: normal=1x|150%=1.5x|200%=2x;
+      }
+
+      spacerSize { label: Hauteur; widget: integer; max: 90; min: 4; }
+      align { label: Alignement; widget: select; options:left=Gauche|center=Centré|right=Droite;
+        buttonsetIconClasses: left=fa fa-fw fa-align-left|center=fa fa-fw fa-align-center|right=fa fa-fw fa-align-right
+      }
+      alt {
+        label: Texte remplacement;
+        widget: text;
+        help: Le texte de remplacement sera affiché dans les logiciels de messagerie qui ne téléchargent pas automatiquement les images;
+      }
+      sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
+      titleText { label: Texte titre; category: hidden }
+      gutterVisible { label: Afficher gouttière; extend: visible }
+      socialIconType { label: Version icone; widget: select;
+        options: colors=Cercle coloré
+                |bw=Cercle gris
+                |bwb=Cercle noir
+                |sqbw=Carré gris
+                |sqcolors=Carré coloré
+                |sqbwb=Carré noir
+                |rdcol=Arrondi coloré
+                |rdbl=Arrondi noir
+                |rdw=Arrondi blanc
+                |sqrdcol=Recangulaire coloré
+                |sqrdbl=Rectangulaire noir
+                |sqrdw=Rectangulaire blanc
+                |white=Blanc
+                |coloured=Coloré
+                |black=Noir;
+        renderHint: images; 
+        imagesSources: colors=url('edres/_social-select-colors.png')
+                      |bw=url('edres/_social-select-bw.png')
+                      |bwb=url('edres/_social-select-bwb.png')
+                      |sqbw=url('edres/_social-select-sqbw.png')
+                      |sqcolors=url('edres/_social-select-sqcolors.png')
+                      |sqbwb=url('edres/_social-select-sqbwb.png')
+                      |rdcol=url('edres/_social-select-rdcol.png')
+                      |rdbl=url('edres/_social-select-rdbl.png')
+                      |rdw=url('edres/_social-select-rdw.png')
+                      |sqrdcol=url('edres/_social-select-sqrdcol.png')
+                      |sqrdbl=url('edres/_social-select-sqrdbl.png')
+                      |sqrdw=url('edres/_social-select-sqrdw.png')
+                      |white=url('edres/_social-select-white.png')
+                      |coloured=url('edres/_social-select-coloured.png')
+                      |black=url('edres/_social-select-black.png');
+      }
+      bigSocialIconType { label: Version icone; widget: select; 
+        options: bw=Cercle gris
+                |colors=Cercle coloré
+                |bwb=Cercle noir
+                |sqbw=Carré gris
+                |sqcolors=Carré coloré
+                |sqbwb=Carré noir
+                |rdcol=Arrondi coloré
+                |rdbl=Arrondi noir
+                |rdw=Arrondi blanc
+                |sqrdcol=Recangulaire coloré
+                |sqrdbl=Rectangulaire noir
+                |sqrdw=Rectangulaire blanc
+                |white=Blanc
+                |coloured=Coloré
+                |black=Noir;
+        renderHint: images; 
+        imagesSources: bw=url('edres/_social-select-bw.png')
+                      |colors=url('edres/_social-select-colors.png')
+                      |bwb=url('edres/_social-select-bwb.png')
+                      |sqbw=url('edres/_social-select-sqbw.png')
+                      |sqcolors=url('edres/_social-select-sqcolors.png')
+                      |sqbwb=url('edres/_social-select-sqbwb.png')
+                      |rdcol=url('edres/_social-select-rdcol.png')
+                      |rdbl=url('edres/_social-select-rdbl.png')
+                      |rdw=url('edres/_social-select-rdw.png')
+                      |sqrdcol=url('edres/_social-select-sqrdcol.png')
+                      |sqrdbl=url('edres/_social-select-sqrdbl.png')
+                      |sqrdw=url('edres/_social-select-sqrdw.png')
+                      |white=url('edres/_social-select-white.png')
+                      |coloured=url('edres/_social-select-coloured.png')
+                      |black=url('edres/_social-select-black.png');
+      }
+      bigSocialIconSize { label: Taille icone; widget: select; options: 32=Petit|48=Grand; renderHint: buttonset }
+
+      preheaderLinkOption {
+        label: Lien désinscription;
+        widget: select;
+        options: [profile_link]=Profil|[unsubscribe_link]=Désinscription|none=Aucun;
+        help: Si -Aucun- est sélectionné, le texte de pré-entête sera affiché;
+      }
+     
+      hrStyle { label: Style séparateur; properties: color hrWidth hrHeight; }
+      hrStyle:preview { height: 200%; width: 200%; bottom: 20px; -ko-border-bottom: @[hrHeight]px solid @color; }
+      preheaderVisible { label: Afficher pré-entête; extend: visible; help: Le bloc de pré-entête est le premier en haut de la page. Il contient un lien pour afficher le contenu en ligne et un éventuel lien de désinscription ou un texte de pré-entête qui sera utilisé comme aperçu par certains clients de messagerie. }
+
+      /* content types */
+      blocks { label: Blocs; properties: blocks[]; }
+      link { label: Lien; properties: text url }
+      image { label: Image; properties: src url alt }
+      backgroundColor { label: Couleur arrière-plan; extend: color }
+      buttonLink { label: Bouton; extend: link }
+      
+      /* texts and links */
+      textStyle { label: Texte; properties: face color size align }
+      textStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+      linkStyle { label: Lien; properties: face color size decoration=none }
+      linkStyle:preview { -ko-bind-text: @['Link']; -ko-font-size: @[size]px; -ko-font-family: @face; -ko-color: @color; -ko-text-decoration: @[decoration] }
+      longTextStyle { label: Paragraphe; properties: face color size lineHeight align linksColor   }
+      longTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+      bigButtonStyle { label: Gros bouton; extend: buttonStyle }
+      titleTextStyle { label: Titre; extend: textStyle }
+      /* background */
+      externalBackgroundColor { label: Arrière-plan externe; extend: color }
+
+      externalTextStyle { label: Texte remplacement; extend: textStyle }
+      externalTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+     
+      bigTitleStyle { label: Titre; properties: face color size align}
+      bigTitleStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+      /* buttons */
+      buttonStyle color { label: Couleur texte; extend: color; transparent: true; }
+      buttonStyle size { label: Taille texte; extend: size }
+      buttonStyle borderWidth { label: Largeur bordure; widget: integer; min: 0; max: 10; }
+      buttonStyle borderColor { label: Couleur bordure; }
+      buttonStyle verticalPadding { label: Marge verticale; widget: integer; min: 0; max: 40; }
+      buttonStyle horizontalPadding { label: Marge horizontale; widget: integer; min: 0; max: 40; }
+      buttonStyle { label: Bouton; properties: face color size align buttonColor radius borderWidth borderColor verticalPadding horizontalPadding }
+      buttonStyle:preview { -ko-bind-text: @['Bouton']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; -ko-background-color: @buttonColor; padding-left: 5px; -ko-border-radius: @[radius]px; }
+
+      blockSpacing verticalSpacing { label: Espacement vertical; widget: integer; min: 0; max: 40 }
+      blockSpacing horizontalSpacing { label: Espacement horizontal; widget: integer; min: 0; max: 40 }
+      blockSpacing topPadding { label: Marge supérieure; widget: integer; min: 0; max: 40 }
+      blockSpacing bottomPadding { label: Marge intérieure; widget: integer; min: 0; max: 40 }
+      blockSpacing { label: Espacement bloc; properties: topPadding bottomPadding verticalSpacing horizontalSpacing; category: style /* make sure this ends up as a style property, with inheritance/theming */ }
+      
+      /* contents */
+      preheaderText {label: Texte pré-entête; extend:text; help: Ce texte sera affiché sur certains clients de messagerie comme aperçu du contenu de votre email.;}
+      leftImage { label: Image de gauche; extend: image }
+      leftLongText { label: Texte de gauche; extend: text }
+      leftButtonLink { label: Bouton de gauche; extend: buttonLink }
+      middleImage { label: Image du milieu; extend: image }
+      middleLongText { label: Texte du milieu; extend: text }
+      middleButtonLink { label: Bouton du milieu; extend: buttonLink }
+      rightImage { label: Image de droite; extend: image }
+      rightLongText { label: Texte de droite; extend: text }
+      rightButtonLink { label: Bouton de droite; extend: buttonLink }
+      webversionText{ label: Texte lien web; extend: text;}
+      unsubscribeText{ label: Texte désinscription; extend: text;}
+
+      titleVisible { label: Afficher titre; extend: visible; }
+      buttonVisible { label: Afficher bouton; extend: visible; }
+      imageVisible { label: Afficher image; extend: visible; }
+
+      contentTheme { label: Style principal; }
+      contentTheme:preview { -ko-background-color: @[backgroundColor] }
+      frameTheme { label: Style cadre; }
+      frameTheme:preview { -ko-background-color: @[backgroundColor] }
+      template preheaderText { label: Pré-entête; }
+
+      template { label: Page; theme: frameTheme; properties: preheaderVisible=true; version: __VERSION__; }
+
+      footerBlock { label: Bloc désinscription; theme: frameTheme }
+      
+      fbVisible { label: Facebook; extend: visible }
+      twVisible { label: X / Twitter; extend: visible }
+      ggVisible { label: Google+; extend: visible }
+      inVisible { label: LinkedIn; extend: visible }
+      piVisible { label: Pinterest; extend: visible }
+      flVisible { label: Flickr; extend: visible }
+      viVisible { label: Vimeo; extend: visible }
+      webVisible { label: Website; extend: visible }
+      waVisible { label: Whatsapp; extend: visible }
+      tgVisible { label: Telegram; extend: visible }
+      instVisible { label: Instagram; extend: visible }
+      youVisible { label: YouTube; extend: visible }
+      ttVisible { label: TikTok; extend: visible }
+      tcVisible { label: Twitch; extend: visible }
+      fbUrl { label: Lien Facebook; extend: url }
+      twUrl { label: Lien  X / Twitter; extend: url}
+      ggUrl { label: Lien Google+; extend: url}
+      inUrl { label: Lien LinkedIn; extend: url}
+      piUrl { label: Lien Pinterest; extend: url}
+      flUrl { label: Lien Flickr; extend: url}
+      viUrl { label: Lien Vimeo; extend: url}
+      webUrl { label: Lien Site Web; extend: url}
+      waUrl { label: Lien Whatsapp; extend: url}
+      tgUrl { label: Lien Telegram; extend: url}
+      instUrl { label: Lien Instagram; extend: url}
+      youUrl { label: Lien YouTube; extend: url}
+      ttUrl { label: Lien TikTok; extend: url}
+      tcUrl { label: Lien Twitch; extend: url}
+
+      socialBlock {
+        label: Bloc social;
+        properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=false ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=false inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=false youUrl ttVisible=false ttUrl tcVisible=false tcUrl longTextStyle longText backgroundColor;
+        variant:socialIconType;
+        theme: frameTheme
+      }
+
+      bigSocialBlock {
+        label: Grand bloc social;
+        properties: bigSocialIconType=rdcol bigSocialIconSize=48 fbVisible=true fbUrl twVisible=true twUrl ggVisible=false ggUrl webVisible=false webUrl waVisible=false waUrl tgVisible=false tgUrl inVisible=true inUrl piVisible=false piUrl flVisible=false flUrl viVisible=false viUrl instVisible=true instUrl youVisible=true youUrl ttVisible=false ttUrl longTextStyle tcVisible=false tcUrl longTextStyle longText;
+        variant: bigSocialIconType;
+        theme: contentTheme
+      }
+
+      shareButtonStyle iconColorType { label: Couleur icones; widget: select; options: brand=Marque|white=Blanche|black=Noire; }
+      shareButtonStyle color { label: Couleur texte; extend: color; transparent: true; }
+      shareButtonStyle size { label: Taille texte; widget: integer; min: 10; max: 25; }
+      shareButtonStyle { label: Bouton partage; properties: face iconColorType=black color size align buttonColor radius }
+      shareButtonStyle:preview { -ko-bind-text: @['Bouton']; -ko-font-family: @face; -ko-color: @['black']; -ko-font-size: @[size]px; -ko-background-color: @['#CCCCCC']; padding-left: 5px; -ko-border-radius: @[radius]px; }
+
+      shareButtonType { label: Version icones;widget: select; options:reverse=Boutons marques|simple=Icones marques|custom=Boutons personnalisés; }
+      shareBlock fbVisible { label: Facebook; }
+      shareBlock twVisible { label: X / Twitter }
+      shareBlock inVisible { label: LinkedIn }
+      shareBlock ggVisible { label: Google+ }
+      shareBlock piVisible { label: Pinterest }
+      shareBlock customUrl { label: Lien partage; }
+      shareBlock {
+        label: Bloc partage;
+        properties: shareButtonType=reverse fbVisible=true twVisible=true inVisible=false ggVisible=false piVisible=false customUrl shareButtonStyle;
+        variant: shareButtonType;
+        theme: contentTheme;
+      }
+      
+      preheaderBlock { label:Bloc pré-entête; theme: frameTheme; visibility: _root_.preheaderVisible; /* this is a fixed block:  using "visibility" property link this to the boolean variable that deal with its visibility and let mosaico add a trash button to hide it "inline" */ }
+
+      sideArticleBlock imagePos {label:Position image;widget:select; options: left=Gauche|right=Droite;
+        buttonsetIconClasses: left=fa fa-fw fa-address-card-o|right=fa fa-fw fa-address-card-o fa-flip-horizontal
+      }
+      sideArticleBlock imageWidth { label: Taille image; widget: select; options: 120=Petit|166=Moyen|258=Grand;
+        renderHint: buttonset;
+      }
+      sideArticleBlock { label: Bloc image et texte; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
+
+      sideImageBlock imagePos {label:Position image;widget:select; options: left=Gauche|right=Droite;
+        buttonsetIconClasses: left=fa fa-fw fa-address-card-o|right=fa fa-fw fa-address-card-o fa-flip-horizontal
+      }
+      sideImageBlock imageWidth { label: Taille image; widget: select; options: 143=Mini|190=Petite|285=Moyenne|380=Grande|427=Très grande; }
+      sideImageBlock { label: Bloc image et texte; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=285 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
+
+      textBlock { label: Bloc texte; properties: backgroundColor longTextStyle longText; theme: contentTheme}
+
+      singleArticleBlock imageWidth { label: Taille image; widget: select; options: 166=Petit|258=Moyen|350=Grand|534=Pleine }
+      singleArticleBlock { label: Bloc image/texte; properties: titleVisible=true buttonVisible=true imageVisible=true imageWidth=534 titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; theme: contentTheme}
+
+      fixedImageHeightVisible { label: Hauteur image fixe; extend: visible; }
+      externalBackgroundVisible { label: Font transparent; extend: visible; }
+
+      doubleArticleBlock { label: Bloc 3 colonnes; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+
+      tripleArticleBlock { label: Bloc 3 colonnes; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+      
+      logoBlock longTextStyle { label: Texte remplacement; }
+      logoBlock imageWidth { label: Taille image; widget: select; options: 166=Petit|258=Moyen|350=Grand;
+        renderHint: buttonset;
+      }
+      logoBlock { label: Bloc logo; properties: externalBackgroundVisible=true image imageWidth=258 externalTextStyle; variant: externalBackgroundVisible; theme: contentTheme}
+      
+      /* a deprecated block is a block that is "known", so loaded models will still work, but is not available in the block list */
+      titleBlock { label: Titre; properties: bigTitleStyle; theme: contentTheme; deprecated: true }
+      titleBlock2 { label: Titre; properties: bigTitleStyle; theme: contentTheme}
+
+      imageBlock longTextStyle { label: Texte remplacement; }
+      imageBlock { label: Image; properties: gutterVisible=false; variant: gutterVisible; theme: contentTheme }
+
+      doubleImageBlock longTextStyle { label: Texte remplacement; }
+      doubleImageBlock { label: Galerie de deux images; properties: gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme }
+
+      tripleImageBlock longTextStyle { label: Texte remplacement; }
+      tripleImageBlock { label: Galerie de trois images;properties:gutterVisible=false fixedImageHeightVisible=true; variant: gutterVisible; theme: contentTheme}
+
+      buttonBlock { label: Bloc bouton; properties: bigButtonStyle; theme: contentTheme}
+      hrBlock { label: Bloc séparateur; properties: hrStyle; theme: contentTheme; deprecated: true }
+      hrBlock2 { label: Bloc séparateur; properties: hrStyle; theme: contentTheme }
+      spacerBlock { label: Bloc espacement; properties: externalBackgroundVisible=true; variant: externalBackgroundVisible; theme: contentTheme }
+
+      spacerBlock:preview,
+      logoBlock:preview { -ko-background-color: @[externalBackgroundColor] }
+
+      preheaderBlock:preview,
+      hrBlock:preview,
+      hrBlock2:preview,
+      sideArticleBlock:preview,
+      sideImageBlock:preview,
+      textBlock:preview,
+      singleArticleBlock:preview,
+      doubleArticleBlock:preview,
+      tripleArticleBlock:preview,
+      titleBlock:preview,
+      titleBlock2:preview,
+      footerBlock:preview,
+      socialBlock:preview,
+      buttonBlock:preview,
+      titleBlock:preview { -ko-background-color: @[backgroundColor] }
+    }
+  </style>
+  <style type="text/css" data-ko-remove="">
+    /* PREVIEW STYLES */
+    .fullpreview [data-ko-block='hrBlock'],
+    .fullpreview [data-ko-block='titleBlock'] {
+      display: none;
+    }
+  </style>
+  <style type="text/css" data-inline="true">
+    body { margin: 0; padding: 0; }
+
+    .socialLinks { font-size: 6px; }
+    .socialLinks a {
+      display: inline-block;
+    }
+
+    .long-text p { margin: 1em 0px; }
+    .long-text p:last-child { margin-bottom: 0px; }
+    .long-text p:first-child { margin-top: 0px; }
+
+    /* :not([data-emoji]) is like a noop to hide this rule in Gmail to workaround emojification bug in Gmail: it is not really used by Gmail and this is currently equivalent to img:not(a) */
+    img:not([data-emoji]) { border: 0px; display: block; }
+  </style>
+  <style type="text/css">
+    /* yahoo, hotmail */
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+    .yshortcuts a { border-bottom: none !important; }
+    .vb-outer { min-width: 0 !important; }
+    .RMsgBdy, .ExternalClass {
+      width: 100%;
+      background-color: #3f3f3f;
+      -ko-background-color: @[_theme_.frameTheme.backgroundColor]
+    }
+
+    /* outlook/office365 add buttons outside not-linked images and safari have 2px margin */
+    [o365] button { margin: 0 !important; }
+
+    /* outlook */
+    table { mso-table-rspace: 0pt; mso-table-lspace: 0pt; }
+    #outlook a { padding: 0; }
+    img { outline: none; text-decoration: none; border: none; -ms-interpolation-mode: bicubic; }
+    a img { border: none; }
+
+    @media screen and (max-width: 600px) {
+      table.vb-row {
+        width: 95% !important;
+      }
+
+      .mobile-hide { display: none !important; }
+      .mobile-textcenter { text-align: center !important; }
+
+      .mobile-full { 
+        width: 100% !important;
+        max-width: none !important;
+      }
+    }
+    
+    /* samsung email workaround */
+    @media screen and (max-width: 384px) {
+      .mail-message-content { width: 414px !important; }
+    }
+  </style>
+  <style type="text/css" data-inline="true">
+    [data-ko-block=tripleArticleBlock] .links-color a, 
+    [data-ko-block=tripleArticleBlock] .links-color a:link, 
+    [data-ko-block=tripleArticleBlock] .links-color a:visited,
+    [data-ko-block=tripleArticleBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=doubleArticleBlock] .links-color a, 
+    [data-ko-block=doubleArticleBlock] .links-color a:link, 
+    [data-ko-block=doubleArticleBlock] .links-color a:visited,
+    [data-ko-block=doubleArticleBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=singleArticleBlock] .links-color a, 
+    [data-ko-block=singleArticleBlock] .links-color a:link, 
+    [data-ko-block=singleArticleBlock] .links-color a:visited,
+    [data-ko-block=singleArticleBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=textBlock] .links-color a, 
+    [data-ko-block=textBlock] .links-color a:link, 
+    [data-ko-block=textBlock] .links-color a:visited,
+    [data-ko-block=textBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=sideArticleBlock] .links-color a, 
+    [data-ko-block=sideArticleBlock] .links-color a:link, 
+    [data-ko-block=sideArticleBlock] .links-color a:visited,
+    [data-ko-block=sideArticleBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=sideImageBlock] .links-color a, 
+    [data-ko-block=sideImageBlock] .links-color a:link, 
+    [data-ko-block=sideImageBlock] .links-color a:visited,
+    [data-ko-block=sideImageBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=socialBlock] .links-color a, 
+    [data-ko-block=socialBlock] .links-color a:link, 
+    [data-ko-block=socialBlock] .links-color a:visited,
+    [data-ko-block=socialBlock] .links-color a:hover {
+      color: #cccccc;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=footerBlock] .links-color a, 
+    [data-ko-block=footerBlock] .links-color a:link, 
+    [data-ko-block=footerBlock] .links-color a:visited,
+    [data-ko-block=footerBlock] .links-color a:hover {
+      color: #cccccc;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+
+    [data-ko-block=doubleImageBlock] a,
+    [data-ko-block=doubleImageBlock] a:link,
+    [data-ko-block=doubleImageBlock] a:visited,
+    [data-ko-block=doubleImageBlock] a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+    [data-ko-block=tripleImageBlock] a,
+    [data-ko-block=tripleImageBlock] a:link,
+    [data-ko-block=tripleImageBlock] a:visited,
+    [data-ko-block=tripleImageBlock] a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+    [data-ko-block=imageBlock] a,
+    [data-ko-block=imageBlock] a:link,
+    [data-ko-block=imageBlock] a:visited,
+    [data-ko-block=imageBlock] a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+  </style>
+  <template-def>
+
+  <template tag="block">
+    <def attr="bgcolor" selector="table" bgcolor="{{bgcolor}}" style="background-color: {{bgcolor}}"></def>
+    <def attr="bgcolor-prop" selector="table" style="-ko-background-color: @[{{bgcolor-prop}}]; -ko-attr-bgcolor: @[{{bgcolor-prop}}]"></def>
+    <def attr="name" selector="table" data-ko-block="{{name}}"></def>
+    <def attr="label"></def>
+    <def attr="theme"></def>
+    <def attr="td-styles" selector="td" style="{{td-styles}}"></def>
+    <def attr="height" selector="td" height="{{height}}" style="height: {{height}}px"></def>
+    <def attr="height-prop" selector="td" style="-ko-height: @[{{height-prop}}]px; -ko-attr-height: @[{{height-prop}}]"></def>
+    <tmpl>
+    <!-- {{name}} -->
+    <table role="presentation" class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0">
+      <tr><td class="vb-outer" align="center" valign="top" style="padding-left: 9px; padding-right: 9px; font-size: 0">{{replacedcontent}}</td></tr>
+    </table>
+    <!-- /{{name}} -->
+    </tmpl>
+  </template>
+
+  <template tag="block-inner">
+    <def attr="class"></def>
+
+    <def attr="if" selector="div[data-ko-wrap]" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="div[data-ko-wrap]" style="display: none"></def>
+
+    <def attr="inner-bgcolor" selector="div div table" bgcolor="{{inner-bgcolor}}" style="background-color: {{inner-bgcolor}}"></def>
+    <def attr="inner-bgcolor-prop" selector="div div table" style="-ko-background-color: @[{{inner-bgcolor-prop}}]; -ko-attr-bgcolor: @[{{inner-bgcolor-prop}}]"></def>
+    <def attr="inner-padding" selector="div div table" cellspacing="{{inner-padding}}"></def>
+
+    <def attr="inner-width" selector="div div table, cc-table" width="{{inner-width}}"></def>
+    <!-- div[class] is required by old webkits not supporting max-width on tables -->
+    <!-- Check on Safari for Windows v4.0.5 531.2.7 -->
+    <def attr="inner-width" selector="div div table, div div" style="max-width: {{inner-width}}px; -mru-width: 0px"></def>
+
+    <!-- was display:inline-block", see https://github.com/voidlabs/versafix-template/issues/3 -->
+    <!-- the first table-tr-td is need to force width in MSO because the inner table
+         has  a width: 100% and MSO doesn't understand the max-width on the div -->
+    <tmpl>{{#if}}<div data-ko-wrap="false" style="width: 100%;">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top"><![endif]--><!--
+      --><div style="margin: 0 auto"><table role="presentation" class="vb-row" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%">
+        {{replacedcontent}}
+      </table></div><!--
+    --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->{{#if}}</div>{{/if}}</tmpl>
+  </template>
+
+  <template tag="columns">
+    <def attr="autowidth"></def>
+    <def attr="width" selector="cc-table" width="{{width}}"></def>
+    <!-- use a div inside the TD so that columns widths are handled correctly when the horizontal spacing of the container is different from its vertical spacing and the content should not fill 100% of the space but leave some spacing -->
+    <def attr="width" selector="div" style="max-width: {{width}}px; -mru-width: 0px"></def>
+
+    <!-- NOTE: the selector must be created so to not add the padding the {{dir}} td too -->
+    <!--       also make sure dir is applied after this one, otherwise the other td will have styles too -->
+    <def attr="horizontal-inner-padding" selector="td[style]" style="padding: 0 {{horizontal-inner-padding}}px;"></def>
+    <!-- used by doubleImageBlock and tripleImageBlock so to have vertical block padding added only externally instead of once for each column -->
+    <def attr="vertical-inner-padding" selector="td[style]" style="padding-top: {{vertical-inner-padding}}px; padding-bottom: {{vertical-inner-padding}}px;"></def>
+    <def attr="vertical-padding-style" selector="td[style]" style="-ko-padding-top: @[{{vertical-padding-style}}.topPadding]px; -ko-padding-bottom: @[{{vertical-padding-style}}.bottomPadding]px;"></def>
+
+    <def attr="mso-vertical-inner-padding" selector="cc-table" style="mso-padding-top-alt: {{mso-vertical-inner-padding}}px; mso-padding-bottom-alt: {{mso-vertical-inner-padding}}px;"></def>
+    <def attr="mso-vertical-padding-style" selector="cc-table" style="-ko-mso-padding-top-alt: @[{{mso-vertical-padding-style}}.topPadding]px; -ko-mso-padding-bottom-alt: @[{{mso-vertical-padding-style}}.bottomPadding]px;"></def>    
+
+    <!-- web.de|gmx, and maybe orange do not support dir in table/td -->
+    <!-- the template will add a whole table-tr-td when the dir attribute is used, to prevent some vertical line in MSO:
+         https://github.com/hteumeuleu/email-bugs/issues/97 -->
+    <def attr="dir" selector="table[dir] td" dir="{{dir}}" style="direction: {{dir}}; border-collapse: collapse;"></def>
+    <def attr="dir-prop" selector="table[dir] td" style="-ko-attr-dir: @[{{dir-prop}}]; -ko-direction: @[{{dir-prop}}]"></def>
+
+    <tmpl><tr>
+      <td align="center" valign="top" style="font-size: 0">{{#dir}}<table dir="" role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" valign="top">{{/dir}}<div style="width:100%"><!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0"><tr><![endif]--><!--
+        -->{{replacedcontent}}<!--
+      --><!--[if (gte mso 9)|(lte ie 8)]></tr></table><![endif]--></div>{{#dir}}</td></tr></table>{{/dir}}</td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="content">
+    <def attr="width" selector="table" width="{{width}}"></def>
+    <def attr="width" selector="div" style="max-width: {{width}}px; -mru-width: 0px"></def>
+    <def attr="width-prop" selector="table" style="-ko-attr-width: @[{{width-prop}}]"></def>
+    <!-- uso la forma con espressione perchè mosaico ha un bug nella ricerca del valore di default e non lo cerca nella prop precedente -->
+    <def attr="width-prop" selector="div" style="-ko-max-width: @[{{width-prop}} + 'px']"></def>
+
+    <!-- we used to have forced border-spacing for orange, but we now moved to collapsed borders -->
+    <def attr="spacing" selector="table" cellspacing="{{spacing}}"></def>
+
+    <def attr="align" selector="table" align="{{align}}"></def>
+    <def attr="text-align" selector="table" style="text-align: {{text-align}}"></def>
+
+    <def attr="class" selector="div" class="{{class}}"></def>
+
+    <def attr="horizontal-inner-padding" selector="td" style="padding: 0 {{horizontal-inner-padding}}px;"></def>
+    <def attr="vertical-inner-padding" selector="td" style="padding-top: {{vertical-inner-padding}}px; padding-bottom: {{vertical-inner-padding}}px;"></def>
+    <def attr="vertical-padding-style" selector="td" style="-ko-padding-top: @[{{vertical-padding-style}}.topPadding]px; -ko-padding-bottom: @[{{vertical-padding-style}}.bottomPadding]px;"></def>
+
+    <!-- the div used to have a  display: inline-block style. Removed it trying to remove unwanted space on iOS 10 -->
+    <tmpl><tr>
+      <td align="center" valign="top" style="font-size: 0"><div style="vertical-align:top; width:100%"><!--
+        --><table role="presentation" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; width: 100%">
+          {{replacedcontent}}
+        </table></div></td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="column-content">
+    <def attr="if" selector="div[data-ko-wrap], cc-td" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="div[data-ko-wrap], cc-td" style="display: none"></def>
+
+    <def attr="width" selector="cc-td, table" width="{{width}}"></def>
+    <def attr="width" selector="table" style="width: 100%"></def>
+    <def attr="width" selector="div" style="width: 100%; max-width: {{width}}px; -mru-width: 0px"></def>
+    <def attr="width-prop" selector="cc-td, table" style="-ko-attr-width: @[{{width-prop}}]"></def>
+    <!-- uso la forma con espressione perchè mosaico ha un bug nella ricerca del valore di default e non lo cerca nella prop precedente -->
+    <def attr="width-prop" selector="div" style="-ko-max-width: @[{{width-prop}} + 'px']"></def>
+
+    <def attr="dir" selector="table" dir="{{dir}}" style="direction: {{dir}}"></def>
+
+    <!-- we used to have forced border-spacing for orange, but we now moved to collapsed borders -->
+    <def attr="spacing" selector="table" cellspacing="{{spacing}}"></def>
+
+    <!-- workaround for Yandex issue with calc: https://github.com/voidlabs/versafix-template/issues/1 -->
+    <def attr="align" selector="table" align="{{align}}" style="-yandex-p: calc(2px - 3%)"></def>
+    <def attr="text-align" selector="table" style="text-align: {{text-align}}"></def>
+
+    <def attr="class" selector="cc-td, div" class="{{class}}"></def>
+
+    <!-- padding on div elements is not supported by MSO, so we also add the same padding
+         to the wrapping table element inserted by the MSO conditional comment, by using mso-padding-alt,
+         because t-online shows every conditional comment, so it would show both spaces if we use a real css property -->
+    <def attr="notmso-vertical-inner-padding" selector="div div" style="padding-top: {{notmso-vertical-inner-padding}}px; padding-bottom: {{notmso-vertical-inner-padding}}px;"></def>
+    <def attr="notmso-vertical-padding-style" selector="div div" style="-ko-padding-top: @[{{notmso-vertical-padding-style}}.topPadding]px; -ko-padding-bottom: @[{{notmso-vertical-padding-style}}.bottomPadding]px;"></def>
+
+    <!-- Here is the complex "hybrid layout" adaptive solution -->
+    <def attr="width-breakpoint" selector="div" style="min-width: calc({{width}} * 100% / {{width-breakpoint}}); -ko-min-width: @['calc(' + ({{#width-prop}}true ? {{width-prop}} : {{/width-prop}}{{width}}) * 100 / {{width-breakpoint}} + '%)']; max-width: calc(100%); -ko-max-width: @['calc(100%)']; width: calc({{width-breakpoint}} * {{width-breakpoint}}px - {{width-breakpoint}} * 100%); -ko-width: @['calc('+ {{width-breakpoint}} * {{width-breakpoint}} + 'px - ' + {{width-breakpoint}} * 100 +'%)']"></def>
+
+    <!-- border-collapse forced for Orange.fr compatibility -->
+    <tmpl>{{#if}}<div data-ko-wrap="false" style="display:inline-block" class="mobile-full">{{/if}}<!--[if (gte mso 9)|(lte ie 8)]><td align="left" valign="top"><![endif]--><!--
+      --><div style="display:inline-block; vertical-align:top" class="mobile-full"><!--
+        --><table role="presentation" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+          {{replacedcontent}}
+        </table><!--
+      --></div><!--[if (gte mso 9)|(lte ie 8)]></td><![endif]-->{{#if}}</div>{{/if}}</tmpl>
+  </template>
+
+  <template tag="linked-text">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <def attr="color" selector="td, a" style="color: {{color}}"></def>
+    <def attr="color-prop" selector="a" style="-ko-color: @[{{color-prop}}]"></def>
+    <def attr="decoration" selector="a" style="text-decoration: {{decoration}}"></def>
+    <def attr="size" selector="td" style="font-size: {{size}}"></def>
+    <def attr="face" selector="td" style="font-family: {{face}}"></def>
+    <def attr="href" selector="a" href="{{href}}"></def>
+    <def attr="href-prop" selector="a" style="-ko-attr-href: @[{{href-prop}}]"></def>
+    <def attr="editable" selector="a" data-ko-editable="{{editable}}"></def>
+
+    <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
+
+    <def attr="style" selector="td" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
+    <def attr="style" selector="a" style="-ko-color: @{{style}}.color; -ko-text-decoration: @{{style}}.decoration"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <tmpl><tr><td width="100%" valign="top" style="font-weight: normal"><a>{{replacedcontent}}</a></td></tr></tmpl>
+  </template>
+
+  <template tag="text">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <def attr="color" selector="td" style="color: {{color}}"></def>
+    <def attr="size" selector="td" style="font-size: {{size}}"></def>
+    <def attr="face" selector="td" style="font-family: {{face}}"></def>
+    <def attr="editable" selector="span" data-ko-editable="{{editable}}"></def>
+    <def attr="content" selector="span" style="-ko-bind-text: @{{content}}"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
+
+    <def attr="style" selector="td" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face; -ko-text-align: @{{style}}.align; -ko-attr-align: @{{style}}.align"></def>
+
+    <tmpl><tr>
+      <td width="100%" valign="top" style="font-weight: normal"><span style="font-weight: normal">{{replacedcontent}}</span></td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="long-text">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <def attr="color" selector="td" style="color: {{color}}"></def>
+    <def attr="size" selector="td" style="font-size: {{size}}"></def>
+    <def attr="face" selector="td" style="font-family: {{face}}"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
+    <def attr="line-height" selector="td" style="line-height: {{line-height}}"></def>
+    <def attr="fixed-align" selector="td" align="{{fixed-align}}" style="text-align: {{fixed-align}}"></def>
+
+    <def attr="style" selector="td" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face{{#align}}; -ko-text-align: @{{style}}.align; -ko-attr-align: @{{style}}.align{{/align}}{{#line-height}}; -ko-line-height: @[{{style}}.lineHeight]{{/line-height}}"></def>
+
+    <def attr="editable" selector="td" data-ko-editable="{{editable}}"></def>
+    <def attr="content" selector="td" style="-ko-bind-text: @{{content}}"></def>
+    <tmpl><tr><td class="long-text links-color" width="100%" valign="top" style="font-weight: normal">{{replacedcontent}}</td></tr></tmpl>
+  </template>
+
+
+  <template tag="linked-img">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <def attr="color" selector="img" style="color: {{color}}"></def>
+    <def attr="size" selector="img" style="font-size: {{size}}"></def>
+    <def attr="face" selector="img" style="font-family: {{face}}"></def>
+    <def attr="style" selector="img" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
+
+    <!-- Note: use content-spacing-style-with-padding-bottom instead of content-spacing-style when using this -->
+    <def attr="padding-bottom" selector="td" style="padding-bottom: {{padding-bottom}}px"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <!-- ugly hack, but I have not better way to deal with conflicting attribute combinations: 13px is hardcoded here 
+         because htmml can't calculate 5px + {{padding-bottom}} and we know padding-bottom is always 8px here -->
+    <def attr="content-spacing-style-with-padding-bottom" selector="td" style="-ko-padding: @[{{content-spacing-style-with-padding-bottom}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style-with-padding-bottom}}.verticalSpacing]px; -ko-padding-bottom: @[Math.round({{padding-bottom}}) + Math.round({{content-spacing-style-with-padding-bottom}}.verticalSpacing)]px;"></def>
+
+    <def attr="editable" selector="a" data-ko-link="{{editable}}.url"></def> 
+    <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @{{editable}}.alt; -ko-attr-alt-if: {{editable}}.alt !== '';"></def>
+
+    <def attr="content" selector="a" style="-ko-attr-href: @{{content}}.url"></def>
+    <def attr="content" selector="img" style="-ko-attr-src: @{{content}}.src; -ko-attr-alt: @{{content}}.alt; -ko-attr-alt-if: {{content}}.alt !== '';"></def>
+
+    <def attr="width" selector="img" width="{{width}}" style="width: 100%; max-width: {{width}}px"></def>
+    <def attr="width" selector="cc-div" style="width: {{width}}px"></def>
+    <def attr="width-prop" selector="img" style="-ko-attr-width: @[{{width-prop}}]; -ko-max-width: @[{{width-prop}}]px"></def>
+    <def attr="width-prop" selector="cc-div" style="-ko-width: @[{{width-prop}}]px"></def>
+    <def attr="width" selector="cc-div" style="-mru-width: 0px"></def>
+
+    <def attr="height" selector="img" height="{{height}}" style="height: auto"></def>
+    <def attr="placeholder-height" selector="img" data-ko-placeholder-height="{{placeholder-height}}" style="height: auto"></def>
+    <def attr="height-prop" selector="img" style="-ko-attr-height: @[{{height-prop}}]"></def>
+    <def attr="height-prop" selector="a" data-ko-height="{{height-prop}}"></def>
+
+    <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
+    <def attr="align" selector="img" align="{{align}}"></def>
+    <def attr="align" selector="tr" style="text-align: {{align}}"></def>
+
+    <def attr="src" selector="img" src="{{src}}"></def>
+    <def attr="src-prop" selector="img" style="-ko-attr-src: @[{{src-prop}}]"></def>
+
+    <def attr="class" selector="img" class="{{class}}"></def>
+
+    <def attr="alt" selector="img" alt="{{alt}}"></def>
+    <!-- the DIV is for old IE (IE in compatible mode), like Notes 8 showing full size images -->
+    <!-- the display: inline-block in the a tag is required for the data-ko-height to work correctly -->
+    <tmpl><tr><td width="100%" valign="top" align="center" class="links-color"><!--[if (lte ie 8)]><div style="display: inline-block"><![endif]--><a href="" style="display: inline-block;"><img alt="" border="0" hspace="0" align="center" vspace="0" style="vertical-align:top; height: auto; margin: 0 auto"></a><!--[if (lte ie 8)]></div><![endif]--></td></tr></tmpl>
+  </template>
+
+  <template tag="btn">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <!-- NOTE: we expect inner-padding and inner-hpadding to always be used together in btn. Using only one of them will create issues. -->
+    <def attr="inner-padding" selector="table" cellpadding="{{inner-padding}}" style="mso-padding-alt: {{inner-padding}}px {{inner-hpadding}}px {{inner-padding}}px {{inner-hpadding}}px"></def>
+    <def attr="inner-padding" selector="table td" style="padding: {{inner-padding}}px"></def>
+
+    <!-- padding on the table won't work on MSO clients, so we use margin here -->
+    <def attr="padding-top" selector="table" style="margin-top: {{padding-top}}px"></def>
+
+    <def attr="height" selector="table td" height="{{height}}"></def>
+
+    <def attr="inner-hpadding" selector="table td" style="padding-left: {{inner-hpadding}}px; padding-right: {{inner-hpadding}}px"></def>
+    <def attr="align" selector="td[valign='top'], table" align="{{align}}"></def>
+
+    <def attr="href" selector="a" href="{{href}}"></def>
+
+    <def attr="bgcolor" selector="table td" bgcolor="{{bgcolor}}" style="background-color: {{bgcolor}}"></def>
+    <def attr="color" selector="table td, a" style="color: {{color}}"></def>
+    <def attr="size" selector="table td, a" style="font-size: {{size}}"></def>
+    <def attr="face" selector="table td, a" style="font-family: {{face}}"></def>
+
+    <def attr="border-radius" selector="table td" style="border-radius: {{border-radius}}px"></def>
+
+    <def attr="border" selector="table td" style="border: {{border}}"></def>
+
+    <def attr="style" selector="table td" style="-ko-border-radius: @[{{style}}.radius]px; -ko-attr-bgcolor: @{{style}}.buttonColor; -ko-background-color: @{{style}}.buttonColor"></def>
+    <def attr="style" selector="table td" style="-ko-border: @[{{style}}.borderWidth]px solid @{{style}}.borderColor; -ko-border-if: {{style}}.borderWidth > 0"></def>
+    <def attr="style" selector="table" style="-ko-attr-cellpadding: @[Math.min({{style}}.verticalPadding, {{style}}.horizontalPadding)]; -ko-mso-padding-alt: @[{{style}}.verticalPadding]px @[{{style}}.horizontalPadding]px @[{{style}}.verticalPadding]px @[{{style}}.horizontalPadding]px"></def>
+    <def attr="style" selector="table td" style="-ko-padding: @[{{style}}.verticalPadding]px; -ko-padding-left: @[{{style}}.horizontalPadding]px; -ko-padding-right: @[{{style}}.horizontalPadding]px"></def>
+
+    <!-- Libero.it webmail alters font-size for a tags not defining font sizes inline -->
+    <def attr="style" selector="table td, a" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face"></def>
+    <def attr="style" selector="td[valign='top'], table" style="{{#align}}-ko-attr-align: @{{style}}.align{{/align}}"></def>
+
+    <def attr="content-spacing" selector="td[valign='top']" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td[valign='top']" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <def attr="editable" selector="span" data-ko-editable="{{editable}}.text"></def>
+    <def attr="editable" selector="a" style="-ko-attr-href: @{{editable}}.url"></def>
+
+    <!-- border-spacing: 0; needed for sfr.fr -->
+    <tmpl><tr>
+      <td valign="top"><table role="presentation" cellpadding="0" border="0" align="left" cellspacing="0" style="border-spacing: 0"><tr>
+        <td width="auto" valign="middle" align="center" style="text-align:center; font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><span data-ko-wrap="false">{{replacedcontent}}</span></a></td>
+      </tr></table></td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="share-btn">
+    <def attr="inner-padding" selector="table" cellspacing="{{inner-padding}}" style="mso-cellspacing: {{inner-padding}}px; border-collapse: separate; border-spacing: {{inner-padding}}px"></def>
+
+    <def attr="height" selector="table td" height="{{height}}"></def>
+
+    <def attr="inner-addhpadding" selector="table td:first-child" style="padding-left: {{inner-addhpadding}}"></def>
+    <def attr="inner-addhpadding" selector="table td:last-child" style="padding-right: {{inner-addhpadding}}"></def>
+
+    <def attr="href" selector="a" href="{{href}}"></def>
+    <def attr="href-prop" selector="a" style="-ko-attr-href: @[{{href-prop}}]"></def>
+
+    <def attr="bgcolor" selector="table" bgcolor="{{bgcolor}}" style="background-color: {{bgcolor}}"></def>
+    <def attr="color" selector="table td, a" style="color: {{color}}"></def>
+    <def attr="size" selector="table td, a" style="font-size: {{size}}"></def>
+    <def attr="face" selector="table td, a" style="font-family: {{face}}"></def>
+    <def attr="border-radius" selector="table" style="border-radius: {{border-radius}}px"></def>
+
+    <!-- Libero.it webmail alters font-size for a tags not defining font sizes inline -->
+    <def attr="custom-style" selector="table" style="-ko-attr-bgcolor: @{{custom-style}}.buttonColor; -ko-background-color: @{{custom-style}}.buttonColor"></def>
+    <def attr="custom-style" selector="table td, a" style="-ko-color: @{{custom-style}}.color"></def>
+
+    <def attr="btn-style" selector="table" style="-ko-border-radius: @[{{btn-style}}.radius]px;"></def>
+    <def attr="custom-style" selector="table" style="-ko-border-radius: @[{{custom-style}}.radius]px;"></def>
+
+    <def attr="font-style" selector="table td, a" style="-ko-font-size: @[{{font-style}}.size]px; -ko-font-family: @{{font-style}}.face"></def>
+    <def attr="btn-style" selector="table td, a" style="-ko-font-size: @[{{btn-style}}.size]px; -ko-font-family: @{{btn-style}}.face"></def>
+    <def attr="custom-style" selector="table td, a" style="-ko-font-size: @[{{custom-style}}.size]px; -ko-font-family: @{{custom-style}}.face"></def>
+
+    <def attr="content-spacing" selector="td[valign='top']" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td[valign='top']" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <def attr="editable" selector="span" data-ko-editable="{{editable}}"></def>
+
+    <def attr="src" selector="img" src="{{src}}"></def>
+    <def attr="src-prop" selector="img" style="-ko-attr-src: @[{{src-prop}}]"></def>
+
+    <def attr="icon-alt" selector="img" alt="{{icon-alt}}"></def>
+    <def attr="icon-size" selector="img" width="{{icon-size}}" height="{{icon-size}}"></def>
+    <def attr="icon-size" selector="td.shareIcon" width="{{icon-size}}"></def>
+    <def attr="icon-size" selector="td" style="line-height: {{icon-size}}px;"></def>
+    <!-- border-spacing: 0; needed for sfr.fr -->
+    <tmpl><tr>
+      <td valign="top"><table role="presentation" cellpadding="0" border="0" align="center" cellspacing="0" style="border-spacing: 0"><tr>
+        {{#src}}<td class="shareIcon" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><img style="display: block"></a></td>{{/src}}
+        <td width="auto" valign="middle" style="font-weight: normal"><a href="" style="text-decoration: none; font-weight: normal"><span data-ko-wrap="false">{{replacedcontent}}</span></a></td>
+      </tr></table></td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="title-text">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <def attr="color" selector="td" style="color: {{color}}"></def>
+    <def attr="size" selector="td" style="font-size: {{size}}"></def>
+    <def attr="face" selector="td" style="font-family: {{face}}"></def>
+    <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
+    <def attr="editable" selector="span" data-ko-editable="{{editable}}"></def>
+    <def attr="content" selector="span" style="-ko-bind-text: @{{content}}"></def>
+    <def attr="style" selector="td" style="-ko-font-size: @[{{style}}.size]px; -ko-color: @{{style}}.color; -ko-font-family: @{{style}}.face; -ko-text-align: @{{style}}.align; -ko-attr-align: @{{style}}.align"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <tmpl><tr>
+      <td width="100%" valign="top" style="font-weight: normal"><span style="font-weight: normal">{{replacedcontent}}</span></td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="spacer">
+    <def attr="height" selector="td" height="{{height}}" style="line-height: {{height}}px"></def>
+    <def attr="height-prop" selector="td" data-ko-height="{{height-prop}}" style="-ko-line-height: @[{{height-prop}}]px; -ko-attr-height: @[{{height-prop}}]"></def>
+    <!-- padding: 0 and border-spacing: 0 needed for Orange.fr and Sfr.fr -->
+    <tmpl><tr>
+        <td width="100%" height="1" style="padding: 0; font-size:1px; line-height: 1px; width: 100%">&nbsp;</td>
+      </tr></tmpl>
+  </template>
+
+  <template tag="divider">
+    <def attr="color" selector="table td" style="background-color: {{color}}"></def>
+    <def attr="width" selector="table" width="{{width}}%" style="width: {{width}}%"></def>
+    <!-- use max-height/overflow to avoid iOS mail with accessibility options to show "large" dividers: https://github.com/voidlabs/versafix-template/issues/2 -->
+    <def attr="height" selector="table td" height="{{height}}" style="line-height: {{height}}px; max-height: {{height}}px; overflow: hidden;"></def>
+    <def attr="style" selector="table td" style="-ko-background-color: @{{style}}.color; -ko-attr-height: @{{style}}.hrHeight; -ko-line-height: @[{{style}}.hrHeight]px; -ko-max-height: @[{{style}}.hrHeight]px"></def>
+    <def attr="style" selector="table" style="-ko-width: @[{{style}}.hrWidth]%; -ko-attr-width: @[{{style}}.hrWidth]%"></def>
+
+    <def attr="content-spacing" selector="td[valign='top']" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td[valign='top']" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <!-- padding: 0 and border-spacing: 0 needed for Orange.fr and Sfr.fr -->
+    <tmpl><tr>
+      <td valign="top" align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-spacing: 0"><tr>
+        <td width="100%" height="1" style="padding: 0; font-size:1px; line-height: 1px; max-height: 1px; width: 100%">&nbsp;</td>
+      </tr></table></td>
+    </tr></tmpl>
+  </template>
+
+  <template tag="custom-row">
+    <def attr="if" selector="tr" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="tr" style="display: none"></def>
+
+    <def attr="align" selector="td" align="{{align}}" style="text-align: {{align}}"></def>
+    <def attr="class" selector="td" class="{{class}}"></def>
+
+    <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
+    <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
+
+    <tmpl><tr><td width="100%" valign="top" style="font-weight: normal">{{replacedcontent}}</td></tr></tmpl>
+  </template>
+
+  <template tag="social-icon">
+    <def attr="if" selector="div, a" data-ko-display="{{if}}"></def>
+    <def attr="false" selector="div, a" style="display: none"></def>
+
+    <def attr="src" selector="img" src="{{src}}"></def>
+
+    <def attr="prefix"></def>
+    <def attr="src-prop" selector="img" style="-ko-attr-src: @[{{src-prop}}]"></def>
+
+    <!-- use multiple backgroun declaration so clients not supporting border-radius won't show the background too -->
+    <!-- we used to use url() with no content, but this made some sub-request on web versions/web clients: https://github.com/voidlabs/versafix-template/issues/5 -->
+    <def attr="color" selector="a" style="background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), {{color}}"></def>
+    <def attr="color-prop" selector="a" style="-ko-background: @['url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7), '+{{color-prop}}]"></def>
+    <def attr="size" selector="img" width="{{size}}" height="{{size}}"></def>
+    <def attr="size-prop" selector="img" style="-ko-attr-width: @[{{size-prop}}]; -ko-attr-height: @[{{size-prop}}]"></def>
+    <def attr="radius" selector="a" style="border-radius: {{radius}}px"></def>
+    <def attr="alt" selector="img" alt="{{alt}}"></def>
+    <def attr="href-prop" selector="a" style="-ko-attr-href: @[{{href-prop}}]"></def>
+    <tmpl><div data-ko-wrap="false" style="display: inline-block;">&nbsp;<a href=""><img border="0" style="display: inline-block; vertical-align: top; padding-bottom: 0px"></a></div></tmpl>
+  </template>
+
+  <default selector="block[theme='frameTheme']" bgcolor="#3f3f3f" bgcolor-prop="backgroundColor"></default>
+  <default selector="block" theme="contentTheme" bgcolor="#bfbfbf" bgcolor-prop="externalBackgroundColor"></default>
+
+  <default selector="block-inner" inner-width="570"></default>
+  <default selector="block-inner.gutterless" inner-padding="0"></default>
+  <default selector="block[theme='frameTheme'] block-inner" inner-padding="0"></default>
+  <default selector="block-inner" inner-padding="9"></default>
+
+  <default selector="block[theme='contentTheme'] block-inner:not([if='externalBackgroundVisible'])" inner-bgcolor="#ffffff" inner-bgcolor-prop="backgroundColor"></default>
+
+  <default selector="block[name='logoBlock'] block-inner[if='externalBackgroundVisible'] linked-img" color="#f3f3f3" size="18px" face="Arial, Helvetica, sans-serif" style="externalTextStyle"></default>
+
+  <default selector="columns:not([autowidth])" width="552"></default>
+  <default selector="columns:not([autowidth]) column-content" width-breakpoint="552"></default>
+
+  <default selector=".fixedhalfgutter content, [theme='frameTheme'] content" vertical-inner-padding="4"></default>
+  <default selector="content" horizontal-inner-padding="9" vertical-inner-padding="13" spacing="9" width="552"></default>
+  <default selector="block-inner:not(.fixedhalfgutter) content" vertical-padding-style="blockSpacing"></default>
+
+  <!-- socialBlock -->
+  <default selector="[theme='frameTheme'] block-inner.multicolumns columns" mso-vertical-inner-padding="4"></default>
+  <!-- preHeaderBlock -->
+  <default selector="[theme='frameTheme'] block-inner:not(.multicolumns):not(.gutterless) columns" vertical-inner-padding="4"></default>
+  <!-- tripleArticleBlock, doubleArticleBlock, partially socialBlock -->
+  <default selector="block-inner.multicolumns columns" mso-vertical-inner-padding="13" mso-vertical-padding-style="blockSpacing"></default>
+  <default selector="block-inner:not(.gutterless) columns" horizontal-inner-padding="9"></default>
+  <default selector="block-inner:not(.multicolumns):not(.gutterless) columns" vertical-inner-padding="13" vertical-padding-style="blockSpacing"></default>
+
+  <default selector="[theme='frameTheme'] .multicolumns column-content" notmso-vertical-inner-padding="4"></default>
+  <default selector=".multicolumns column-content" notmso-vertical-inner-padding="13" notmso-vertical-padding-style="blockSpacing"></default>
+  <!-- force border-spacing to 0 for Sfr.fr/Orange.fr -->
+  <default selector=".gutterless column-content" spacing="0"></default>
+  <default selector="column-content" spacing="9" align="left"></default>
+
+  <default selector="block[theme='frameTheme'] linked-text" color="#ffffff" decoration="underline" style="linkStyle"></default>
+  <default selector="block[theme='frameTheme'] long-text"></default>
+  <default selector="block[theme='frameTheme'] text, block[theme='frameTheme'] long-text" color="#919191" style="longTextStyle"></default>
+
+
+  <default selector="block[theme='contentTheme'] text" size="18px" style="titleTextStyle"></default>
+  <default selector="block[theme='contentTheme'] long-text" line-height="normal" style="longTextStyle"></default>
+  <default selector="share-btn" inner-addhpadding="4px" icon-size="24" icon-alt="{{name}}"></default>
+  <default selector="block[theme='contentTheme'] btn" inner-hpadding="18" style="buttonStyle" border="0px solid #3f3f3f"></default>
+  <default selector="block[theme='contentTheme'] btn, share-btn" inner-padding="6" bgcolor="#bfbfbf" border-radius="4"></default>
+  <default selector="block[theme='contentTheme'] linked-img" style="longTextStyle"></default>
+
+  <default selector="divider" color="#3f3f3f"></default>
+  <default selector="text, title-text, long-text, share-btn, btn, linked-text, linked-img" face="Arial, Helvetica, sans-serif" color="#3f3f3f" size="13px"></default>
+  <default selector="text, title-text, long-text:not([fixed-align]), btn, linked-text" align="left"></default>
+
+  <!-- some linked-img is used gutterless containers, so we don't declare them here -->
+  <default selector="text, title-text, long-text, share-btn, btn, linked-text, custom-row, divider" content-spacing="padding: 9px; padding-top: 5px; padding-bottom: 5px" content-spacing-style="blockSpacing"></default>
+  <default selector="linked-img[padding-bottom]" content-spacing="padding: 9px; padding-top: 5px; padding-bottom: 13px;" content-spacing-style-with-padding-bottom="blockSpacing"></default>
+  <default selector="block-inner:not(.gutterless) linked-img:not([padding-bottom])" content-spacing="padding: 9px; padding-top: 5px; padding-bottom: 5px" content-spacing-style="blockSpacing"></default>
+
+  <!-- immages on gallery blocks are shown full width (100%) on mobile -->
+  <default selector="*[if='gutterVisible eq false'] linked-img" class="mobile-full"></default>
+
+  <default selector="social-icon" size="32" radius="50"></default>
+
+
+<!--
+    <block name="imageSeparatorBlock" label="Image Separator">
+      <block-inner class="gutterless" inner-bgcolor="#bfbfbf" inner-bgcolor-prop="externalBackgroundColor">
+        <linked-img width="570" height="52"
+          src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C52"
+          src-prop="'img?method=magic&params=0,0&src=uploads/fgbg.png&src2=uploads/shadow2.png&white='+externalBackgroundColor+'&black='+backgroundColor"></linked-img>
+        <linked-img width="570" height="52"
+          src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C52"
+          src-prop="'img?method=colorize&params='+backgroundColor+',%23FF00FF,90&src=uploads/fgbg-colorize.png'"></linked-img>
+      </block-inner>
+    </block>
+-->
+
+  <!-- Note: 
+    the conditional comment around the body tag (and /body) is to hide the whole tag to windows 10 mail to prevent really weird bugs with windows 10 mail.
+    the conditional comment also remove the tag from Outlook 2016 and following versions, as they share the same version of windows 10 mail.
+    2022-06-09: switched to gte mso 15 to remove the body also to Outlook 2013 so 1px lines are white instead of the external frame color.
+  -->
+
+  </template-def>
+</head>
+<!--[if !(gte mso 15)]-->
+<body bgcolor="#3f3f3f" text="#919191" alink="#cccccc" vlink="#cccccc" style="background-color: #3f3f3f; color: #919191;
+  -ko-background-color: @_theme_.frameTheme.backgroundColor; -ko-attr-bgcolor: @_theme_.frameTheme.backgroundColor; -ko-color: @_theme_.frameTheme.longTextStyle.color;
+  -ko-attr-text: @_theme_.frameTheme.longTextStyle.color; -ko-attr-alink: @_theme_.frameTheme.longTextStyle.linksColor;
+  -ko-attr-vlink: @_theme_.frameTheme.longTextStyle.linksColor"><!--<![endif]--><center>
+
+  <div data-ko-display="preheaderVisible" data-ko-wrap="false">
+
+    <block name="preheaderBlock" label="Preheader Block" theme="frameTheme">
+      <div data-ko-display="preheaderLinkOption neq 'none'" style="display: none; font-size:1px; line-height: 1px; max-height:0px; max-width: 0px; opacity: 0; overflow: hidden; 
+          -ko-bind-text: @preheaderText"></div>
+      <block-inner>
+        <columns><!--
+          --><column-content width="276">
+            <linked-text if="preheaderLinkOption neq 'none'" href="[unsubscribe_link]" href-prop="preheaderLinkOption" editable="unsubscribeText">Désabonnement</linked-text>
+            <text false="" if="preheaderLinkOption eq 'none'" content="preheaderText"></text>
+          </column-content><!--
+          --><column-content width="276" class="mobile-hide">
+            <linked-text align="right" href="[show_link]" editable="webversionText">Afficher dans votre navigateur</linked-text>
+          </column-content><!--
+        --></columns>
+      </block-inner>
+    </block>
+
+  </div>
+
+  <div data-ko-container="main" data-ko-wrap="false">
+
+    <block name="logoBlock" label="Logo Block">
+      <block-inner if="externalBackgroundVisible">
+        <content width="276" width-prop="2 * blockSpacing.horizontalSpacing + Math.round(imageWidth)">
+          <linked-img width="258" placeholder-height="150" width-prop="imageWidth" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
+        </content>
+      </block-inner>
+      <block-inner false="" if="externalBackgroundVisible eq false">
+        <content width="276" width-prop="2 * blockSpacing.horizontalSpacing + Math.round(imageWidth)">
+          <linked-img width="258" placeholder-height="150" width-prop="imageWidth" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C150" editable="image"></linked-img>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="sideArticleBlock" label="Image+Text Block">
+      <block-inner>
+        <columns dir="ltr" dir-prop="imagePos eq 'left' ? 'ltr' : 'rtl'"><!--
+          --><column-content dir="ltr" width="184" width-prop="2 * blockSpacing.horizontalSpacing + Math.round(imageWidth)">
+            <linked-img editable="image" width="166" width-prop="imageWidth" placeholder-height="130" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C130"></linked-img>
+          </column-content><!--
+          --><column-content dir="ltr" width="368" width-prop="552 - 2 * blockSpacing.horizontalSpacing - Math.round(imageWidth)">
+            <text editable="titleText" if="titleVisible">Titre</text>
+            <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout <a href="">Verrières</a> en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi. Le préfet autorisait, c’est-à-dire demandait la formation d’une garde d’honneur ; il fallait déployer toute la pompe possible.</p></long-text>
+            <btn editable="buttonLink" if="buttonVisible" padding-top="2">BOUTON</btn>
+          </column-content><!--
+        --></columns>
+      </block-inner>
+    </block>
+
+    <block name="sideImageBlock" label="Side Image Block">
+      <block-inner class="gutterless">
+        <columns dir="ltr" dir-prop="imagePos eq 'left' ? 'ltr' : 'rtl'" width="570"><!--
+          --><column-content dir="ltr" width="285" width-breakpoint="570" spacing="0" width-prop="imageWidth">
+            <linked-img editable="image" width="285" width-prop="imageWidth" placeholder-height="170" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C170"></linked-img>
+          </column-content><!--
+          --><column-content dir="ltr" width="285" width-breakpoint="570" width-prop="570 - Math.round(imageWidth)" spacing="9">
+            <content>
+              <text editable="titleText" if="titleVisible">Titre</text>
+              <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout <a href="">Verrières</a> en montant la grande rue au galop.</p></long-text>
+              <btn editable="buttonLink" if="buttonVisible" padding-top="2">BOUTON</btn>
+            </content>
+          </column-content><!--
+        --></columns>
+      </block-inner>
+    </block>
+
+    <block name="singleArticleBlock" label="Image/Text Block">
+      <block-inner>
+        <content>
+          <linked-img if="imageVisible" editable="image" width="534" width-prop="Math.round(imageWidth) + 18 - 2 * blockSpacing.horizontalSpacing" placeholder-height="150" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C150" padding-bottom="8"></linked-img>
+          <text editable="text" if="titleVisible">Titre Section</text>
+          <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout <a href="">Verrières</a> en montant la grande rue au galop ; il apportait la nouvelle que Sa Majesté le roi de arrivait le dimanche suivant, et l’on était au mardi. Le préfet autorisait, c’est-à-dire demandait la formation d’une garde d’honneur ; il fallait déployer toute la pompe possible.</p></long-text>
+          <btn editable="buttonLink" if="buttonVisible" padding-top="2">BOUTON</btn>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="titleBlock" label="Title Block">
+      <block-inner class="gutterless fixedhalfgutter">
+        <content>
+          <title-text editable="text" align="center" size="22px" style="bigTitleStyle">Titre Section</title-text>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="titleBlock2" label="Title Block">
+      <block-inner>
+        <content>
+          <title-text editable="text" align="center" size="22px" style="bigTitleStyle">Titre Section</title-text>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="textBlock" label="Text Block">
+      <block-inner>
+        <content>
+          <long-text editable="longText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout <a href="">Verrières</a> en montant la grande rue au galop.</p><p>Une estafette fut expédiée à Vergy. M. de Rênal arriva dans la nuit, et trouva la ville en émoi. Chacun avait ses prétentions ; les moins affairés louaient des balcons pour voir l’entrée du roi.</p></long-text>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="tripleArticleBlock" label="3 Columns Block">
+      <block-inner class="multicolumns">
+        <columns horizontal-inner-padding="9"><repeater repeat="left,middle,right" height="90,70,110"><!--
+          --><column-content width="184">
+            <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="166" width-prop="184 - blockSpacing.horizontalSpacing * 2" height="90" height-prop="imageHeight" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C90"></linked-img>
+            <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" width-prop="184 - blockSpacing.horizontalSpacing * 2" placeholder-height="{{height}}" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C{{height}}"></linked-img>
+            <text editable="{{repeat}}TitleText" if="titleVisible">Titre</text>
+            <long-text editable="{{repeat}}LongText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout <a href="">Verrières</a> en montant la grande rue au galop.</p></long-text>
+            <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="2">BOUTON</btn>
+          </column-content><!--
+        --></repeater></columns>
+      </block-inner>
+    </block>
+
+    <block name="doubleArticleBlock" label="2 Columns Block">
+      <block-inner class="multicolumns">
+        <columns horizontal-inner-padding="9"><repeater repeat="left,right" height="90,120"><!--
+            --><column-content width="276">
+              <linked-img if="imageVisible and fixedImageHeightVisible" editable="{{repeat}}Image" width="258" width-prop="276 - blockSpacing.horizontalSpacing * 2" height="100" height-prop="imageHeight" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C100"></linked-img>
+              <linked-img false="" if="imageVisible and fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" width-prop="276 - blockSpacing.horizontalSpacing * 2" placeholder-height="{{height}}" padding-bottom="8" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C{{height}}"></linked-img>
+              <text editable="{{repeat}}TitleText" if="titleVisible">Titre</text>
+              <long-text editable="{{repeat}}LongText"><p>Le trois septembre, à dix heures du soir, un gendarme réveilla tout <a href="">Verrières</a> en montant la grande rue au galop.</p></long-text>
+              <btn editable="{{repeat}}ButtonLink" if="buttonVisible" padding-top="2">BOUTON</btn>
+            </column-content><!--
+          --></repeater></columns>
+      </block-inner>
+    </block>
+
+    <block name="hrBlock" label="Separator Block">
+      <block-inner class="gutterless fixedhalfgutter">
+        <content>
+          <divider width="100" height="1" style="hrStyle"></divider>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="hrBlock2" label="Separator Block">
+      <block-inner>
+        <content>
+          <divider width="100" height="1" style="hrStyle"></divider>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="buttonBlock" label="Button Block">
+      <block-inner>
+        <content>
+          <btn editable="link" inner-padding="12" align="center" inner-hpadding="14" size="22px" style="bigButtonStyle">BOUTON</btn>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="imageBlock" label="Image">
+      <block-inner if="gutterVisible eq false" class="gutterless">
+        <linked-img editable="image" width="570" placeholder-height="200" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=570%2C200"></linked-img>
+      </block-inner>
+      <block-inner false="" if="gutterVisible">
+        <content>
+          <linked-img editable="image" width="534" width-prop="552 - 2 * blockSpacing.horizontalSpacing" placeholder-height="280" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=534%2C280"></linked-img>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="doubleImageBlock" label="Two Image Gallery">
+      <block-inner if="gutterVisible eq false" class="gutterless">
+        <columns width="570"><repeater repeat="left,right"><!--
+            --><column-content width-breakpoint="570" width="285">
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="285" height="180" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="285" placeholder-height="180" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=285%2C180"></linked-img>
+            </column-content><!--
+          --></repeater></columns>
+      </block-inner>
+      <block-inner false="" if="gutterVisible">
+        <columns><repeater repeat="left,right"><!--
+            --><column-content width="276">
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="258" width-prop="276 - blockSpacing.horizontalSpacing * 2" height="180" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="258" width-prop="276 - blockSpacing.horizontalSpacing * 2" placeholder-height="180" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=258%2C180"></linked-img>
+            </column-content><!--
+      --></repeater></columns>
+      </block-inner>
+    </block>
+
+    <block name="tripleImageBlock" label="Three Image Gallery">
+      <block-inner if="gutterVisible eq false" class="gutterless">
+        <columns width="570"><repeater repeat="left,middle,right"><!--
+            --><column-content width-breakpoint="570" width="190">
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="190" height="160" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="190" placeholder-height="160" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=190%2C160"></linked-img>
+            </column-content><!--
+       --></repeater></columns>
+      </block-inner>
+      <block-inner false="" if="gutterVisible">
+        <columns><repeater repeat="left,middle,right"><!--
+            --><column-content width="184">
+              <linked-img if="fixedImageHeightVisible" editable="{{repeat}}Image" width="166" width-prop="184 - blockSpacing.horizontalSpacing * 2" height="160" height-prop="imageHeight" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
+              <linked-img false="" if="fixedImageHeightVisible eq false" editable="{{repeat}}Image" width="166" width-prop="184 - blockSpacing.horizontalSpacing * 2" placeholder-height="160" src="https://mosaico.io/srv/f-default/img?method=placeholder&amp;params=166%2C160"></linked-img>
+            </column-content><!--
+          --></repeater></columns>
+      </block-inner>
+    </block>
+
+    <block name="bigSocialBlock" label="Big Social Block">
+      <block-inner>
+        <content>
+          <custom-row align="center" class="links-color socialLinks mobile-textcenter">
+            <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,if,false if,false if,false if,if,if,false if,false if" color="#3b5998,#000000,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+              <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" size="48" size-prop="bigSocialIconSize" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+bigSocialIconType+'-96.png')" alt="{{name}}"></social-icon>
+            </repeater>
+          </custom-row>
+        </content>
+      </block-inner>
+    </block>
+
+    <block name="shareBlock" label="Share Block">
+      <block-inner if="shareButtonType eq 'reverse'">
+        <columns autowidth="1">
+          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#000000,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
+            <column-content {{default}}="{{prefix}}Visible" align="center">
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#FFFFFF" bgcolor="{{color}}" src="img/icons/{{prefix}}-white-96.png" btn-style="shareButtonStyle" editable="{{prefix}}Text">Partager</share-btn>
+            </column-content>
+          </repeater>
+        </columns>
+      </block-inner>
+      <block-inner false="" if="shareButtonType eq 'simple'">
+        <columns autowidth="1">
+          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#000000,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
+            <column-content {{default}}="{{prefix}}Visible" align="center">
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" color="#000000" bgcolor="#FFFFFF" src="img/icons/{{prefix}}-coloured-96.png" font-style="shareButtonStyle" editable="{{prefix}}Text">Partager</share-btn>
+            </column-content>
+          </repeater>
+        </columns>
+      </block-inner>
+      <block-inner false="" if="shareButtonType eq 'custom'">
+        <columns autowidth="1">
+          <repeater prefix="fb,tw,in,gg,pi" default="if,if,false if,false if,false if" name="Facebook,X / Twitter,LinkedIn,Google+,Pinterest" color="#3b5998,#000000,#007bb6,#d34836,#C92228" shareurl="http://www.facebook.com/sharer/sharer.php?u=,http://twitter.com/share?url=,http://www.linkedin.com/shareArticle?url=,http://plus.google.com/share?url=,http://pinterest.com/pin/find/?url=">
+            <column-content {{default}}="{{prefix}}Visible" align="center">
+              <share-btn href="{{shareurl}}%5Bpermlink_urlenc%5D" src="img/icons/{{prefix}}-black-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+(shareButtonStyle.iconColorType == 'brand' ? 'coloured' : shareButtonStyle.iconColorType)+'-96.png')" editable="{{prefix}}Text" custom-style="shareButtonStyle">Partager</share-btn>
+            </column-content>
+          </repeater>
+        </columns>
+      </block-inner>
+    </block>
+
+    <block height="24" height-prop="spacerSize" td-styles="font-size:1px; height: 1px" name="spacerBlock" label="Spacer Block">
+      <block-inner false="" if="externalBackgroundVisible eq false" class="gutterless">
+        <spacer height="24" height-prop="spacerSize"></spacer>
+      </block-inner>
+      <div data-ko-height="spacerSize" style="height: 24px; -ko-height: @[spacerSize]px" data-ko-display="externalBackgroundVisible" data-ko-wrap="false">&nbsp;</div>
+    </block>
+
+    <block name="socialBlock" label="Social Block" theme="frameTheme">
+      <block-inner inner-padding="9" class="multicolumns">
+        <columns vertical-inner-padding="9"><!--
+          --><column-content width="276">
+            <long-text fixed-align="left" editable="longText"><p>Adresse et <a href="">Contacts</a></p></long-text>
+          </column-content><!--
+          --><column-content width="276">
+            <custom-row if="socialIconType eq 'colors'" align="right" class="links-color socialLinks mobile-textcenter">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#000000,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+                <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="{{color}}" src="img/icons/{{prefix}}-colors-96.png" alt="{{name}}"></social-icon>
+              </repeater>
+            </custom-row>
+            <custom-row false="" if="socialIconType eq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#000000,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+                <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" color="#818181" src="img/icons/{{prefix}}-bw-96.png" alt="{{name}}"></social-icon>
+              </repeater>
+            </custom-row>
+            <custom-row false="" if="socialIconType neq 'colors' and socialIconType neq 'bw'" align="right" class="links-color socialLinks mobile-textcenter">
+              <repeater prefix="fb,tw,gg,web,wa,tg,in,pi,fl,vi,inst,you,tt,tc" default="if,if,false if,false if,false if,false if,false if,false if,false if,false if,if,false if,false if,false if" color="#3b5998,#000000,#d34836,#606060,#25d366,#2da5e1,#007bb6,#C92228,#ff0084,#45bbff,#bc2a8d,#cd201f,#000000,#9146ff" name="Facebook,X / Twitter,Google,Web,Whatsapp,Telegram,Linkedin,Pinterest,Flickr,Vimeo,Instagram,Youtube,TikTok,Twitch">
+                <social-icon {{default}}="{{prefix}}Visible" href-prop="{{prefix}}Url" src="img/icons/{{prefix}}-rdcol-96.png" src-prop="Url.templatePath('img/icons/{{prefix}}-'+socialIconType+'-96.png')" alt="{{name}}"></social-icon>
+              </repeater>
+            </custom-row>
+          </column-content><!--
+        --></columns>
+      </block-inner>
+    </block>
+
+  </div>
+
+  <block name="footerBlock" label="Unsubscribe Block" theme="frameTheme">
+    <block-inner>
+      <content>
+        <long-text editable="longText" fixed-align="center"><p>Email envoyé à <a href="mailto:[mail]">[mail]</a></p></long-text>
+        <linked-text align="center" href="[unsubscribe_link]" editable="disiscrivitiText" color-prop="Color.readability(linkStyle.color, backgroundColor) gt 2 ? linkStyle.color : (Color.isReadable('#ffffff', backgroundColor) ? '#ffffff' : '#000000')">Désabonnement</linked-text>
+        <linked-img width="170" align="center" false="" if="_root_.sponsor.visible" content="_root_.sponsor" src="img/sponsor.gif" alt="sponsor"></linked-img>
+      </content>
+    </block-inner>
+  </block>
+</center><!--[if !(gte mso 15)]--></body><!--<![endif]--></html>

@@ -8,13 +8,20 @@ const fs = require('fs');
 const test = myArgs.length > 0 && myArgs[0] == 'test';
 
 var templates = [{
+	// Italian translation
 	'translateSrc': './template-def/template-versafix-1.htmml',
 	'translateDef': './template-def/template-versafix-1.it.json',
 	'htmml': './template-def/template-versafix-1.it.htmml',
 },{
+	// Voxmail template
 	'translateSrc': './template-def/template-versafix-1.it.htmml',
 	'translateDef': './template-def/template-versafix-1.voxmail.json',
 	'htmml': './template-def/template-versafix-1.voxmail.htmml',
+},{
+	// French translation
+	'translateSrc': './template-def/template-versafix-1.htmml',
+	'translateDef': './template-def/template-versafix-1.fr.json',
+	'htmml': './template-def/template-versafix-1.fr.htmml',
 }];
 
 var ok = true;

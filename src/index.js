@@ -11,24 +11,34 @@ const myArgs = process.argv.slice(2);
 const test = myArgs.length > 0 && myArgs[0] == 'test';
 
 var templates = [ { 
+	// Default template
 	'htmml': './template-def/template-versafix-1.htmml', 
 	'html': './dist/template/template-versafix-1.html',
 	'tdDir': './template-def/',
 	'destDir': './dist/template/',
 	'modelPrefix': './model/template-versafix-1'
 }, {
+	// Italian template
 	'htmml': './template-def/template-versafix-1.it.htmml',
 	'html': './dist/template.it/template-versafix-1.it.html',
 	'tdDir': './template-def/',
 	'destDir': './dist/template.it/',
 	'modelPrefix': './model/template-versafix-1.it'
 }, {
+	// Voxmail template
 	'htmml': './template-def/template-versafix-1.voxmail.htmml',
 	'html': './dist/template.voxmail/template-versafix-1.voxmail.html',
 	'tdDir': './template-def/',
 	'destDir': './dist/template.voxmail/',
 	'modelPrefix': './model/template-versafix-1.voxmail'
-},
+}, {
+	// French template
+	'htmml': './template-def/template-versafix-1.fr.htmml',
+	'html': './dist/template.fr/template-versafix-1.fr.html',
+	'tdDir': './template-def/',
+	'destDir': './dist/template.fr/',
+	'modelPrefix': './model/template-versafix-1.fr'
+}
 ];
 
 var ok = true;
