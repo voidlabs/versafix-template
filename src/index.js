@@ -10,8 +10,8 @@ const tmp = require('tmp');
 const myArgs = process.argv.slice(2);
 const test = myArgs.length > 0 && myArgs[0] == 'test';
 
-var templates = [ { 
-	'htmml': './template-def/template-versafix-1.htmml', 
+var templates = [ {
+	'htmml': './template-def/template-versafix-1.htmml',
 	'html': './dist/template/template-versafix-1.html',
 	'tdDir': './template-def/',
 	'destDir': './dist/template/',

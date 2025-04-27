@@ -64,7 +64,7 @@
                 |white=White
                 |coloured=Coloured
                 |black=Black;
-        renderHint: images; 
+        renderHint: images;
         imagesSources: colors=url('edres/_social-select-colors.png')
                       |bw=url('edres/_social-select-bw.png')
                       |bwb=url('edres/_social-select-bwb.png')
@@ -81,7 +81,7 @@
                       |coloured=url('edres/_social-select-coloured.png')
                       |black=url('edres/_social-select-black.png');
       }
-      bigSocialIconType { label: Icon Version; widget: select; 
+      bigSocialIconType { label: Icon Version; widget: select;
         options: bw=Gray Circle
                 |colors=Coloured Circle
                 |bwb=Black Circle
@@ -97,7 +97,7 @@
                 |white=White
                 |coloured=Coloured
                 |black=Black;
-        renderHint: images; 
+        renderHint: images;
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
                       |bwb=url('edres/_social-select-bwb.png')
@@ -122,7 +122,7 @@
         options: [profile_link]=Profile|[unsubscribe_link]=Unsubscribe|none=None;
         help: If -None- is selected, preHeader text will be shown;
       }
-     
+
       hrStyle { label: Separator Style; properties: color hrWidth hrHeight; }
       hrStyle:preview { height: 200%; width: 200%; bottom: 20px; -ko-border-bottom: @[hrHeight]px solid @color; }
       preheaderVisible { label: Show Preheader; extend: visible; help: Preheader block is the first one on the top of the page. It contains web version link and optionally unsubscribe link or a preheader text that will be shown as a preview on some email clients }
@@ -133,7 +133,7 @@
       image { label: Image; properties: src url alt }
       backgroundColor { label: Background Color; extend: color }
       buttonLink { label: Button; extend: link }
-      
+
       /* texts and links */
       textStyle { label: Text; properties: face color size align }
       textStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
@@ -148,7 +148,7 @@
 
       externalTextStyle { label: Alternative Text; extend: textStyle }
       externalTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
-     
+
       bigTitleStyle { label: Title; properties: face color size align}
       bigTitleStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
       /* buttons */
@@ -166,7 +166,7 @@
       blockSpacing topPadding { label: Top Padding; widget: integer; min: 0; max: 40 }
       blockSpacing bottomPadding { label: Bottom Padding; widget: integer; min: 0; max: 40 }
       blockSpacing { label: Block Spacing; properties: topPadding bottomPadding verticalSpacing horizontalSpacing; category: style /* make sure this ends up as a style property, with inheritance/theming */ }
-      
+
       /* contents */
       preheaderText {label: PreHeader Text; extend:text; help: This text will be shown on some email clients as a preview of the email contents;}
       leftImage { label: Left Image; extend: image }
@@ -194,7 +194,7 @@
       template { label: Page; theme: frameTheme; properties: preheaderVisible=true; version: __VERSION__; }
 
       footerBlock { label: Unsubscribe Block; theme: frameTheme }
-      
+
       fbVisible { label: Facebook; extend: visible }
       twVisible { label: X / Twitter; extend: visible }
       ggVisible { label: Google+; extend: visible }
@@ -257,7 +257,7 @@
         variant: shareButtonType;
         theme: contentTheme;
       }
-      
+
       preheaderBlock { label:Preheader Block; theme: frameTheme; visibility: _root_.preheaderVisible; /* this is a fixed block:  using "visibility" property link this to the boolean variable that deal with its visibility and let mosaico add a trash button to hide it "inline" */ }
 
       sideArticleBlock imagePos {label:Image position;widget:select; options: left=Left|right=Right;
@@ -285,13 +285,13 @@
       doubleArticleBlock { label: 2 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 
       tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
-      
+
       logoBlock longTextStyle { label: Alternative Text; }
       logoBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big;
         renderHint: buttonset;
       }
       logoBlock { label: Logo Block; properties: externalBackgroundVisible=true image imageWidth=258 externalTextStyle; variant: externalBackgroundVisible; theme: contentTheme}
-      
+
       /* a deprecated block is a block that is "known", so loaded models will still work, but is not available in the block list */
       titleBlock { label: Title; properties: bigTitleStyle; theme: contentTheme; deprecated: true }
       titleBlock2 { label: Title; properties: bigTitleStyle; theme: contentTheme}
@@ -380,20 +380,20 @@
       .mobile-hide { display: none !important; }
       .mobile-textcenter { text-align: center !important; }
 
-      .mobile-full { 
+      .mobile-full {
         width: 100% !important;
         max-width: none !important;
       }
     }
-    
+
     /* samsung email workaround */
     @media screen and (max-width: 384px) {
       .mail-message-content { width: 414px !important; }
     }
   </style>
   <style type="text/css" data-inline="true">
-    [data-ko-block=tripleArticleBlock] .links-color a, 
-    [data-ko-block=tripleArticleBlock] .links-color a:link, 
+    [data-ko-block=tripleArticleBlock] .links-color a,
+    [data-ko-block=tripleArticleBlock] .links-color a:link,
     [data-ko-block=tripleArticleBlock] .links-color a:visited,
     [data-ko-block=tripleArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -401,8 +401,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=doubleArticleBlock] .links-color a, 
-    [data-ko-block=doubleArticleBlock] .links-color a:link, 
+    [data-ko-block=doubleArticleBlock] .links-color a,
+    [data-ko-block=doubleArticleBlock] .links-color a:link,
     [data-ko-block=doubleArticleBlock] .links-color a:visited,
     [data-ko-block=doubleArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -410,8 +410,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=singleArticleBlock] .links-color a, 
-    [data-ko-block=singleArticleBlock] .links-color a:link, 
+    [data-ko-block=singleArticleBlock] .links-color a,
+    [data-ko-block=singleArticleBlock] .links-color a:link,
     [data-ko-block=singleArticleBlock] .links-color a:visited,
     [data-ko-block=singleArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -419,8 +419,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=textBlock] .links-color a, 
-    [data-ko-block=textBlock] .links-color a:link, 
+    [data-ko-block=textBlock] .links-color a,
+    [data-ko-block=textBlock] .links-color a:link,
     [data-ko-block=textBlock] .links-color a:visited,
     [data-ko-block=textBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -428,8 +428,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=sideArticleBlock] .links-color a, 
-    [data-ko-block=sideArticleBlock] .links-color a:link, 
+    [data-ko-block=sideArticleBlock] .links-color a,
+    [data-ko-block=sideArticleBlock] .links-color a:link,
     [data-ko-block=sideArticleBlock] .links-color a:visited,
     [data-ko-block=sideArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -437,8 +437,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=sideImageBlock] .links-color a, 
-    [data-ko-block=sideImageBlock] .links-color a:link, 
+    [data-ko-block=sideImageBlock] .links-color a,
+    [data-ko-block=sideImageBlock] .links-color a:link,
     [data-ko-block=sideImageBlock] .links-color a:visited,
     [data-ko-block=sideImageBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -446,8 +446,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=socialBlock] .links-color a, 
-    [data-ko-block=socialBlock] .links-color a:link, 
+    [data-ko-block=socialBlock] .links-color a,
+    [data-ko-block=socialBlock] .links-color a:link,
     [data-ko-block=socialBlock] .links-color a:visited,
     [data-ko-block=socialBlock] .links-color a:hover {
       color: #cccccc;
@@ -455,8 +455,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=footerBlock] .links-color a, 
-    [data-ko-block=footerBlock] .links-color a:link, 
+    [data-ko-block=footerBlock] .links-color a,
+    [data-ko-block=footerBlock] .links-color a:link,
     [data-ko-block=footerBlock] .links-color a:visited,
     [data-ko-block=footerBlock] .links-color a:hover {
       color: #cccccc;
@@ -548,7 +548,7 @@
     <def attr="vertical-padding-style" selector="td[style]" style="-ko-padding-top: @[{{vertical-padding-style}}.topPadding]px; -ko-padding-bottom: @[{{vertical-padding-style}}.bottomPadding]px;"></def>
 
     <def attr="mso-vertical-inner-padding" selector="cc-table" style="mso-padding-top-alt: {{mso-vertical-inner-padding}}px; mso-padding-bottom-alt: {{mso-vertical-inner-padding}}px;"></def>
-    <def attr="mso-vertical-padding-style" selector="cc-table" style="-ko-mso-padding-top-alt: @[{{mso-vertical-padding-style}}.topPadding]px; -ko-mso-padding-bottom-alt: @[{{mso-vertical-padding-style}}.bottomPadding]px;"></def>    
+    <def attr="mso-vertical-padding-style" selector="cc-table" style="-ko-mso-padding-top-alt: @[{{mso-vertical-padding-style}}.topPadding]px; -ko-mso-padding-bottom-alt: @[{{mso-vertical-padding-style}}.bottomPadding]px;"></def>
 
     <!-- web.de|gmx, and maybe orange do not support dir in table/td -->
     <!-- the template will add a whole table-tr-td when the dir attribute is used, to prevent some vertical line in MSO:
@@ -715,11 +715,11 @@
     <def attr="content-spacing" selector="td" style="{{content-spacing}}"></def>
     <def attr="content-spacing-style" selector="td" style="padding: 9px; padding-top: 5px; padding-bottom: 5px; -ko-padding: @[{{content-spacing-style}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style}}.verticalSpacing]px; -ko-padding-bottom: @[{{content-spacing-style}}.verticalSpacing]px;"></def>
 
-    <!-- ugly hack, but I have not better way to deal with conflicting attribute combinations: 13px is hardcoded here 
+    <!-- ugly hack, but I have not better way to deal with conflicting attribute combinations: 13px is hardcoded here
          because htmml can't calculate 5px + {{padding-bottom}} and we know padding-bottom is always 8px here -->
     <def attr="content-spacing-style-with-padding-bottom" selector="td" style="-ko-padding: @[{{content-spacing-style-with-padding-bottom}}.horizontalSpacing]px; -ko-padding-top: @[{{content-spacing-style-with-padding-bottom}}.verticalSpacing]px; -ko-padding-bottom: @[Math.round({{padding-bottom}}) + Math.round({{content-spacing-style-with-padding-bottom}}.verticalSpacing)]px;"></def>
 
-    <def attr="editable" selector="a" data-ko-link="{{editable}}.url"></def> 
+    <def attr="editable" selector="a" data-ko-link="{{editable}}.url"></def>
     <def attr="editable" selector="img" data-ko-editable="{{editable}}.src" style="-ko-attr-alt: @{{editable}}.alt; -ko-attr-alt-if: {{editable}}.alt !== '';"></def>
 
     <def attr="content" selector="a" style="-ko-attr-href: @{{content}}.url"></def>
@@ -1006,7 +1006,7 @@
     </block>
 -->
 
-  <!-- Note: 
+  <!-- Note:
     the conditional comment around the body tag (and /body) is to hide the whole tag to windows 10 mail to prevent really weird bugs with windows 10 mail.
     the conditional comment also remove the tag from Outlook 2016 and following versions, as they share the same version of windows 10 mail.
     2022-06-09: switched to gte mso 15 to remove the body also to Outlook 2013 so 1px lines are white instead of the external frame color.
@@ -1023,7 +1023,7 @@
   <div data-ko-display="preheaderVisible" data-ko-wrap="false">
 
     <block name="preheaderBlock" label="Preheader Block" theme="frameTheme">
-      <div data-ko-display="preheaderLinkOption neq 'none'" style="display: none; font-size:1px; line-height: 1px; max-height:0px; max-width: 0px; opacity: 0; overflow: hidden; 
+      <div data-ko-display="preheaderLinkOption neq 'none'" style="display: none; font-size:1px; line-height: 1px; max-height:0px; max-width: 0px; opacity: 0; overflow: hidden;
           -ko-bind-text: @preheaderText"></div>
       <block-inner>
         <columns><!--
