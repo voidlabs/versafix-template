@@ -9,7 +9,7 @@ This repository contains the [HTMML](https://github.com/voidlabs/htmml) "sources
 
 You need NodeJS v6.0 or higher + ImageMagick
 
-```javascript
+```shell
   npm install
   # run this to generate the htmml for the non english language
   npm run translate
@@ -24,7 +24,7 @@ This will run, for each template, 3 things
 - Generate the template model, or check the template model against previously generated models, to track compatibility issues
 - Generate the template and block thumbnails (```edres``` folder) for the templates.
 
-```javascript
+```shell
   # run this to generate the htmml for the non english language
   npm run translate
 ```
@@ -36,6 +36,7 @@ If you use this translation then you probably want to run the translate task bef
 ### Src vs Generated
 
 ```dist``` contains the final templates to be used in mosaico
+
 ```model``` contains generated model files, used to track compatility issues between builds.
 
 ### HTMML
