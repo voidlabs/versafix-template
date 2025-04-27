@@ -27,4 +27,3 @@ var makeThumbs = function (templateFile, outputFolder, renderWidth, outputWidth)
 };
 
 module.exports = makeThumbs;
-
