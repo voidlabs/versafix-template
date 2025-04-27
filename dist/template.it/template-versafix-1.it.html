@@ -64,7 +64,7 @@
                 |white=Bianche
                 |coloured=Colorate
                 |black=Nere;
-        renderHint: images; 
+        renderHint: images;
         imagesSources: colors=url('edres/_social-select-colors.png')
                       |bw=url('edres/_social-select-bw.png')
                       |bwb=url('edres/_social-select-bwb.png')
@@ -81,7 +81,7 @@
                       |coloured=url('edres/_social-select-coloured.png')
                       |black=url('edres/_social-select-black.png');
       }
-      bigSocialIconType { label: Versione icone; widget: select; 
+      bigSocialIconType { label: Versione icone; widget: select;
         options: bw=Cerchio Grigio
                 |colors=Cerchio Colorato
                 |bwb=Cerchio Nero
@@ -97,7 +97,7 @@
                 |white=Bianche
                 |coloured=Colorate
                 |black=Nere;
-        renderHint: images; 
+        renderHint: images;
         imagesSources: bw=url('edres/_social-select-bw.png')
                       |colors=url('edres/_social-select-colors.png')
                       |bwb=url('edres/_social-select-bwb.png')
@@ -122,7 +122,7 @@
         options: [profile_link]=Profilo |[unsubscribe_link]=Disiscrizione|none=Nessuno;
         help: Se viene selezionato -Nessuno- verrà visualizzato il testo di preintestazione;
       }
-     
+
       hrStyle { label: Stile separatore; properties: color hrWidth hrHeight; }
       hrStyle:preview { height: 200%; width: 200%; bottom: 20px; -ko-border-bottom: @[hrHeight]px solid @color; }
       preheaderVisible { label: Mostra Preintestazione; extend: visible; help: Il blocco preintestazione è il primo blocco in alto nella pagina. Contiene il link per la visualizzazione del messaggio sul web ed eventualmente il link per la disiscrizione o un testo che verrà visualizzato in anteprima da alcuni programmi di posta }
@@ -133,7 +133,7 @@
       image { label: Immagine; properties: src url alt }
       backgroundColor { label: Colore sfondo; extend: color }
       buttonLink { label: Pulsante; extend: link }
-      
+
       /* texts and links */
       textStyle { label: Testo; properties: face color size align }
       textStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
@@ -148,7 +148,7 @@
 
       externalTextStyle { label: Testo alternativo; extend: textStyle }
       externalTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
-     
+
       bigTitleStyle { label: Titolo; properties: face color size align}
       bigTitleStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
       /* buttons */
@@ -166,7 +166,7 @@
       blockSpacing topPadding { label: Margine superiore; widget: integer; min: 0; max: 40 }
       blockSpacing bottomPadding { label: Margine inferiore; widget: integer; min: 0; max: 40 }
       blockSpacing { label: Spaziature; properties: topPadding bottomPadding verticalSpacing horizontalSpacing; category: style /* make sure this ends up as a style property, with inheritance/theming */ }
-      
+
       /* contents */
       preheaderText {label: Testo Preintestazione; extend:text; help: Testo mostrato come preview del contenuto in alcuni client di posta;}
       leftImage { label: Imm. sinistra; extend: image }
@@ -194,7 +194,7 @@
       template { label: Pagina; theme: frameTheme; properties: preheaderVisible=true; version: 1.3.9; }
 
       footerBlock { label: Blocco Disiscrizione; theme: frameTheme }
-      
+
       fbVisible { label: Facebook; extend: visible }
       twVisible { label: X / Twitter; extend: visible }
       ggVisible { label: Google+; extend: visible }
@@ -257,7 +257,7 @@
         variant: shareButtonType;
         theme: contentTheme;
       }
-      
+
       preheaderBlock { label:Blocco Preintestazione; theme: frameTheme; visibility: _root_.preheaderVisible; /* this is a fixed block:  using "visibility" property link this to the boolean variable that deal with its visibility and let mosaico add a trash button to hide it "inline" */ }
 
       sideArticleBlock imagePos {label:Posizione immagine;widget:select; options: left=Sinistra|right=Destra;
@@ -285,13 +285,13 @@
       doubleArticleBlock { label: Blocco 2 Colonne; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 
       tripleArticleBlock { label: Blocco 3 Colonne; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true fixedImageHeightVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
-      
+
       logoBlock longTextStyle { label: Testo alternativo; }
       logoBlock imageWidth { label: Dimensioni Immagine; widget: select; options: 166=Piccola|258=Media|350=Grande;
         renderHint: buttonset;
       }
       logoBlock { label: Blocco Logo; properties: externalBackgroundVisible=true image imageWidth=258 externalTextStyle; variant: externalBackgroundVisible; theme: contentTheme}
-      
+
       /* a deprecated block is a block that is "known", so loaded models will still work, but is not available in the block list */
       titleBlock { label: Titolo; properties: bigTitleStyle; theme: contentTheme; deprecated: true }
       titleBlock2 { label: Titolo; properties: bigTitleStyle; theme: contentTheme}
@@ -380,20 +380,20 @@
       .mobile-hide { display: none !important; }
       .mobile-textcenter { text-align: center !important; }
 
-      .mobile-full { 
+      .mobile-full {
         width: 100% !important;
         max-width: none !important;
       }
     }
-    
+
     /* samsung email workaround */
     @media screen and (max-width: 384px) {
       .mail-message-content { width: 414px !important; }
     }
   </style>
   <style type="text/css" data-inline="true">
-    [data-ko-block=tripleArticleBlock] .links-color a, 
-    [data-ko-block=tripleArticleBlock] .links-color a:link, 
+    [data-ko-block=tripleArticleBlock] .links-color a,
+    [data-ko-block=tripleArticleBlock] .links-color a:link,
     [data-ko-block=tripleArticleBlock] .links-color a:visited,
     [data-ko-block=tripleArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -401,8 +401,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=doubleArticleBlock] .links-color a, 
-    [data-ko-block=doubleArticleBlock] .links-color a:link, 
+    [data-ko-block=doubleArticleBlock] .links-color a,
+    [data-ko-block=doubleArticleBlock] .links-color a:link,
     [data-ko-block=doubleArticleBlock] .links-color a:visited,
     [data-ko-block=doubleArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -410,8 +410,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=singleArticleBlock] .links-color a, 
-    [data-ko-block=singleArticleBlock] .links-color a:link, 
+    [data-ko-block=singleArticleBlock] .links-color a,
+    [data-ko-block=singleArticleBlock] .links-color a:link,
     [data-ko-block=singleArticleBlock] .links-color a:visited,
     [data-ko-block=singleArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -419,8 +419,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=textBlock] .links-color a, 
-    [data-ko-block=textBlock] .links-color a:link, 
+    [data-ko-block=textBlock] .links-color a,
+    [data-ko-block=textBlock] .links-color a:link,
     [data-ko-block=textBlock] .links-color a:visited,
     [data-ko-block=textBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -428,8 +428,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=sideArticleBlock] .links-color a, 
-    [data-ko-block=sideArticleBlock] .links-color a:link, 
+    [data-ko-block=sideArticleBlock] .links-color a,
+    [data-ko-block=sideArticleBlock] .links-color a:link,
     [data-ko-block=sideArticleBlock] .links-color a:visited,
     [data-ko-block=sideArticleBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -437,8 +437,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=sideImageBlock] .links-color a, 
-    [data-ko-block=sideImageBlock] .links-color a:link, 
+    [data-ko-block=sideImageBlock] .links-color a,
+    [data-ko-block=sideImageBlock] .links-color a:link,
     [data-ko-block=sideImageBlock] .links-color a:visited,
     [data-ko-block=sideImageBlock] .links-color a:hover {
       color: #3f3f3f;
@@ -446,8 +446,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=socialBlock] .links-color a, 
-    [data-ko-block=socialBlock] .links-color a:link, 
+    [data-ko-block=socialBlock] .links-color a,
+    [data-ko-block=socialBlock] .links-color a:link,
     [data-ko-block=socialBlock] .links-color a:visited,
     [data-ko-block=socialBlock] .links-color a:hover {
       color: #cccccc;
@@ -455,8 +455,8 @@
       text-decoration: underline;
     }
 
-    [data-ko-block=footerBlock] .links-color a, 
-    [data-ko-block=footerBlock] .links-color a:link, 
+    [data-ko-block=footerBlock] .links-color a,
+    [data-ko-block=footerBlock] .links-color a:link,
     [data-ko-block=footerBlock] .links-color a:visited,
     [data-ko-block=footerBlock] .links-color a:hover {
       color: #cccccc;
@@ -503,7 +503,7 @@
     <!-- preheaderBlock -->
     <table role="presentation" class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#3f3f3f" style="background-color: #3f3f3f; -ko-background-color: @[backgroundColor]; -ko-attr-bgcolor: @[backgroundColor]" data-ko-block="preheaderBlock">
       <tr><td class="vb-outer" align="center" valign="top" style="padding-left: 9px; padding-right: 9px; font-size: 0">
-      <div data-ko-display="preheaderLinkOption neq 'none'" style="display: none; font-size:1px; line-height: 1px; max-height:0px; max-width: 0px; opacity: 0; overflow: hidden; 
+      <div data-ko-display="preheaderLinkOption neq 'none'" style="display: none; font-size:1px; line-height: 1px; max-height:0px; max-width: 0px; opacity: 0; overflow: hidden;
           -ko-bind-text: @preheaderText"></div>
       <!--[if (gte mso 9)|(lte ie 8)]><table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]--><!--
       --><div style="margin: 0 auto; max-width: 570px; -mru-width: 0px"><table role="presentation" class="vb-row" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 570px; -mru-width: 0px" width="570">
